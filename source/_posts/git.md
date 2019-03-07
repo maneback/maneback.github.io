@@ -29,7 +29,7 @@ git push -u origin master
 
 - 删除远程分支
 ```shell
-git push origin :hexo #: 表示删除分支
+git push origin :dev #: 表示删除origin上的远程分支dev
 ```
 - commit 报错：
 `fatal: LF would be replacesd by CRLF in <some file>`
