@@ -2,9 +2,9 @@
 title: GitHub博客搭建(一) Hexo介绍
 date: 2018-03-30 22:28:12
 tags:
- -blog
- -hexo
- -github
+ - blog
+ - hexo
+ - github
 categories: Blog
 ---
 

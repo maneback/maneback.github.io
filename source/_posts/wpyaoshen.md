@@ -1,7 +1,7 @@
 ---
 title: 影评-我不是药神
 date: 2018-07-21 10:19:42
-categories: 影评剧评
+categories: movie-review
 description: 你为什么帮我
 ---
 

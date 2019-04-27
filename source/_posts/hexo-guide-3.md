@@ -2,11 +2,11 @@
 title: GitHub博客搭建(三) Hexo配置与发布
 date: 2018-03-31 11:31:02
 tags:
-- blog
-- hexo
-- github
+  - blog
+  - hexo
+  - github
 categories:
-- Blog
+  - Blog
 description: 配置Hexo，Hexo文件夹介绍
 ---
 

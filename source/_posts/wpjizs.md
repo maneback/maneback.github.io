@@ -1,7 +1,7 @@
 ---
 title: 剧评-急诊室医生
 date: 2018-07-25 10:19:52
-categories: 影评剧评
+categories: movie-review
 description: 我竟然刷了一部不怎么好看的国产剧
 ---
 
