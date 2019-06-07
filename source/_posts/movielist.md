@@ -1,7 +1,7 @@
 ---
 title: 已观影清单
 date: 2018-07-25 10:26:42
-categories: 影评剧评
+categories: movie-review
 description: 记录一下自己去电影院看的电影。
 ---
 
