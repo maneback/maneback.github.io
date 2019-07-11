@@ -60,3 +60,9 @@ git push origin 1.0.1
 git push origin -tags
 ```
 
+- git版本回退
+
+  ```shell
+  git reset --hard head^
+  git reset --hard xxxx
+  ```
