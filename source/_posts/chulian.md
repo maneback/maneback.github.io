@@ -3,11 +3,12 @@ title: 我们会为了爱情舍弃什么
 date: 2019-07-11 20:05:53
 tags:
   - dreams
+  - 爱情
 categories: This is the life
 description: “在这个总要有一个人牺牲的过程中，我们发现，还是牺牲掉这段爱情比较划算。”
 ---
 
-转载自微博用户[写不出稿苏见祈](<https://www.weibo.com/sujianqi03?topnav=1&wvr=6&topsug=1&is_hot=1>)
+全文转载自微博用户[写不出稿苏见祈](<https://www.weibo.com/sujianqi03?topnav=1&wvr=6&topsug=1&is_hot=1>)， 未经修改。
 
 朋友讲了个故事给我听。
 说是有一对校园情侣，在一起整个大学四年，恩爱非常。毕业前两个人也商量好一起留在城市发展，大家都很羡慕这一对。

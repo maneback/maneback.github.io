@@ -4,12 +4,12 @@ date: 2019-03-28 17:49:05
 tags:
   - nginx
   - dash
+  - linux
 categories: 
   knowledge
-
 ---
 
-借用nginx服务器搭建dash服务
+教你如何借用nginx服务器搭建dash服务
 
 <!--more-->
 
