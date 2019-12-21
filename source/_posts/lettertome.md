@@ -5,6 +5,7 @@ tags:
   - 毕业
   - 回忆
   - 爱情
+  - letter
 categories: 碎碎念
 description: 随手写的一封信，一封手写信的电子化
 ---
