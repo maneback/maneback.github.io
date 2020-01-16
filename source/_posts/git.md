@@ -1,5 +1,5 @@
 ---
-title: git
+title: 一些简单的git操作命令
 date: 2018-11-02 21:57:03
 tags:
 - git
@@ -62,7 +62,16 @@ git push origin -tags
 
 - git版本回退
 
-  ```shell
-  git reset --hard head^
-  git reset --hard xxxx
-  ```
+```shell
+git reset --hard head^
+git reset --hard xxxx
+```
+
+- 拉取远程仓库强制覆盖本地内容
+
+```shell
+git fetch --all
+git reset --hard origin/master
+git pull
+```
+
