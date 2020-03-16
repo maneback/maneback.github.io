@@ -4,7 +4,7 @@ date: 2019-12-29 22:00:13
 tags:
   - 自省
 categories: This is the life
-description:
+description: 正视自己
 ---
 
 # 记一个非常消沉的周末
