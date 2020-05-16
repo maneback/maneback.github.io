@@ -2,6 +2,7 @@
 title: 逃避可耻且没用
 date: 2019-05-06 22:26:45
 tags: 
+  - 人生
 categories: This is the life
 description: 所以说，年轻人，趁着年轻，多经历些挫折是一件好事，但是不要轻易被小挫折打倒，因为生活确实不容易。
 ---

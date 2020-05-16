@@ -3,7 +3,7 @@ title: 碎碎念|写给自己的一封信
 date: 2019-07-17 21:25:31
 tags:
   - 毕业
-  - 回忆
+  - 人生
   - 爱情
   - letter
 categories: 碎碎念

@@ -2,6 +2,8 @@
 title: 套路贷简史
 date: 2019-05-06 21:25:53
 categories: Amazing
+tags: 
+  - 文章
 description: 本文全摘自公众号半佛仙人，但是估计原文已被举报删除，因此在此备份留存。
 ---
 

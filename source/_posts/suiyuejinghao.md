@@ -2,7 +2,7 @@
 title: 岁月静好
 date: 2019-10-07 21:50:11
 tags: 
-  - 生活
+  - 人生
   - 爱情
 categories: This is the life
 description: 

@@ -49,7 +49,7 @@ description: 收集一波情侣头像备用。妈的可不啥时候能用上。
 
 <img src="https://raw.githubusercontent.com/maneback/TyporaPic/master/img/6-2.jpg" alt="6-2" style="zoom:50%;" />
 
-### 7待续
+### 7
 
 
 
