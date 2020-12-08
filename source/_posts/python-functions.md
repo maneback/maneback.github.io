@@ -15,7 +15,7 @@ categories:
 
 <!--more-->
 
-#### 1. emumerate()
+### 1. emumerate()
 
 对于一个可迭代/可遍历的对象（如列表、字符串等），可以使用`enumerate()`同时获得索引值和数值，将得到以下object
 
@@ -80,5 +80,26 @@ c = [7,8,9]
 zipped = zip(a, b)
 # ====>
 [(1, 4), (2, 5), (3, 6)]
+```
+
+### 4. 反向迭代 reverse
+
+```python 
+l = [1,2,3,4,5,6]
+for x in reversed(l):
+    print(x)
+```
+
+### 5. 迭代器
+
+```
+# filter 实现带有筛选功能的迭代器
+def upper(val):
+	if val>0:
+		return True
+	else:
+		return False
+lis = [1,2,3,4,-1,-2,-3,-4,1,2,3,4]
+g = filter(upper, lis)
 ```
 
