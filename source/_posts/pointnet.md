@@ -22,7 +22,7 @@ PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation [CV
 
 当 2D 图像输入到深度学习的网络中时，它是规则的数据，每个像素值的位置都可以以一个二维坐标来表示，且它在空间上是连续的表示，即相邻像素就是在图像中相邻的。而点云的表示方法有所不同。它是无序且非结构化的表示，只是一个由点的坐标构成的集合，而相邻点之间并没有这种空间的相邻关系。这就会造成如下面这样的结果：
 
-![image-20200519190516881](E:%5Cblog%5Cgithub%5Csource%5C_posts%5Cpointnet%5Cimage-20200519190402585.png)
+![image-20200519190516881](./pointnet%5Cimage-20200519190402585.png)
 
 
 
@@ -34,7 +34,7 @@ PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation [CV
 
 - 第二种方法是 voxelization  的方法，即把空间划分成离散的体素 (3D voxel)， 然后每个点按照坐标位置决定落到那个体素单元中。这样，就可以把原来无序的点云输入规则化。
 
-![image-20200519191108741](E:%5Cblog%5Cgithub%5Csource%5C_posts%5Cpointnet%5Cimage-20200519191108741.png)
+![image-20200519191108741](./pointnet%5Cimage-20200519191108741.png)
 
 但是这种预处理的方式肯定会造成一定的信息损失。
 
