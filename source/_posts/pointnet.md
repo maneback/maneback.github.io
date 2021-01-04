@@ -34,7 +34,7 @@ PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation [CV
 
 - 第二种方法是 voxelization  的方法，即把空间划分成离散的体素 (3D voxel)， 然后每个点按照坐标位置决定落到那个体素单元中。这样，就可以把原来无序的点云输入规则化。
 
-![image-20200519191108741](./pointnet%5Cimage-20200519191108741.png)
+![image-20200519191108741](./pointnet/image-20200519191108741.png)
 
 但是这种预处理的方式肯定会造成一定的信息损失。
 
@@ -52,7 +52,7 @@ PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation [CV
 
 **PointNet 的网络结构如下：**
 
-![image-20200519191853493](E:%5Cblog%5Cgithub%5Csource%5C_posts%5Cpointnet%5Cimage-20200519191853493.png)
+![image-20200519191853493](./pointnet/image-20200519191853493.png)
 
 网络的输入即为一个 nx3 的向量，表示 n 个点的三维坐标。可以用于分类任务与分割任务。对于分类任务，输出结果为 k 个分类类别的得分；对于分割任务，输出结果为 n 个点逐个的所属分割部分的得分。
 
@@ -84,7 +84,7 @@ $$
 
 在 ModelNet40 数据集上分类的准确率如下：
 
-![image-20200519201114714](E:%5Cblog%5Cgithub%5Csource%5C_posts%5Cpointnet%5Cimage-20200519201114714.png)
+![image-20200519201114714](./pointnet/image-20200519201114714.png)
 
 在这项任务中，与 multi-view 与 voxel 的方法进行了对比。
 
@@ -92,11 +92,11 @@ $$
 
 所谓部分分割，就是对每个点生成一个类别标记：
 
-![image-20200519201238654](E:%5Cblog%5Cgithub%5Csource%5C_posts%5Cpointnet%5Cimage-20200519201238654.png)
+![image-20200519201238654](./pointnet/image-20200519201238654.png)
 
 在 ModelNet40 部分分割结果如下，评价指标为 IoU:
 
-![image-20200519201340421](E:%5Cblog%5Cgithub%5Csource%5C_posts%5Cpointnet%5Cimage-20200519201340421.png)
+![image-20200519201340421](./pointnet/image-20200519201340421.png)
 
 ### 3.3 场景语义分割
 
@@ -104,7 +104,7 @@ $$
 
 在这一项任务中，输入不在是三维向量，而是九维，包括 (三维坐标，RGB值，归一化后的三维坐标)。得到的结果如下：
 
-![image-20200519201833239](C:%5CUsers%5Cdell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200519201833239.png)
+![image-20200519201833239](./pointnet/image-20200519201833239.png)
 
 ## 四、理论分析
 
