@@ -6,6 +6,7 @@ tags:
   - 深度学习
   - 学习
 categories: 论文解读
+mathjax: true
 ---
 
 PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation [CVPR 2017]
@@ -22,8 +23,8 @@ PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation [CV
 
 当 2D 图像输入到深度学习的网络中时，它是规则的数据，每个像素值的位置都可以以一个二维坐标来表示，且它在空间上是连续的表示，即相邻像素就是在图像中相邻的。而点云的表示方法有所不同。它是无序且非结构化的表示，只是一个由点的坐标构成的集合，而相邻点之间并没有这种空间的相邻关系。这就会造成如下面这样的结果：
 
-![image-20200519190516881](./pointnet/image-20200519190402585.png)
 
+![](pointnet/image-20200519190402585.png)
 
 
 如上图：一副点云由若干的点构成，但是同一副点云图像其中点的排列顺序可能会不同，当以两者分别输入卷积网络中时，无论对于分类任务还是对于目标检测任务来讲，会带来不同的结果。然而实际上二者表示的是同一个物体或内容。这显然不是我们想要的结果。
@@ -34,9 +35,9 @@ PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation [CV
 
 - 第二种方法是 voxelization  的方法，即把空间划分成离散的体素 (3D voxel)， 然后每个点按照坐标位置决定落到那个体素单元中。这样，就可以把原来无序的点云输入规则化。
 
-![image-20200519191108741](./pointnet/image-20200519191108741.png)
+![](pointnet/image-20200519191108741.png)
 
-但是这种预处理的方式肯定会造成一定的信息损失。
+但是这种预处理的方式肯定会造成一定的信息损失。  
 
 基于此问题，本文的作者就提出了 PointNet 神经网络来处理点云数据。设计了一种直接处理点云来提取特征的新型网络，很好地考虑了对于输入点**排列顺序**的不变性。以及网络对于输入点集小的扰动和数据破坏（丢失）也具有很好的鲁棒性。
 
@@ -52,7 +53,7 @@ PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation [CV
 
 **PointNet 的网络结构如下：**
 
-![image-20200519191853493](./pointnet/image-20200519191853493.png)
+![](pointnet/image-20200519191853493.png)
 
 网络的输入即为一个 nx3 的向量，表示 n 个点的三维坐标。可以用于分类任务与分割任务。对于分类任务，输出结果为 k 个分类类别的得分；对于分割任务，输出结果为 n 个点逐个的所属分割部分的得分。
 
@@ -84,7 +85,7 @@ $$
 
 在 ModelNet40 数据集上分类的准确率如下：
 
-![image-20200519201114714](./pointnet/image-20200519201114714.png)
+![](pointnet/image-20200519201114714.png)
 
 在这项任务中，与 multi-view 与 voxel 的方法进行了对比。
 
@@ -92,19 +93,17 @@ $$
 
 所谓部分分割，就是对每个点生成一个类别标记：
 
-![image-20200519201238654](./pointnet/image-20200519201238654.png)
+![](pointnet/image-20200519201238654.png)
 
 在 ModelNet40 部分分割结果如下，评价指标为 IoU:
 
-![image-20200519201340421](./pointnet/image-20200519201340421.png)
+![](pointnet/image-20200519201340421.png)
 
 ### 3.3 场景语义分割
 
 场景语义分割任务与部分分割任务类似，也是为每个点分配一个类别标记，判断每个点属于哪个物体。数据集为 Stanford 3D semantic parsing data Set. 
 
 在这一项任务中，输入不在是三维向量，而是九维，包括 (三维坐标，RGB值，归一化后的三维坐标)。得到的结果如下：
-
-![image-20200519201833239](./pointnet/image-20200519201833239.png)
 
 ## 四、理论分析
 
@@ -115,21 +114,29 @@ $$
 首先，给出为什么可以用 $g$ 和 $h$ 来近似逼近函数 $f$。
 
 对于定义在集合上的连续函数 $f$ , 有如下的性质：
+
+
 $$
 \begin{align}
 &\chi = \{S:S\subseteq[0,1]^m and\; |S|=n \}\\
 &f:\chi \to \mathbb{R},\mbox{ 是一个连续的集合函数。}\\
 &\mbox{Hausdorff distance  } d_H(.,.) \mbox{ 定义元素之间的距离。}\\
-& \forall\, \theta>0, \exist\,\delta>0, for\;any\;S_1,S_2\in\chi:\\
+& \forall\, \theta>0, \exist  \,\delta>0, for\;any\;S_1,S_2\in\chi:\\
 &if\;\;d_H(S_1,S_2)<\delta, then\;|f(S_1)-f(S_2)|<\theta
 \end{align}
 $$
+
+
 由于连续函数 $f$ 有了这个性质，那么我们就可以定义一个对称函数 $g$ ，是一个$\gamma$ 和 max的复合函数。使得函数 $g$ 作用于 $h(x)$ 之上的函数值与 $f(S)$ 之间的数值足够小。
 
 换句话说，我们可以用这样一个作用于每一元素的函数 $h$ 以及一个对称函数 $MAX$ 来近似集合函数 $f$ 。
+
+
 $$
-\begin{align}&\forall \theta>0,\;\exist\mbox{ 一个连续函数 }\;h\\&\mbox{ 和一个对称函数 }\;g(x_1,...,x_n)=\gamma\circ MAX:\\&\mbox{such that for any }\; S\in \chi :\\&\bigg|f(S)-\gamma\bigg(MAX_{x_i\in S}\{h(x_i)\}\bigg)\bigg|<\theta\\& (x_1,...,x_n \mbox{ 是 }S\mbox{ 中的元素。})\end{align}
+\begin{align}&\forall \theta>0,\;\exist \mbox{ 一个连续函数 }\;h\\&\mbox{ 和一个对称函数 }\;g(x_1,...,x_n)=\gamma\circ MAX:\\&\mbox{such that for any }\; S\in \chi :\\&\bigg|f(S)-\gamma\bigg(MAX_{x_i\in S}\{h(x_i)\}\bigg)\bigg|<\theta\\& 
+(x_1,...,x_n \mbox{ 是 }S\mbox{ 中的元素。})\end{align}
 $$
+
 
 ### 4.2 稳定性分析
 
@@ -142,6 +149,7 @@ $$
 b)说明C中点的个数不大于K。这个K就是特征的维度。因为我们在用 $u$ 做最大池化操作时，对于 K 维中的每一个，只会选择来自一个点的特征作为该位的最大值，也就是说 MAXPOOLING 操作只会选择 K 个起作用的点。
 
 因此，maxpooling 时候的特征维度K会影响C，进而影响分类的准确率。
+
 $$
 \begin{align}
 & 令\; u: \chi\to\mathbb{R}^K\\
@@ -154,6 +162,8 @@ f(S)=f(T)\;if\;\mathcal{C}_s\subseteq T\subseteq \mathcal{N}_S\\
 \end{align}
 $$
 
+
+
 $$
 \begin{align}
 &(a)式说明\;f(S)\;的函数值由一组关键点\mathcal{C}_S 决定\\
@@ -163,15 +173,17 @@ $$
 \end{align}
 $$
 
+
 $$
 称 \mathcal{C}_S 为\; critical\; point\; set,K\;为\;bottleneck\; dimension
 $$
 
+
 上述证明说明了此网络对于输入中一些微小的扰动与离群点具有很好的鲁棒性，并不会很大程度上影响结果。
 
-下面给出了一些点云输入的 $\mathcal{C}_S $和$\mathcal{C}_N$集合可视化例子。可以看出经过这个网络提取出的 $\mathcal{C}_S$ 集合，大体上描绘了这个物体的大致轮廓。
+下面给出了一些点云输入的 $\mathcal{C}_S $ 和 $\mathcal{C}_N$ 集合可视化例子。可以看出经过这个网络提取出的 $\mathcal{C}_S$ 集合，大体上描绘了这个物体的大致轮廓。
 
-![image-20200519204133081](E:%5Cblog%5Cgithub%5Csource%5C_posts%5Cpointnet%5Cimage-20200519204133081.png)
+![](pointnet/image-20200519204133081.png)
 
 下图是 maxpooling 的维度 K 对准确率的影响。横坐标是 K 设置的数值，纵坐标是分类的准确率。每条线是每个输入中点的数量。可以看到随着 K 的增加，准确率有所上升，但是当 K 到达 1000 左右时基本上就不再变了，所以本文中 K 的取值就是选择 1024 ，以达到效率与精确度的最好权衡。
 
@@ -179,12 +191,11 @@ $$
 
 在之前，提到过有三种方法解决无序性问题：排序、RNN、对称函数，现在给出这三种设计方法的效果对比：
 
-![image-20200519204525862](E:%5Cblog%5Cgithub%5Csource%5C_posts%5Cpointnet%5Cimage-20200519204525862.png)
+![](pointnet/image-20200519204525862.png)
 
 可以看到对称函数操作的准确性最高，而在所考虑的三种对称函数中，maxpooling 的准确性又是其中最高的。
 
 此外，我们提到过 T-Net 对齐网络的作用，在这里给出它的实际效果，可以看出它可以在一定程度上提高分类的准确率。
 
-![image-20200519204631830](E:%5Cblog%5Cgithub%5Csource%5C_posts%5Cpointnet%5Cimage-20200519204631830.png)
+![](pointnet/image-20200519204631830.png)
 
-## 五、总结
