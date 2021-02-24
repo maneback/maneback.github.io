@@ -2,9 +2,9 @@
 title: Leetcode -- binary tree maximum path sum
 date: 2020-06-15 21:04:57
 tags: 
-  - leetcode
+  - Leetcode
   - tree
-  - dfs
+  - BFS&DFS
 categories: 
 description: LeetCode-124
 ---

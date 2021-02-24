@@ -3,7 +3,6 @@ title: 使用Nginx搭建DASH服务
 date: 2019-03-28 17:49:05
 tags:
   - nginx
-  - dash
   - linux
 categories: 
   knowledge

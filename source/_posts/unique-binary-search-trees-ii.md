@@ -15,8 +15,6 @@ description: LeetCode-95
 
 0<=n<=8
 
-![image-20200616114328874](C:%5CUsers%5Cdell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200616114328874.png)
-
 #### 解题思路
 
 
