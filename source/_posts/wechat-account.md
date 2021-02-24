@@ -17,7 +17,7 @@ description: 我的第一篇微信公众号文章
 
 比如文章底部开始有相关推荐，比如看一看里面开始带话题，比如信息流中开始有公众号推荐。
 
-![](wechat-account/111.jpg)
+![](https://gitee.com/MyTypora/typorapic/raw/master/20210224102151.jpg)
 
 **一**
 
@@ -51,7 +51,7 @@ description: 我的第一篇微信公众号文章
 
 另外最近在微博上面也看到了这样一段话：
 
-![](wechat-account/222.jpg)
+![](https://gitee.com/MyTypora/typorapic/raw/master/20210224102158.jpg)
 
 虽然主语讲的是微博，但是对微信来说也是同理。
 

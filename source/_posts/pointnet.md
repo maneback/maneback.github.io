@@ -24,7 +24,7 @@ PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation [CV
 当 2D 图像输入到深度学习的网络中时，它是规则的数据，每个像素值的位置都可以以一个二维坐标来表示，且它在空间上是连续的表示，即相邻像素就是在图像中相邻的。而点云的表示方法有所不同。它是无序且非结构化的表示，只是一个由点的坐标构成的集合，而相邻点之间并没有这种空间的相邻关系。这就会造成如下面这样的结果：
 
 
-![](pointnet/image-20200519190402585.png)
+![](https://gitee.com/MyTypora/typorapic/raw/master/20210224102056.png)
 
 
 如上图：一副点云由若干的点构成，但是同一副点云图像其中点的排列顺序可能会不同，当以两者分别输入卷积网络中时，无论对于分类任务还是对于目标检测任务来讲，会带来不同的结果。然而实际上二者表示的是同一个物体或内容。这显然不是我们想要的结果。
@@ -35,7 +35,7 @@ PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation [CV
 
 - 第二种方法是 voxelization  的方法，即把空间划分成离散的体素 (3D voxel)， 然后每个点按照坐标位置决定落到那个体素单元中。这样，就可以把原来无序的点云输入规则化。
 
-![](pointnet/image-20200519191108741.png)
+![](https://gitee.com/MyTypora/typorapic/raw/master/20210224102059.png)
 
 但是这种预处理的方式肯定会造成一定的信息损失。  
 
@@ -53,7 +53,7 @@ PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation [CV
 
 **PointNet 的网络结构如下：**
 
-![](pointnet/image-20200519191853493.png)
+![](https://gitee.com/MyTypora/typorapic/raw/master/20210224102102.png)
 
 网络的输入即为一个 nx3 的向量，表示 n 个点的三维坐标。可以用于分类任务与分割任务。对于分类任务，输出结果为 k 个分类类别的得分；对于分割任务，输出结果为 n 个点逐个的所属分割部分的得分。
 
@@ -85,7 +85,7 @@ $$
 
 在 ModelNet40 数据集上分类的准确率如下：
 
-![](pointnet/image-20200519201114714.png)
+![](https://gitee.com/MyTypora/typorapic/raw/master/20210224102105.png)
 
 在这项任务中，与 multi-view 与 voxel 的方法进行了对比。
 
@@ -93,11 +93,11 @@ $$
 
 所谓部分分割，就是对每个点生成一个类别标记：
 
-![](pointnet/image-20200519201238654.png)
+![](https://gitee.com/MyTypora/typorapic/raw/master/20210224102111.png)
 
 在 ModelNet40 部分分割结果如下，评价指标为 IoU:
 
-![](pointnet/image-20200519201340421.png)
+![](https://gitee.com/MyTypora/typorapic/raw/master/20210224102115.png)
 
 ### 3.3 场景语义分割
 
@@ -183,7 +183,7 @@ $$
 
 下面给出了一些点云输入的 $\mathcal{C}_S $ 和 $\mathcal{C}_N$ 集合可视化例子。可以看出经过这个网络提取出的 $\mathcal{C}_S$ 集合，大体上描绘了这个物体的大致轮廓。
 
-![](pointnet/image-20200519204133081.png)
+![](https://gitee.com/MyTypora/typorapic/raw/master/20210224102120.png)
 
 下图是 maxpooling 的维度 K 对准确率的影响。横坐标是 K 设置的数值，纵坐标是分类的准确率。每条线是每个输入中点的数量。可以看到随着 K 的增加，准确率有所上升，但是当 K 到达 1000 左右时基本上就不再变了，所以本文中 K 的取值就是选择 1024 ，以达到效率与精确度的最好权衡。
 
@@ -191,11 +191,11 @@ $$
 
 在之前，提到过有三种方法解决无序性问题：排序、RNN、对称函数，现在给出这三种设计方法的效果对比：
 
-![](pointnet/image-20200519204525862.png)
+![](https://gitee.com/MyTypora/typorapic/raw/master/20210224102123.png)
 
 可以看到对称函数操作的准确性最高，而在所考虑的三种对称函数中，maxpooling 的准确性又是其中最高的。
 
 此外，我们提到过 T-Net 对齐网络的作用，在这里给出它的实际效果，可以看出它可以在一定程度上提高分类的准确率。
 
-![](pointnet/image-20200519204631830.png)
+![](https://gitee.com/MyTypora/typorapic/raw/master/20210224102125.png)
 
