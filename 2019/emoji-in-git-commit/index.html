@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="给你的github添加一些emoji表情">
+<meta name="keywords" content="github,git,emoji">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在github提交中插入emoji表情">
+<meta property="og:url" content="http://maneback.github.io/2019/emoji-in-git-commit/index.html">
+<meta property="og:site_name" content="漠·然">
+<meta property="og:description" content="给你的github添加一些emoji表情">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-01T13:58:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在github提交中插入emoji表情">
+<meta name="twitter:description" content="给你的github添加一些emoji表情">
+
+
+
+
+
+
+  <link rel="canonical" href="http://maneback.github.io/2019/emoji-in-git-commit/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>在github提交中插入emoji表情 | 漠·然</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">漠·然</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Maneback's Blog</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>主页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://maneback.github.io/2019/emoji-in-git-commit/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Maneback">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="漠·然">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">在github提交中插入emoji表情
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-07 21:02:24" itemprop="dateCreated datePublished" datetime="2019-06-07T21:02:24+08:00">2019-06-07</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Amazing/" itemprop="url" rel="index"><span itemprop="name">Amazing</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/emoji-in-git-commit/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/emoji-in-git-commit/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/emoji-in-git-commit/" class="leancloud_visitors" data-flag-title="在github提交中插入emoji表情">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+            <div class="post-description">给你的github添加一些emoji表情</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="给你的github提交中添加一些emoji表情">给你的github提交中添加一些emoji表情</h3>
+<p><code>git commit</code>只有文字描述太无趣了，考虑来点有趣的，在github提交中加入一些emoji表情。💢</p>
+<p>后来才知道，这个玩意，早就有人做出了规范说明，什么情况下，哪个表情用于什么用途，都是有规定的。方法很简单，遵循以下格式</p>
+<p><code>:emoji1: :emoji2: information</code></p>
+<p>额外要求：首字母大写，祈使语气，句末不要加句号</p>
+<p>emoji使用指南</p>
+<table>
+<thead>
+<tr class="header">
+<th>emoji</th>
+<th>emoji代码</th>
+<th>使用说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>🎉 庆祝</td>
+<td><code>:tada:</code></td>
+<td>初次提交</td>
+</tr>
+<tr class="even">
+<td>✨火花</td>
+<td><code>:sparkles:</code></td>
+<td>引入新功能</td>
+</tr>
+<tr class="odd">
+<td>🔖书签</td>
+<td><code>:bookmark:</code></td>
+<td>发行/版本标签</td>
+</tr>
+<tr class="even">
+<td>🐛bug</td>
+<td><code>:bug:</code></td>
+<td>修复bug</td>
+</tr>
+<tr class="odd">
+<td>🚑急救车</td>
+<td><code>:ambulance:</code></td>
+<td>重要补丁</td>
+</tr>
+<tr class="even">
+<td>🌐地球</td>
+<td><code>:globe_with_meridians:</code></td>
+<td>国际化和本地化</td>
+</tr>
+<tr class="odd">
+<td>💄口红</td>
+<td><code>:lipstick:</code></td>
+<td>更新UI和样式文件</td>
+</tr>
+<tr class="even">
+<td>🚨警灯</td>
+<td><code>:rotating_light:</code></td>
+<td>移除linter警告</td>
+</tr>
+<tr class="odd">
+<td>🔧扳手</td>
+<td><code>:wrench:</code></td>
+<td>修改配置文件</td>
+</tr>
+<tr class="even">
+<td>➕加号</td>
+<td><code>:heavy_plus_sign:</code></td>
+<td>增加一个依赖</td>
+</tr>
+<tr class="odd">
+<td>➖减号</td>
+<td><code>:heavy_minus_sign:</code></td>
+<td>减少一个依赖</td>
+</tr>
+<tr class="even">
+<td>⬆上升箭头</td>
+<td><code>:arrow_up:</code></td>
+<td>升级依赖</td>
+</tr>
+<tr class="odd">
+<td>⬇下降箭头</td>
+<td><code>:arrow_down:</code></td>
+<td>降级依赖</td>
+</tr>
+<tr class="even">
+<td>⚡闪电<br>🐎赛马</td>
+<td><code>:zap:</code><br><code>:racehorses:</code></td>
+<td>性能提升</td>
+</tr>
+<tr class="odd">
+<td>📈上升趋势图</td>
+<td><code>:chart_with_upwards_trend:</code></td>
+<td>添加分析或跟踪代码</td>
+</tr>
+<tr class="even">
+<td>🚀火箭</td>
+<td><code>:rocket:</code></td>
+<td>部署功能</td>
+</tr>
+<tr class="odd">
+<td>📝备忘录</td>
+<td><code>:memo:</code></td>
+<td>撰写文档</td>
+</tr>
+<tr class="even">
+<td>✅白色复选框</td>
+<td><code>:white_check_mark:</code></td>
+<td>增加测试</td>
+</tr>
+<tr class="odd">
+<td>🔨锤子</td>
+<td><code>:hammer:</code></td>
+<td>重大重构</td>
+</tr>
+<tr class="even">
+<td>🎨调色板</td>
+<td><code>:art:</code></td>
+<td>改进代码结构/代码格式</td>
+</tr>
+<tr class="odd">
+<td>🔥火焰</td>
+<td><code>:fire:</code></td>
+<td>移除代码或文件</td>
+</tr>
+<tr class="even">
+<td>✏铅笔</td>
+<td><code>:pencil2:</code></td>
+<td>修复typo</td>
+</tr>
+<tr class="odd">
+<td>🚧施工</td>
+<td><code>:comstruction:</code></td>
+<td>工作进行中</td>
+</tr>
+<tr class="even">
+<td>👷工人</td>
+<td><code>:construction_worker:</code></td>
+<td>添加CI构建系统</td>
+</tr>
+<tr class="odd">
+<td>💚绿心</td>
+<td><code>:green_heart:</code></td>
+<td>修复CI构建问题</td>
+</tr>
+<tr class="even">
+<td>🔒锁</td>
+<td><code>:lock:</code></td>
+<td>修复安全问题</td>
+</tr>
+<tr class="odd">
+<td>🐋鲸鱼</td>
+<td><code>:whales:</code></td>
+<td>Docker相关工作</td>
+</tr>
+<tr class="even">
+<td>🍎苹果</td>
+<td><code>:apple:</code></td>
+<td>修复macOS下的问题</td>
+</tr>
+<tr class="odd">
+<td>🐧企鹅</td>
+<td><code>:penguin:</code></td>
+<td>修复Linux下的问题</td>
+</tr>
+<tr class="even">
+<td>🏁旗帜</td>
+<td><code>:checked_flag:</code></td>
+<td>修复windows下的问题</td>
+</tr>
+</tbody>
+</table>
+<p>PS：我还找到了如何在markdown文档中添加的emoji的方法。</p>
+<p>使用搜狗输入法自带的emoji太大的，而且本地图片无法在网页中加载。</p>
+<p>我也不知道在网页上会显示多大，会不会调整，但是我找到了一个网站：</p>
+<p><a href="http://emojihomepage.com/" target="_blank" rel="noopener">emoji之家</a></p>
+<p>可以在上面的链接中搜索想要的emoji，然后直接点击复制，在markdown文件中粘贴就好了。😎</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/github/" rel="tag"># github</a>
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+            <a href="/tags/emoji/" rel="tag"># emoji</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/sui1/" rel="next" title="碎碎念|朋友圈">
+                <i class="fa fa-chevron-left"></i> 碎碎念|朋友圈
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/lettertoyou1/" rel="prev" title="碎碎念|写给你的第一封信">
+                碎碎念|写给你的第一封信 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Maneback">
+            
+              <p class="site-author-name" itemprop="name">Maneback</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">94</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/maneback" title="GitHub &rarr; https://github.com/maneback" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#给你的github提交中添加一些emoji表情"><span class="nav-number">1.</span> <span class="nav-text">给你的github提交中添加一些emoji表情</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-maneback"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maneback</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'WeS1M7bQHLf8p4i9AQ7BMhuN-gzGzoHsz',
+    appKey: '6BpDUuBiRAFrPKj7a2h51Dbi',
+    placeholder: 'what do you want to say',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
