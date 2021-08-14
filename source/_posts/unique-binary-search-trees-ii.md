@@ -4,7 +4,7 @@ date: 2020-06-16 11:39:50
 tags:
   - Leetcode
   - tree
-  - dynamic programming
+  - 动态规划
 categories: Algorithm
 description: LeetCode-95
 ---
