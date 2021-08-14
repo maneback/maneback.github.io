@@ -11,10 +11,8 @@
 
 
 
-  
 
-
-<html class="theme-next pisces use-motion" lang="zh-CN">
+<html class="theme-next pisces" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -79,7 +77,7 @@
     fastclick: false,
     lazyload: false,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -97,19 +95,21 @@
 
 
   <meta name="description" content="PS: 在我学习安装过程中，遇到了两条不同的思路： （一）首先建立仓库，然后clone到本地，再在里面创建hexo博客。 （二）先在本地创建hexo博客，然后将它与GitHub上面的仓库连接起来。">
-<meta name="keywords" content="blog,hexo,github">
+<meta name="keywords" content="blog,github,hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GitHub博客搭建(二) Hexo搭建与使用">
 <meta property="og:url" content="http://maneback.github.io/2018/hexo-guide-2/index.html">
 <meta property="og:site_name" content="漠·然">
 <meta property="og:description" content="PS: 在我学习安装过程中，遇到了两条不同的思路： （一）首先建立仓库，然后clone到本地，再在里面创建hexo博客。 （二）先在本地创建hexo博客，然后将它与GitHub上面的仓库连接起来。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-01T13:34:58.000Z">
+<meta property="og:updated_time" content="2021-01-04T13:36:59.317Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub博客搭建(二) Hexo搭建与使用">
 <meta name="twitter:description" content="PS: 在我学习安装过程中，遇到了两条不同的思路： （一）首先建立仓库，然后clone到本地，再在里面创建hexo博客。 （二）先在本地创建hexo博客，然后将它与GitHub上面的仓库连接起来。">
 
 
+
+  <link rel="alternate" href="/atom.xml" title="漠·然" type="application/atom+xml">
 
 
 
@@ -294,8 +294,7 @@
   
 
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+
 </div>
     </header>
 
@@ -570,9 +569,9 @@
           
             <a href="/tags/blog/" rel="tag"># blog</a>
           
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
-          
             <a href="/tags/github/" rel="tag"># github</a>
+          
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
           
         </div>
       
@@ -669,7 +668,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">94</span>
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -704,7 +703,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -801,7 +800,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">41</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -809,6 +814,13 @@
             </nav>
           
 
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
           
 
           
@@ -1069,6 +1081,43 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
   
 
 

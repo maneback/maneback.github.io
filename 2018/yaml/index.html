@@ -11,10 +11,8 @@
 
 
 
-  
 
-
-<html class="theme-next pisces use-motion" lang="zh-CN">
+<html class="theme-next pisces" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -79,7 +77,7 @@
     fastclick: false,
     lazyload: false,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -96,19 +94,21 @@
 
 
 
-  <meta name="description" content="YAML Ain&apos;t a Markup Language.">
+  <meta name="description" content="YAML Ain’t a Markup Language.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="yaml">
 <meta property="og:url" content="http://maneback.github.io/2018/yaml/index.html">
 <meta property="og:site_name" content="漠·然">
-<meta property="og:description" content="YAML Ain&apos;t a Markup Language.">
+<meta property="og:description" content="YAML Ain’t a Markup Language.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-01T13:34:58.000Z">
+<meta property="og:updated_time" content="2021-01-04T13:36:59.337Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="yaml">
-<meta name="twitter:description" content="YAML Ain&apos;t a Markup Language.">
+<meta name="twitter:description" content="YAML Ain’t a Markup Language.">
 
 
+
+  <link rel="alternate" href="/atom.xml" title="漠·然" type="application/atom+xml">
 
 
 
@@ -293,8 +293,7 @@
   
 
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+
 </div>
     </header>
 
@@ -449,11 +448,11 @@
       
 
       
-        <p>YAML Ain't a Markup Language.</p>
+        <p>YAML Ain’t a Markup Language.</p>
 <a id="more"></a>
 <h1 id="简介">0. 简介</h1>
 <p>Yaml是用来编写配置文件的，对比同样是用来编写配置文件的JSON，Yaml非常简洁和强大，也远比JSON方便。</p>
-<p>YAML的定义即为“YAML Ain't a Markup Language.”的递归缩写。YAML是以数据为设计语言的重点的，而不是像XML以标记为重点。也正是这种设计理念，使它成为了一种可读性高，易于表达数据序列的编程语言。</p>
+<p>YAML的定义即为“YAML Ain’t a Markup Language.”的递归缩写。YAML是以数据为设计语言的重点的，而不是像XML以标记为重点。也正是这种设计理念，使它成为了一种可读性高，易于表达数据序列的编程语言。</p>
 <h1 id="语法规则">1. 语法规则</h1>
 <p>YAML的语法规则非常简单，只要记住以下四条：</p>
 <blockquote>
@@ -621,7 +620,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">94</span>
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -656,7 +655,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -753,7 +752,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">41</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -761,6 +766,13 @@
             </nav>
           
 
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
           
 
           
@@ -1021,6 +1033,43 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
   
 
 
