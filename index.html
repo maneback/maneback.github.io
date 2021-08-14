@@ -1195,46 +1195,16 @@
 
       
         
+          <p>介绍 Linux 定时任务命令 <code>crontab</code> 的使用</p>
+          <!--noindex-->
           
-            <p>介绍 Linux 定时任务命令 <code>crontab</code> 的使用</p>
-<h1 id="linux-crontab">linux crontab</h1>
-<p>linux crontab 是用来定期执行程序的命令。系统会默认启动此任务调度命令。</p>
-<p>crond命令会每分钟定期检查是否有需要执行的工作，如果有的话，便执行该工作。</p>
-<h5 id="语法">1.语法</h5>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab [-u user] file</span><br></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab [-u user] &#123;-e | -l | -r&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>说明：
-<ul>
-<li><code>-e</code> 执行文字编辑器设定日程表</li>
-<li><code>-r</code>删除目前的日程表</li>
-<li><code>-l</code>列出目前的日程表</li>
-</ul></li>
-</ul>
-<h5 id="时间格式">2. 时间格式</h5>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">f1</span> <span class="built_in">f2</span> <span class="built_in">f3</span> <span class="built_in">f4</span> <span class="built_in">f5</span> program</span><br></pre></td></tr></table></figure>
-<ul>
-<li>说明：
-<ul>
-<li>f1表示分钟，f2表示小时，f3表示一个月份中的第几天，f4表示月份，f5表示一个星期中的星期几。</li>
-<li>某一项为*表示每分钟或每小时等都要执行程序</li>
-<li>某一项为<code>a-b</code>时表示在a-b这段时间执行。</li>
-<li>某一项为<code>*/n</code>时表示每隔n个单位执行。</li>
-<li>某一项为<code>a,b,c</code>时表示取值为a，b，c时执行。</li>
-</ul></li>
-</ul>
-<h5 id="实例">3. 实例</h5>
-<p>说一千道一万都不如来几个例子来得实在。</p>
-<ul>
-<li><p>每月每天每小时的第0分钟<code>0 * * * * ls</code></p></li>
-<li><p>在12月份，每天早上6点到12点，每隔3小时，每小时第10分钟执行<code>10 6-12/3 * 12 * ls</code></p></li>
-<li><p>每周一到周五下午5:00执行<code>0 17 * * 1-5 ls</code></p></li>
-<li><p>每月每天每偶数小时的20分执行<code>20 0-23/2 * * * ls</code></p></li>
-</ul>
-<p>这样，就可以把需要定期执行的操作写成一个脚本，然后交给crontab来执行了，这样真的方便。真的是，懒惰是第一生产力。我才发明这个的人肯定是一个很懒的人。让电脑帮助人来定期执行一些任务，不会忘记，不会出错，严格执行。这不正是机器比人优越的地方吗。</p>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/crontab/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
