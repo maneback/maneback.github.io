@@ -454,7 +454,11 @@
         <ul>
 <li>Prim 算法是从点的角度考虑构建最小生成树。 大致思想是：设图G的顶点集合为U， 首先选取任意的顶点a为起始点，将该点加入到集合V中，再从集合U-V中找到另一个顶点b，使得b到V中的<strong>任意一个</strong>顶点的距离最短，此时，将b也加入到集合V，以此类推，知道所有的顶点都已经加入到集合V当中，就构建出了一棵最小生成树(MST)。 　　因为有N的顶点，所以树就应该有N-1条边，每次向集合V中加入一个顶点，就意味着找到了MST的一条边。</li>
 </ul>
-<p>###设置两个数据结构： - <code>lowcost[i]</code>: 表示以i为重点的边的最小权值，当<code>lowcost[i]</code>为0，说明最小权值为0，该顶点已经加入到了MST。 - <code>mst[i]</code>: 表示对应的<code>lowcost[i]</code>的起点，即<code>&lt;mst[i],i&gt;</code>是MST当中的一条边，当<code>mst[i] = 0</code> 就表示起点加入MST.</p>
+<h3 id="设置两个数据结构">设置两个数据结构：</h3>
+<ul>
+<li><code>lowcost[i]</code>: 表示以i为重点的边的最小权值，当<code>lowcost[i]</code>为0，说明最小权值为0，该顶点已经加入到了MST。</li>
+<li><code>mst[i]</code>: 表示对应的<code>lowcost[i]</code>的起点，即<code>&lt;mst[i],i&gt;</code>是MST当中的一条边，当<code>mst[i] = 0</code> 就表示起点加入MST.</li>
+</ul>
 <p><strong>另：</strong>图的邻接矩阵 ：w[N][N] ##样例代码： <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 100</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXCOST 10000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> graph[N][N]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">prim</span><span class="params">(<span class="keyword">int</span> graph[][N], <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> lowcost[N];</span><br><span class="line">	<span class="keyword">int</span> mst[N];</span><br><span class="line">	<span class="comment">//初始化lowcost 和 mst 数组</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		lowcost[i] = graph[<span class="number">1</span>][i];</span><br><span class="line">		mst[i] = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	mst[<span class="number">1</span>] = <span class="number">0</span>; <span class="comment">// v1 in V</span></span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n<span class="number">-1</span>; i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> mincost = MAXCOST;</span><br><span class="line">		<span class="keyword">int</span> findp = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">2</span>; j &lt;= n; j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(lowcost[j] &lt; mincost &amp;&amp; lowcost[j] != <span class="number">0</span>)&#123;</span><br><span class="line">				mincost = lowcost[j];</span><br><span class="line">				findp = j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		sum += mincost;</span><br><span class="line">		lowcost[findp] = <span class="number">0</span>;	</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">2</span>; j &lt;= n; j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(graph[findp][j] &lt; lowcost[j]) &#123;</span><br><span class="line">				lowcost[j] = graph[findp][j];</span><br><span class="line">				mst[j] = findp;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
@@ -555,8 +559,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -585,6 +598,8 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
+                    
+                      
                     
                       
                     
@@ -711,7 +726,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">33</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -767,6 +792,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置两个数据结构"><span class="nav-number">1.</span> <span class="nav-text">设置两个数据结构：</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       

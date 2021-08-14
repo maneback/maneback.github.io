@@ -446,163 +446,16 @@
 
       
         
+          <p>正则表达式</p>
+          <!--noindex-->
           
-            <a id="more"></a>
-<h3 id="正则表达式">正则表达式</h3>
-<h4 id="限定符">1. 限定符</h4>
-<p>限定符用来指定正则表达式的一个给定组件要出现多少次才能满足匹配，共有<code>*</code>、<code>?</code>、<code>+</code>、<code>{n}</code>、<code>{n,}</code>，<code>{n,m}</code>六种，他们的描述如下：（限定出现次数）</p>
-<table>
-<thead>
-<tr class="header">
-<th>字符</th>
-<th style="text-align: left;">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>*</td>
-<td style="text-align: left;">匹配前面的子表达式零次或多次，等价于{0,}</td>
-</tr>
-<tr class="even">
-<td>+</td>
-<td style="text-align: left;">匹配前面的子表达式一次或多次，等价于{1,}</td>
-</tr>
-<tr class="odd">
-<td>？</td>
-<td style="text-align: left;">匹配前面的子表达式零次或一次，等价于{0,1}</td>
-</tr>
-<tr class="even">
-<td>{n}</td>
-<td style="text-align: left;">n是一个非负数，匹配确定的n次</td>
-</tr>
-<tr class="odd">
-<td>{n,}</td>
-<td style="text-align: left;">至少匹配n次</td>
-</tr>
-<tr class="even">
-<td>{n,m}</td>
-<td style="text-align: left;">最少匹配n次且最多匹配m次。注意在逗号和两个数之间不能有空格。</td>
-</tr>
-</tbody>
-</table>
-<p><strong>注意：</strong><code>*</code>和<code>+</code>都是贪婪的，他们会尽可能匹配多的文字，只有在它们后面加上一个<code>?</code>就可以实现非贪婪匹配。</p>
-<h4 id="普通字符">2. 普通字符</h4>
-<p>普通字符包括没有显式指定为元字符的所有可打印和不可打印字符。这包括所有的大小写字母、所有的数字、所有的标点和一些其他符号。</p>
-<h4 id="非打印字符">3. 非打印字符</h4>
-<h4 id="特殊字符">4. 特殊字符</h4>
-<p>特殊字符是一些有特殊含义的字符。</p>
-<table>
-<thead>
-<tr class="header">
-<th>特殊字符</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>$</td>
-<td>匹配输入字符串的结尾位置</td>
-</tr>
-<tr class="even">
-<td>()</td>
-<td>标记一个子表达式的开始和结束位置。子表达式可以获取供以后使用</td>
-</tr>
-<tr class="odd">
-<td>*</td>
-<td>匹配前面的子表达式零次或多次。</td>
-</tr>
-<tr class="even">
-<td>+</td>
-<td>匹配前面的子表达式一次或多次</td>
-</tr>
-<tr class="odd">
-<td>?</td>
-<td>匹配前面的子表达式零次或一次，或指明一个非贪婪的限定符</td>
-</tr>
-<tr class="even">
-<td>.</td>
-<td>匹配除换行符之外的任何单字符</td>
-</tr>
-<tr class="odd">
-<td>[</td>
-<td>标记一个中括号表达式的开始</td>
-</tr>
-<tr class="even">
-<td>\</td>
-<td>将下一个字符标记为或特殊字符、或原意字符、或向后引用、或八进制转义符。</td>
-</tr>
-<tr class="odd">
-<td>^</td>
-<td>匹配输入字符串的开始位置，除非在方括号表达式中使用，表示不接受该字符集合</td>
-</tr>
-<tr class="even">
-<td>{</td>
-<td>标记限定符表达式的开始</td>
-</tr>
-<tr class="odd">
-<td>|</td>
-<td>指明两项之间的一个选择</td>
-</tr>
-</tbody>
-</table>
-<p>当你想匹配表格中列举的特殊字符的话，请在该字符前面加上<code>\</code>。</p>
-<h4 id="定位符">5. 定位符</h4>
-<p>定位符使得能够将正则表达式固定到行首或行尾，还能创建出现在一个单词内，在一个单词开头或者结尾的表达式，</p>
-<p>定位符用于描述字符串或单词的边界，<code>^</code>和<code>$</code>分别标记字符串的开始和结尾。<code>\b</code>描述单词的前或后边界，<code>\B</code>表示非单词边界。</p>
-<p>定位符有：</p>
-<table>
-<thead>
-<tr class="header">
-<th>定位符</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>^</td>
-<td>匹配输入字符串开始的位置。</td>
-</tr>
-<tr class="even">
-<td>$</td>
-<td>匹配输入字符串结束的位置。</td>
-</tr>
-<tr class="odd">
-<td> 匹配一个单词边界，即字与空格之间的位置。</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td>非单词边界匹配</td>
-</tr>
-</tbody>
-</table>
-<p><strong>注意：</strong> 不能将限定符和定位符一起使用。由于在紧靠换行或者单词边界的前面或后面不能有一个以上的位置。</p>
-<h4 id="选择">6. 选择</h4>
-<p>用圆括号将所有的选择项括出来，相邻的选择项用|分隔，但用圆括号会使相关的匹配被缓存（<strong>什么是缓存？</strong>），因此可以放一个<code>?:</code>放在选择项前消除这种副作用。</p>
-<h4 id="反向引用">7. 反向引用</h4>
-<p>对一个正则表达式模式或部分模式两边添加圆括号将导致相关匹配存储到一个临时缓冲区中，所捕获的每个子匹配都按照在正则表达式模式中从左到右出现的顺序存储。可以使用非捕获元字符<code>?:</code>, <code>?=</code>, <code>?!</code> 来重写捕获，忽略对相关匹配的保存。</p>
-<h3 id="匹配规则">匹配规则</h3>
-<h4 id="基本匹配模式">1. 基本匹配模式</h4>
-<p>从最基本的开始。<strong>模式</strong> 是正则表达式的最基本的元素，它们是一组描述字符串特征的字符。模式可以很简单，也可以很复杂，如：</p>
-<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">^<span class="built_in">once</span></span><br><span class="line"><span class="built_in">once</span>$</span><br><span class="line">^<span class="built_in">once</span>$</span><br></pre></td></tr></table></figure>
-<p>该模式包含一个特殊字符<code>^</code>，匹配那些以once开头的字符串。<code>$</code>匹配以该模式结尾的字符串。而当二者同时使用时，代表精准匹配一个模式。</p>
-<p>如果一个模式不包括<code>^ $</code>， 那么它与任何包含该模式的字符串匹配，例如：</p>
-<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">once</span></span><br></pre></td></tr></table></figure>
-<p>与字符串</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">There once was <span class="keyword">a</span> man <span class="built_in">from</span> NewYork</span><br><span class="line">Who kept all <span class="keyword">of</span> his cash <span class="keyword">in</span> <span class="keyword">a</span> bucket.</span><br></pre></td></tr></table></figure>
-<p>都是匹配的。</p>
-<h4 id="字符族">2. 字符族</h4>
-<p>可以用方括号来表示字符族，如，以下元音字符族：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[AaEeIiOoUu]</span><br></pre></td></tr></table></figure>
-<p>以及表示范围的字符族</p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">a-z</span>] <span class="comment">//匹配所有的小写字母 </span></span><br><span class="line">[<span class="meta">A-Z</span>] <span class="comment">//匹配所有的大写字母 </span></span><br><span class="line">[<span class="meta">a-zA-Z</span>] <span class="comment">//匹配所有的字母 </span></span><br><span class="line">[<span class="meta">0-9</span>] <span class="comment">//匹配所有的数字 </span></span><br><span class="line">[<span class="meta">0-9\.\-</span>] <span class="comment">//匹配所有的数字，句号和减号</span></span><br></pre></td></tr></table></figure>
-<p>这些字符族只表示一个字符。如我们要匹配又一个小写字母加一位数字组成的两位的字符串，可以用以下这个模式：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[<span class="string">a-z</span>][<span class="symbol">0-9</span>]$</span><br></pre></td></tr></table></figure>
-<p>这里的<code>^</code>表示字符串开头，但是在一组方括号中使用<code>^</code>时，表示“非”和“排除”的意思，即不能包含该字符</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[<span class="string">^0-9</span>][<span class="symbol">0-9</span>]$</span><br></pre></td></tr></table></figure>
-<p>表示第一位不能为数字</p>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/regx/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
@@ -968,66 +821,16 @@
 
       
         
+          <p>背包问题</p>
+          <!--noindex-->
           
-            <a id="more"></a>
-<h3 id="问题描述">问题描述</h3>
-<p>对于背包问题，是求在具有容量（质量体积个数）约束的情况下，求所有商品满足约束的<strong>可行性解、最优解或解的个数</strong>。</p>
-<h4 id="一般化描述">一般化描述</h4>
-<p>本文关注于 0-1 背包问题，即：每个物品只有一个。</p>
-<blockquote>
-<p>物品总数 <span class="math inline">\(n\)</span></p>
-<p>背包容量 <span class="math inline">\(W\)</span></p>
-<p>物品质量 <span class="math inline">\(w_i\)</span></p>
-<p>物品价值 <span class="math inline">\(p_i\)</span></p>
-</blockquote>
-<p>总质量约束为 <span class="math inline">\(W\)</span></p>
-<p>物品的质量/成本为 <span class="math inline">\(w_i\)</span></p>
-<p>物品的价值为 <span class="math inline">\(p_i\)</span></p>
-<p>一般来讲，背包问题可以用动态规划问题来求解。对于背包问题有三类，即：求是否有可行解、最优解的值（价值最大化最小化）、求可行解的总个数。这三类问题对应了三种动态规划递推式。</p>
-<p>好多问题都可以转化成背包问题来求解。</p>
-<p>对于每一类问题，在这里我们用到动态规划数组 <code>dp[i][j]</code> 表示前 <span class="math inline">\(i\)</span> 商品放入容量为 <span class="math inline">\(j\)</span> 的背包时的解。</p>
-<h3 id="问题分类">问题分类</h3>
-<h4 id="最大价值">最大价值</h4>
-<p>其转移方程如下： <span class="math display">\[
-f[i][j] = \cases{f[i-1][j]\\f[i-1][j-w_i]+p_i}
-\]</span> 初始化时，<code>dp[0][0]=0</code>。</p>
-<p>第一种情况表示不放置第 <span class="math inline">\(i\)</span> 件商品，第二种情况表示放置，所以要给它腾出 <span class="math inline">\(w_i\)</span> 大小的空间。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bp</span><span class="params">(weights, profit, W)</span>:</span></span><br><span class="line">    n = len(weights)</span><br><span class="line">    dp = [[<span class="number">0</span>]* (W+<span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> range(n+<span class="number">1</span>)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(profit[i<span class="number">-1</span>], W+<span class="number">1</span>):</span><br><span class="line">            dp[i][j] = max(dp[i<span class="number">-1</span>][j], dp[i<span class="number">-1</span>][j-weights[i<span class="number">-1</span>]]+profit[i<span class="number">-1</span>])</span><br><span class="line">    <span class="keyword">return</span> dp[n][W]</span><br></pre></td></tr></table></figure>
-<p>在这里，我们看到，数组 <code>dp</code> 只会用到前面一行来更新，因此我们可以用一个一维的滚动数组来替代二维数组降低空间复杂度。同时在遍历容量时，会用到上一行中小于当前容量的数据，并不会用到大于当前容量的数据。因此要对一维数组对容量进行倒序遍历。</p>
-<h4 id="可行解数量">可行解数量</h4>
-<p>例题： <a href="https://leetcode-cn.com/problems/target-sum/" target="_blank" rel="noopener">494 目标和</a></p>
-<blockquote>
-<p>给你一个整数数组 nums 和一个整数 target 。</p>
-<p>向数组中的每个整数前添加 ‘+’ 或 ‘-’ ，然后串联起所有整数，可以构造一个 表达式 ：</p>
-<p>例如，nums = [2, 1] ，可以在 2 之前添加 ‘+’ ，在 1 之前添加 ‘-’ ，然后串联起来得到表达式 “+2-1” 。 返回可以通过上述方法构造的、运算结果等于 target 的不同 表达式 的数目。</p>
-<p>输入：nums = [1,1,1,1,1], target = 3</p>
-<p>输出：5</p>
-<blockquote>
-<p>解释：一共有 5 种方法让最终目标和为 3 。 -1 + 1 + 1 + 1 + 1 = 3 +1 - 1 + 1 + 1 + 1 = 3 +1 + 1 - 1 + 1 + 1 = 3 +1 + 1 + 1 - 1 + 1 = 3 +1 + 1 + 1 + 1 - 1 = 3</p>
-</blockquote>
-</blockquote>
-<p>数组总和为 <code>sum</code>， 设添加 <code>+</code> 的数字和为 <code>positive</code>, 添加 <code>-</code> 的数字和为<code>negative</code>，则有一下方程组成立 <span class="math display">\[
-\cases{positve+negative = sum\\
-positive-negative = target}
-\]</span> 解方程组可得： <span class="math display">\[
-negative = \frac{sum-target}{2}
-\]</span> 即从数组中找到若干个数字和为 <code>negative</code>，求解的个数。</p>
-<p>数字大小即为成本。</p>
-<p><code>dp[i]</code> 表示和为 <code>i</code> 的解的个数。</p>
-<p>在每一个数字开始循环时，<code>dp[i]</code>表示的既是上一轮的解的个数，又是当前轮不包含当前数组的情况下的解的个数。因此再加上包含当前数字的情况的解的个数，即为本轮的解。</p>
-<p>初始化为<code>dp[0] = 1</code> 其他为0， 表示和为 0 有一种解，即什么都不选。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findTargetSumWays</span><span class="params">(nums, target)</span>:</span></span><br><span class="line">    s = sum(nums)</span><br><span class="line">    <span class="keyword">if</span> (s-target)%<span class="number">2</span>==<span class="number">1</span> <span class="keyword">or</span> target&gt;s:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">   	V = (s-target)//<span class="number">2</span></span><br><span class="line">    dp = [<span class="number">0</span>]*(V+<span class="number">1</span>)</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> nums:</span><br><span class="line">        <span class="keyword">for</span> v <span class="keyword">in</span> range(V, n<span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">            dp[v] += dp[v-n]</span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 二维 dp</span></span><br><span class="line">    n = len(nums)</span><br><span class="line">    V = (s-target)//<span class="number">2</span></span><br><span class="line">    dp = [[<span class="number">0</span>]*(V+<span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> range(n+<span class="number">1</span>)]</span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n+<span class="number">1</span>):</span><br><span class="line">        num = nums[i<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(V+<span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 因为这第 i 行还没有赋值，下一行可能被用到，所以要从 0  开始遍历。</span></span><br><span class="line">            dp[i][j] = dp[i<span class="number">-1</span>][j]</span><br><span class="line">            <span class="keyword">if</span> j&gt;=num:</span><br><span class="line">                dp[i][j]+=dp[i<span class="number">-1</span>][j-num]</span><br><span class="line">	<span class="keyword">return</span> dp[<span class="number">-1</span>][<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
-<h4 id="是否存在可行解">是否存在可行解</h4>
-<blockquote>
-<p>给你一个 <strong>只包含正整数</strong> 的 <strong>非空</strong> 数组 <code>nums</code> 。请你判断是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。</p>
-<blockquote>
-<p>输入：[1,5,11,5] 输出：true 解释：数组可以分割成 [1, 5, 5] 和 [11] 。</p>
-</blockquote>
-</blockquote>
-<p>同样，在每一个数组开始循环前，</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">canPatrition</span><span class="params">(nums)</span>:</span></span><br><span class="line">    s = sum(nums)</span><br><span class="line">    <span class="keyword">if</span> s%<span class="number">2</span>==<span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">   	V = s//<span class="number">2</span></span><br><span class="line">    dp = [<span class="keyword">False</span>]*(V+<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> nums:</span><br><span class="line">        <span class="keyword">for</span> v <span class="keyword">in</span> range(V, n<span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">            dp[v] = dp[v]|dp[v-n]</span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment"># 二维 dp</span></span><br><span class="line">    n = len(nums)</span><br><span class="line">    V = s//<span class="number">2</span></span><br><span class="line">    dp = [[<span class="keyword">False</span>]*(V+<span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> range(n+<span class="number">1</span>)]</span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="keyword">True</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(V+<span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 因为这第 i 行还没有被赋值，而前面的可能会被下一行用到，所以要从 0 开始赋值。把上一行的复制下来</span></span><br><span class="line">            dp[i][j] = dp[i<span class="number">-1</span>][j]</span><br><span class="line">            <span class="keyword">if</span> j&gt;=nums[i<span class="number">-1</span>]:</span><br><span class="line">                dp[i][j] = dp[i][j] | dp[i<span class="number">-1</span>][j-nums[i<span class="number">-1</span>]]</span><br><span class="line">	<span class="keyword">return</span> dp[<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/beibao/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
@@ -1102,7 +905,7 @@ negative = \frac{sum-target}{2}
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2021/slidingwindow/" class="post-title-link" itemprop="url">slidingwindow</a>
+                <a href="/2021/slidingwindow/" class="post-title-link" itemprop="url">滑动窗口</a>
               
             
           </h1>
@@ -1173,7 +976,7 @@ negative = \frac{sum-target}{2}
 
           
           
-            <span id="/2021/slidingwindow/" class="leancloud_visitors" data-flag-title="slidingwindow">
+            <span id="/2021/slidingwindow/" class="leancloud_visitors" data-flag-title="滑动窗口">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -2490,6 +2293,8 @@ negative = \frac{sum-target}{2}
                     
                       
                     
+                      
+                    
                     <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
@@ -2593,7 +2398,17 @@ negative = \frac{sum-target}{2}
                     
                       
                     
-                    <span class="site-state-item-count">33</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

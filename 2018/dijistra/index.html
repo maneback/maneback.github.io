@@ -451,11 +451,25 @@
       
         <p>dijkstra算法是典型的用来解决最短路径的算法，用来求解从起始点到其他所有点的最短路径。该算法采用贪心的思想，每次都查找与该点距离最近的点，但是不能用来解决存在负权边的图。</p>
 <a id="more"></a>
-<p>###数据结构： - 无向图邻接矩阵<code>w[][]</code> - 辅助向量<code>near[]</code> - 标记访问向量 <code>visited[]</code></p>
-<p>###算法原理： 1 引入辅助向量 near[], 每个分量near[i]表示当前找到的到i节点的最短路径长度，找到这些最短路径中最短的那个。 2 每次更新向量near[]，若从起点v经过中间点k到顶点w的路径长度小于near[w]，则将near[w]修改。 3 重复迭代粗过程 4 维护一个定点集合S，表示已经找到了从起点v到该点的最短路径。</p>
-<p>###算法过程 1. 先取一个顶点v为起点，初始化<code>near[]</code>， <code>near[i]</code>的值等于起点<code>v</code>到第i个顶点的距离<code>w[v][i]</code>，如果两者之间不存在路径，则初始化为无穷大。 2. 将<code>visited[v]</code>标记为1，表示该点已经访问过。 3. 寻找与v相邻最近的点k， 其中<code>near[k]</code>为最小值 4. 将<code>visited[k]</code>标记为1 5. 更新<code>near[]</code>，如果<code>near[i]+w[k][j]&lt;near[j]</code>，判断是直接连接v与j比较近，还是经过上次的最短路径点k到达j比较近。</p>
+<h3 id="数据结构">数据结构：</h3>
+<ul>
+<li>无向图邻接矩阵<code>w[][]</code></li>
+<li>辅助向量<code>near[]</code></li>
+<li>标记访问向量 <code>visited[]</code></li>
+</ul>
+<h3 id="算法原理">算法原理：</h3>
+<p>1 引入辅助向量 near[], 每个分量near[i]表示当前找到的到i节点的最短路径长度，找到这些最短路径中最短的那个。 2 每次更新向量near[]，若从起点v经过中间点k到顶点w的路径长度小于near[w]，则将near[w]修改。 3 重复迭代粗过程 4 维护一个定点集合S，表示已经找到了从起点v到该点的最短路径。</p>
+<h3 id="算法过程">算法过程</h3>
+<ol style="list-style-type: decimal">
+<li>先取一个顶点v为起点，初始化<code>near[]</code>， <code>near[i]</code>的值等于起点<code>v</code>到第i个顶点的距离<code>w[v][i]</code>，如果两者之间不存在路径，则初始化为无穷大。</li>
+<li>将<code>visited[v]</code>标记为1，表示该点已经访问过。</li>
+<li>寻找与v相邻最近的点k， 其中<code>near[k]</code>为最小值</li>
+<li>将<code>visited[k]</code>标记为1</li>
+<li>更新<code>near[]</code>，如果<code>near[i]+w[k][j]&lt;near[j]</code>，判断是直接连接v与j比较近，还是经过上次的最短路径点k到达j比较近。</li>
+</ol>
 <p>6 重复上述过程，知道找到了所有的点。</p>
-<p>###代码实现 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 20 <span class="comment">//顶点个数</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NOPATH 1000 <span class="comment">//没有路径相连</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> w[N][N]; <span class="comment">//图的邻接矩阵</span></span><br><span class="line"><span class="keyword">int</span> dist[N];</span><br><span class="line"><span class="keyword">int</span> near[N];</span><br><span class="line"><span class="keyword">int</span> visited[N];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dijkstar</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i ++)&#123;</span><br><span class="line">		near[i] = NOPATH;</span><br><span class="line">		visited[i] = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">		near[i] = w[v][i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//循环找到n-1个最短路</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; n; j++)&#123;</span><br><span class="line">		<span class="keyword">int</span> minpath = near[<span class="number">0</span>];</span><br><span class="line">		<span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">		<span class="comment">//找到最短路径和最近点</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(near[i] &lt; minpath) minpath = near[i];</span><br><span class="line">			k = i;</span><br><span class="line">		&#125;</span><br><span class="line">		dist[k] = minpath;</span><br><span class="line">		visited[k] = <span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(!visited[i] &amp;&amp; minpath + w[k][i] &lt; near[i])&#123;</span><br><span class="line">				near[i] = minpath + w[k][i];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="代码实现">代码实现</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 20 <span class="comment">//顶点个数</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NOPATH 1000 <span class="comment">//没有路径相连</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> w[N][N]; <span class="comment">//图的邻接矩阵</span></span><br><span class="line"><span class="keyword">int</span> dist[N];</span><br><span class="line"><span class="keyword">int</span> near[N];</span><br><span class="line"><span class="keyword">int</span> visited[N];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dijkstar</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i ++)&#123;</span><br><span class="line">		near[i] = NOPATH;</span><br><span class="line">		visited[i] = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">		near[i] = w[v][i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//循环找到n-1个最短路</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; n; j++)&#123;</span><br><span class="line">		<span class="keyword">int</span> minpath = near[<span class="number">0</span>];</span><br><span class="line">		<span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">		<span class="comment">//找到最短路径和最近点</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(near[i] &lt; minpath) minpath = near[i];</span><br><span class="line">			k = i;</span><br><span class="line">		&#125;</span><br><span class="line">		dist[k] = minpath;</span><br><span class="line">		visited[k] = <span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(!visited[i] &amp;&amp; minpath + w[k][i] &lt; near[i])&#123;</span><br><span class="line">				near[i] = minpath + w[k][i];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -555,8 +569,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -585,6 +608,8 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
+                    
+                      
                     
                       
                     
@@ -711,7 +736,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">33</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -767,6 +802,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据结构"><span class="nav-number">1.</span> <span class="nav-text">数据结构：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法原理"><span class="nav-number">2.</span> <span class="nav-text">算法原理：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法过程"><span class="nav-number">3.</span> <span class="nav-text">算法过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">4.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       

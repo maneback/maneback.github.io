@@ -455,11 +455,11 @@
 <p>图的邻接矩阵<code>G[i][j]</code></p>
 <p>如果要两个顶点a和b之间的距离变短，就只能引入第三个顶点k，并通过顶点k中转得到路径<code>a-&gt;k-&gt;b</code>，才能缩短a到b的距离。 有时可能经过两个，三个顶点会变得更短，那么将这个问题一般化之后： **** 1. 当任意两点之间不允许通过第三个点时，最短路径矩阵P就初始为图的邻接矩阵G。 2. 如果此时只允许通过编号为1的顶点，求任意两个顶点之间的最短路径：（其实顶点1只是一个一般化的顶点，只是为了在后面的迭代循环中容易表示，所以选择1为第一个顶点） 只需要判断<code>P[i][j]</code> 与<code>P[i][1]+P[1][j]</code>的大小即可。 代码如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对于任意两点经过1的距离都进行比较</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(P[i][<span class="number">1</span>]+P[<span class="number">1</span>][j] &lt; P[i][j])</span><br><span class="line">			P[i][j] = P[i][<span class="number">1</span>]+P[<span class="number">1</span>][j];</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="3" type="1">
+<ol start="3" style="list-style-type: decimal">
 <li>那么，还有可能经过1和2两个顶点之后，比只允许经过顶点1的路径还要短，则在经过1的基础上，在用经过2来更新矩阵P</li>
 </ol>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//顶点1</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(P[i][<span class="number">1</span>]+P[<span class="number">1</span>][j] &lt; P[i][j])</span><br><span class="line">			P[i][j] = P[i][<span class="number">1</span>]+P[<span class="number">1</span>][j];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//顶点2 </span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(P[i][<span class="number">2</span>]+P[<span class="number">2</span>][j] &lt; P[i][j])</span><br><span class="line">			P[i][j] = P[i][<span class="number">2</span>]+P[<span class="number">2</span>][j];</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="4" type="1">
+<ol start="4" style="list-style-type: decimal">
 <li>更一般化，我们允许每一对顶点都可以经过任何顶点，即再嵌套一层循环</li>
 </ol>
 <ul>
@@ -631,6 +631,8 @@
                     
                       
                     
+                      
+                    
                     <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
@@ -734,7 +736,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">33</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

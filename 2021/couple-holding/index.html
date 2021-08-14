@@ -95,7 +95,7 @@
 
 
   <meta name="description" content="题目链接 Leetcode-765">
-<meta name="keywords" content="Leetcode,并查集">
+<meta name="keywords" content="并查集,Leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode -- 情侣牵手">
 <meta property="og:url" content="http://maneback.github.io/2021/couple-holding/index.html">
@@ -454,17 +454,19 @@
       
         <p>题目链接 <a href="https://leetcode-cn.com/problems/couples-holding-hands/" target="_blank" rel="noopener">Leetcode-765</a></p>
 <a id="more"></a>
-<figure>
-<img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224105405.png" alt="image-20210224105405609"><figcaption aria-hidden="true">image-20210224105405609</figcaption>
-</figure>
+<div class="figure">
+<img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224105405.png" alt="image-20210224105405609">
+<p class="caption">image-20210224105405609</p>
+</div>
 <h4 id="解题思路">解题思路</h4>
 <p>对于一堆坐错位置的情侣的集合，只要按照首位相连环路交换位置即可，此种交换位置的方法一定是最少的，次数为情侣数量-1。</p>
 <p>因此下一步的目标即寻找互相独立的情侣的集合，以及每个集合的情侣数量。</p>
 <p>可以用并查集的方法来解决。编号为<code>n, n+1</code> 的两个人组成情侣编号为 <code>n/2</code>，以此编号来作为节点执行并查集算法</p>
 <p>然后利用 map 记录每个并查集集合的大小 <span class="math inline">\(size_i\)</span>，再返回 <span class="math inline">\(\sum{size_i-1}\)</span></p>
-<figure>
-<img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224105550.png" alt="image-20210224105550507"><figcaption aria-hidden="true">image-20210224105550507</figcaption>
-</figure>
+<div class="figure">
+<img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224105550.png" alt="image-20210224105550507">
+<p class="caption">image-20210224105550507</p>
+</div>
 <h4 id="代码示例">代码示例</h4>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">minSwapCouple</span><span class="params">(row)</span>:</span></span><br><span class="line">    n = len(couple)//<span class="number">2</span></span><br><span class="line">    father = [i <span class="keyword">for</span> _ <span class="keyword">in</span> range(n)]</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">find</span><span class="params">(x)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> father[x] ==x:</span><br><span class="line">            <span class="keyword">return</span> x</span><br><span class="line">       	f = find(father[x])</span><br><span class="line">        father[x] = f</span><br><span class="line">        <span class="keyword">return</span> f</span><br><span class="line">   	<span class="function"><span class="keyword">def</span> <span class="title">union</span><span class="params">(x, y)</span>:</span></span><br><span class="line">        fx = find(x)</span><br><span class="line">        fy = find(y)</span><br><span class="line">        father[fx] = fy</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        a, b = row[<span class="number">2</span>*n]//<span class="number">2</span>, row[<span class="number">2</span>*n+<span class="number">1</span>]//<span class="number">2</span></span><br><span class="line">        union(a, b)</span><br><span class="line">    dit = collections.defaultdict(int)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            f = find(i)</span><br><span class="line">            dit[f]+=<span class="number">1</span></span><br><span class="line">        ret = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> v <span class="keyword">in</span> dit.values():</span><br><span class="line">            ret+=(v<span class="number">-1</span>)</span><br><span class="line">        <span class="keyword">return</span> ret</span><br></pre></td></tr></table></figure>
 
@@ -490,9 +492,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
-          
             <a href="/tags/并查集/" rel="tag"># 并查集</a>
+          
+            <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
           
         </div>
       
@@ -628,6 +630,8 @@
                     
                       
                     
+                      
+                    
                     <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
@@ -731,7 +735,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">33</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
