@@ -95,7 +95,7 @@
 
 
   <meta name="description" content="配置Hexo，Hexo文件夹介绍">
-<meta name="keywords" content="github,blog,hexo">
+<meta name="keywords" content="blog,hexo,github">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GitHub博客搭建(三) Hexo配置与发布">
 <meta property="og:url" content="http://maneback.github.io/2018/hexo-guide-3/index.html">
@@ -456,25 +456,25 @@
 <figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">|-- _config.yml</span></span><br><span class="line"><span class="string">|-- package.json</span></span><br><span class="line"><span class="string">|-- scaffolds</span></span><br><span class="line"><span class="string">|-- scripts</span></span><br><span class="line"><span class="string">|-- source</span></span><br><span class="line">    <span class="string">|-- _drafts</span></span><br><span class="line">    <span class="string">|-- _posts</span></span><br><span class="line"><span class="string">|-- themes</span></span><br></pre></td></tr></table></figure>
 <h3 id="网站配置文件">网站配置文件</h3>
 <p><code>_config.yml</code> 是博客的配置文件，主要修改的部分有：</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><strong>site部分</strong></li>
 </ol>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">Hexo</span></span><br><span class="line"><span class="attr">subtitle:</span></span><br><span class="line"><span class="attr">description:</span></span><br><span class="line"><span class="attr">keywords:</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">John</span> <span class="string">Doe</span></span><br><span class="line"><span class="attr">language:</span></span><br><span class="line"><span class="attr">timezone:</span></span><br></pre></td></tr></table></figure>
 <p><code>title</code> 与<code>subtitle</code> 是网站的标题和副标题，这个是肯定要修改的。其他的<code>language</code> 和<code>timezone</code> 是语言和时区，按需更改，保持默认也可以。<code>language</code> 可以设置成<code>zh-CN</code> 。</p>
-<ol start="2" style="list-style-type: decimal">
+<ol start="2" type="1">
 <li><strong>在URL部分，有以下一项设置：</strong></li>
 </ol>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">parmalink:</span> <span class="string">/:year/:month/:day/:title/</span></span><br></pre></td></tr></table></figure>
 <p>可以修改为：</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">parmalink:</span> <span class="string">/:year:month:day/:title/</span></span><br></pre></td></tr></table></figure>
 <p>这样，就可以避免生成的文件产生多层嵌套，或者也可以以月为单位来组织文件夹。</p>
-<ol start="3" style="list-style-type: decimal">
+<ol start="3" type="1">
 <li><strong>Deployment 部分</strong></li>
 </ol>
 <p>这部分是用于发布的，只若发布到GitHub上面，则按照以下的格式设置即可</p>
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">  type:</span> git</span><br><span class="line"><span class="symbol">  repo:</span> <span class="meta">#&lt;name.github.io&gt;仓库的ssh地址</span></span><br><span class="line"><span class="symbol">  branch:</span> master</span><br></pre></td></tr></table></figure>
 <p>这样，就可以直接使用<code>hexo d</code> 命令发布到GitHub上面了。</p>
-<ol start="4" style="list-style-type: decimal">
+<ol start="4" type="1">
 <li>theme部分</li>
 <li>theme是设置网站的主题，Hexo有很多精美的主题，可以在<a href="https://hexo.io/themes/" target="_blank" rel="noopener">Themes|Hexo</a> 上面查看。首先要将你想要使用的Theme下载下来，然后将这个地方改成那个主题的名字即可。</li>
 </ol>
@@ -522,11 +522,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/github/" rel="tag"># github</a>
-          
             <a href="/tags/blog/" rel="tag"># blog</a>
           
             <a href="/tags/hexo/" rel="tag"># hexo</a>
+          
+            <a href="/tags/github/" rel="tag"># github</a>
           
         </div>
       
@@ -627,7 +627,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">50</span>
+                    <span class="site-state-item-count">53</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -664,7 +664,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -769,15 +771,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

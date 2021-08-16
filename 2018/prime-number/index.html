@@ -464,7 +464,9 @@
 <p>若将(1~n)范围内的数使用上面的方法挨个判断，则太耗费时间。因此可以采用素数筛法。</p>
 <p><strong>基本思想</strong></p>
 <p>一个不是素数的整数一定存在某个比它小的素数作为它的因数。</p>
-<p>因此从2开始，标记每个数的倍数，若到该标记k的时候，k还没有被标记，则说明它没有比它小的因数，k为素数。已知k为素数之后，继续标记k的倍数。而且nk(n<k)已经作为n的倍数被标记过了，所有直接从**k*k** 开始标记。="" 若到标记k时k已经被标记，则说明k不是素数，且k的倍数肯定已经被标记了，直接跳过，看k+1="" <figure="" class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> n 100000</span></span><br><span class="line"><span class="keyword">int</span> flag[n];;</span><br><span class="line"><span class="keyword">int</span> prime[n];</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//initialize the mark = false;</span></span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) </span><br><span class="line">        mark[i] = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(mark[i] == <span class="literal">true</span>)<span class="comment">//mark is true [i] is not a prime</span></span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        <span class="comment">//else i is a prime, storage it.</span></span><br><span class="line">        prime[index++] = i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i*i; i &lt; n; i++)&#123;</span><br><span class="line">            mark[i] = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></k)已经作为n的倍数被标记过了，所有直接从**k*k**></p>
+<p>因此从2开始，标记每个数的倍数，若到该标记k的时候，k还没有被标记，则说明它没有比它小的因数，k为素数。已知k为素数之后，继续标记k的倍数。而且nk(n&lt;k)已经作为n的倍数被标记过了，所有直接从**k*k** 开始标记。</p>
+<p>若到标记k时k已经被标记，则说明k不是素数，且k的倍数肯定已经被标记了，直接跳过，看k+1</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> n 100000</span></span><br><span class="line"><span class="keyword">int</span> flag[n];;</span><br><span class="line"><span class="keyword">int</span> prime[n];</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//initialize the mark = false;</span></span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) </span><br><span class="line">        mark[i] = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(mark[i] == <span class="literal">true</span>)<span class="comment">//mark is true [i] is not a prime</span></span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        <span class="comment">//else i is a prime, storage it.</span></span><br><span class="line">        prime[index++] = i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i*i; i &lt; n; i++)&#123;</span><br><span class="line">            mark[i] = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -583,7 +585,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">50</span>
+                    <span class="site-state-item-count">53</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -620,7 +622,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -725,15 +729,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

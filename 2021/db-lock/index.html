@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next pisces" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="介绍数据库的事务管理，锁以及MVCC">
+<meta name="keywords" content="database">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库事务管理与锁">
+<meta property="og:url" content="http://maneback.github.io/2021/db-lock/index.html">
+<meta property="og:site_name" content="漠·然">
+<meta property="og:description" content="介绍数据库的事务管理，锁以及MVCC">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-08-16T03:09:01.548Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库事务管理与锁">
+<meta name="twitter:description" content="介绍数据库的事务管理，锁以及MVCC">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="漠·然" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://maneback.github.io/2021/db-lock/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>数据库事务管理与锁 | 漠·然</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">漠·然</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Maneback's Blog</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>主页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://maneback.github.io/2021/db-lock/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Maneback">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="漠·然">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据库事务管理与锁
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-08-12 10:57:18" itemprop="dateCreated datePublished" datetime="2021-08-12T10:57:18+08:00">2021-08-12</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/基础知识/" itemprop="url" rel="index"><span itemprop="name">基础知识</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2021/db-lock/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2021/db-lock/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2021/db-lock/" class="leancloud_visitors" data-flag-title="数据库事务管理与锁">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+            <div class="post-description">介绍数据库的事务管理，锁以及MVCC</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="数据库的事务与锁">数据库的事务与锁</h2>
+<h3 id="事务及其性质">事务及其性质</h3>
+<p>事务必须满足：ACID（原子性，一致性，隔离性，持久性）四特性，事务是恢复和并发控制的基本单位。</p>
+<ol type="1">
+<li>原子性指的是事务是数据库的逻辑工作单位，事务中操作要么都做，要么都不做；</li>
+<li></li>
+<li>一致性指的是事务的执行结果必须是使数据库从一个一致性状态变成另一个一致性状态，一致性和原子性是密切相关的；</li>
+<li>隔离性指的是一个事务执行不能被其他事务干扰；</li>
+<li>持久性指的是一个事务一旦提交，他对数据库中数据的改变就是永久性的。</li>
+</ol>
+<h4 id="事务隔离级别">事务隔离级别</h4>
+<p>数据库的隔离级别可以分为：<strong>读未提交、读提交、可重复读和串行化</strong>。</p>
+<p>在学习这里的时候，总感觉说得满头雾水的，怎么也不能理解，因为它又联系着三个现象： <strong>脏读、不可重复读、幻读</strong>。</p>
+<p>当时很难理解隔离级别与现象之间的关系，现象可以理解为多个事务并发时候如不哦不加控制而导致的<strong>问题</strong>。隔离级别是为了避免其中的某种或某几种问题而设置的一种<strong>执行要求</strong> 或<strong>执行流程</strong>。</p>
+<p>先来看现象：</p>
+<p>我们假设有两个事务 A 和 B 在进行读写操作。</p>
+<ul>
+<li><p>脏读： B读到了A未提交的修改数据</p>
+<p>A修改未提交—B读—A回滚 （A写的时候B读），这时候B读到的就是错误的数据。</p></li>
+<li><p>不可重复读： 在两次读之间插入了另一个事务的修改操作，并提交，导致两次读取不一致。</p>
+<p>（A读的时候B写）</p></li>
+<li><p>幻读：在两次读取之间，出现了 INSERT 操作。</p>
+<p>A读—–B插入—–A读。两次读取不一致。</p></li>
+</ul>
+<p>不可重复读与幻读之间的区别在于，A 两次读之间的差别，是由于 UPDATE 操作还是由 INSERT 操作引起的。</p>
+<p>那么为了避免这些问题的发送，数据库设计了不同的事务隔离级别。</p>
+<ul>
+<li><p><strong>读未提交</strong>：一个事务可以读取另一个未提交事务的数据</p>
+<p>这种情况下不会带来任何的隔离，三种情况都可能发生。</p></li>
+<li><p><strong>读提交</strong>：一个事务要等另一个事务提交后才能读取数据（<strong>避免脏读</strong>）（给修改加锁禁止读）</p>
+<p>B无法读到A未提交的修改，避免了脏读。</p></li>
+<li><p><strong>可重复读</strong>：读取事务开始后，不允许修改（<strong>避免不可重复读</strong>）（读加锁禁止修改）</p>
+<p>A在读取的时候，B只能读，不能改，可以保证A读取的过程的一致性。</p>
+<p>但是只能锁住表中已有的行，而不能阻止其他事务的插入，无法避免幻读。</p></li>
+<li><p><strong>串行化</strong>：每个事务完全串行化进行。（<strong>避免幻读</strong>）</p></li>
+</ul>
+<p>事务隔离级别和可能存在的问题如下：</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻读</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>读未提交</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr class="even">
+<td>读已提交</td>
+<td></td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr class="odd">
+<td>可重复读</td>
+<td></td>
+<td></td>
+<td>√</td>
+</tr>
+<tr class="even">
+<td>串行化</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="锁">锁</h3>
+<p>数据库锁出现的原因是为了处理并发问题。数据库并发需要使用事务来控制，事务并发问题需要数据库锁来控制。</p>
+<p>数据库的锁根据不同的分类角度可以由不同的分类：</p>
+<ul>
+<li>从使用角度： 乐观锁与悲观锁</li>
+<li>从数据库机制上：共享锁与排它锁</li>
+<li>从锁的粒度上： 行级锁和表级锁</li>
+</ul>
+<h5 id="悲观锁与乐观锁">悲观锁与乐观锁</h5>
+<ul>
+<li>悲观锁：假定会发生并发冲突，在最整个数据处理过程中都将数据处于锁定的状态，</li>
+<li>乐观锁：假设不会发生并发冲突，只有在提交时检查是否违反数据的完整性。</li>
+</ul>
+<h5 id="排它锁与共享锁">排它锁与共享锁</h5>
+<ul>
+<li>排它锁：也叫写锁，表示对数据进行写操作。如果一个事务对对象加了排他锁，其他事务就不能再给它加任何锁了。</li>
+<li>共享锁：也叫读锁，用于所有的只读数据操作。共享锁是非独占的，允许多个并发事务读取其锁定的资源。</li>
+</ul>
+<h5 id="二阶段锁">二阶段锁</h5>
+<p>每个事务分两个阶段提出加锁和解锁申请。最初处于加锁阶段，事务根据需要获得锁。一旦该事务释放了锁，它就进入了缩减阶段，并且不能再发出加锁请求。<strong>二阶段封锁并不会保证不发生死锁</strong>（如果请求锁的数据顺序不同）。</p>
+<p>引入2PL是为了保证事务的隔离性，<strong>保证并发调度的准确性</strong>，多个事务在并发的情况下依然是串行的。</p>
+<hr>
+<h3 id="mvcc版本控制">MVCC版本控制</h3>
+<p><strong>多版本并发控制（MVCC）</strong> 是通过保存数据在某个时间点的快照来实现并发控制的。也就是说，不管事务执行多长时间，事务内部看到的数据是不受其它事务影响的，根据事务开始的时间不同，每个事务对同一张表，同一时刻看到的数据可能是不一样的。简单来说，<strong>MVCC</strong> 的思想就是保存数据的历史版本，通过对数据行的多个版本管理来实现数据库的并发控制。 是乐观锁的一种实现方式。</p>
+<p>MVCC 是通过在每行记录后面保存两个隐藏的列来实现的。一个保存了行的创建版本号，一个保存了行的删除版本号。每开启一个新的事务，系统版本号都会自动递增，作为事务的版本号。</p>
+<ul>
+<li><p>MVCC读写不冲突不加锁，写写之间互相冲突需要加锁串联执行。（乐观锁）</p></li>
+<li><p>select</p>
+<p>只会查找版本号小于等于当前事务版本的数据行。这样保证事务读取的是之前已经存在的或是事务自身插入的。</p></li>
+<li><p>insert</p>
+<p>每插入新的一行，都保存当前的系统版本号作为行的版本号。</p></li>
+<li><p>delete</p>
+<p>为删除的每一行保存当前系统版本号作为行删除版本号。</p></li>
+<li><p>update</p>
+<p>插入一条新的记录，保存当前系统版本号为行版本号，同时保存当前系统版本号到原来的行作为删除版本号。</p></li>
+</ul>
+<h5 id="mvcc-解决了哪些问题">MVCC 解决了哪些问题</h5>
+<ol type="1">
+<li>读写阻塞问题：MVCC 可以让读写互相不阻塞，即读不阻塞写，写不阻塞读，这样就可以提升事务并发处理能力。</li>
+<li>降低了死锁的概率：读取数据时并不需要加锁，对于写操作，也只锁定必要的行。</li>
+</ol>
+<h5 id="快照读与当前度">快照读与当前度</h5>
+<p><strong>快照读</strong>（SnapShot Read） 是一种一致性不加锁的读，是InnoDB并发如此之高的核心原因之一。</p>
+<blockquote>
+<p>这里的<strong>一致性</strong>是指，事务读取到的数据，要么是<strong>事务开始前就已经存在的数据</strong>，要么是<strong>事务自身插入或者修改过的数据</strong>。</p>
+</blockquote>
+<p>不加锁的简单的 SELECT 都属于<strong>快照读</strong>。</p>
+<p>与 <strong>快照读</strong> 相对应的则是 <strong>当前读</strong>，<strong>当前读</strong>就是读取最新数据，而不是历史版本的数据。加锁的 SELECT 就属于当前读，例如：</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/database/" rel="tag"># database</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/sortings/" rel="next" title="排序算法汇总">
+                <i class="fa fa-chevron-left"></i> 排序算法汇总
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/db-index/" rel="prev" title="数据库索引">
+                数据库索引 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Maneback">
+            
+              <p class="site-author-name" itemprop="name">Maneback</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/maneback" title="GitHub &rarr; https://github.com/maneback" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库的事务与锁"><span class="nav-number">1.</span> <span class="nav-text">数据库的事务与锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务及其性质"><span class="nav-number">1.1.</span> <span class="nav-text">事务及其性质</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事务隔离级别"><span class="nav-number">1.1.1.</span> <span class="nav-text">事务隔离级别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#锁"><span class="nav-number">1.2.</span> <span class="nav-text">锁</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#悲观锁与乐观锁"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">悲观锁与乐观锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#排它锁与共享锁"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">排它锁与共享锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二阶段锁"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">二阶段锁</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mvcc版本控制"><span class="nav-number">1.3.</span> <span class="nav-text">MVCC版本控制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#mvcc-解决了哪些问题"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">MVCC 解决了哪些问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#快照读与当前度"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">快照读与当前度</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-maneback"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maneback</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'WeS1M7bQHLf8p4i9AQ7BMhuN-gzGzoHsz',
+    appKey: '6BpDUuBiRAFrPKj7a2h51Dbi',
+    placeholder: 'what do you want to say',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

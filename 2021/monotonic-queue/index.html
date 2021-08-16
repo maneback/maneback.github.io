@@ -458,10 +458,7 @@
 <p>当我们在队列内移除元素时，若当前移除的元素与单调队列头部元素相等，说明此时此最大值在队列内已不存在，此元素也应被移除以维护队列内的最大值。</p>
 <h4 id="例题">例题</h4>
 <p><a href="https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/" target="_blank" rel="noopener">剑指offer - 59-II</a></p>
-<div class="figure">
-<img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224104022.png">
-
-</div>
+<p><img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224104022.png"></p>
 <h4 id="代码示例">代码示例</h4>
 <p>在这里，我们用一个数组（双向队列）<code>self.que</code> 保存所有的队列元素，<code>self.max_</code> 保存遇到的最大值。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MaxQueue</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.que = collections.deque()</span><br><span class="line">        self.max_= collections.deque()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">max_value</span><span class="params">(self)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.max_:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">        <span class="keyword">return</span> self.max_[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push_back</span><span class="params">(self, value: int)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        self.que.append(value)</span><br><span class="line">        <span class="keyword">while</span> self.max_ <span class="keyword">and</span> self.max_[<span class="number">-1</span>]&lt;value:</span><br><span class="line">            self.max_.pop()</span><br><span class="line">        self.max_.append(value)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop_front</span><span class="params">(self)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.que:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">        n = self.que[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">if</span> self.max_[<span class="number">0</span>] == self.que[<span class="number">0</span>]:</span><br><span class="line">            self.max_.popleft()</span><br><span class="line">        self.que.popleft()</span><br><span class="line">        <span class="keyword">return</span> n</span><br></pre></td></tr></table></figure>
@@ -591,7 +588,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">50</span>
+                    <span class="site-state-item-count">53</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -628,7 +625,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -733,15 +732,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

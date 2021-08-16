@@ -449,7 +449,7 @@
       
 
       
-        <p>原题链接：<a href="https://leetcode.com/problems/reordered-power-of-2/description/" class="uri" target="_blank" rel="noopener">https://leetcode.com/problems/reordered-power-of-2/description/</a></p>
+        <p>原题链接：<a href="https://leetcode.com/problems/reordered-power-of-2/description/" target="_blank" rel="noopener">https://leetcode.com/problems/reordered-power-of-2/description/</a></p>
 <a id="more"></a>
 <h2 id="题目大意">题目大意：</h2>
 <p>任意给要一个正整数n，可以随意调换每个数字的位置，看能不能得到2的幂。</p>
@@ -457,7 +457,10 @@
 <h2 id="解题思路">解题思路</h2>
 <p>任意调换位置都可以，那也就是说明，n的每位数字所处的位置的权重都是不重要的，只要把n逐位分解，得到的1~9每个数字的个数与某个2的幂相同的话，那就可以通过调换位置得到该2的幂。</p>
 <p>比如2的10次幂1024，它是由1个数字<code>1</code> , 1个数字<code>0</code>， 1个数字<code>2</code>， 和1个数字<code>4</code> 组成的，只要n包含这四个数字各1个，就肯定能得到1024。也就是说我们要计数每个数字的个数。</p>
-<p>由于1<n<10^9, 那么的话，n中最多有9个数字相同。我们可以直接用一个十位整数，每一位对应表示0~9的个数，若n与2的次幂转换之后的数字相同，则能够转换。="" 同样，由于n的取值范围，2的次幂最多有32个，可以枚举计算。="" ##="" 解题代码="" <figure="" class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">reorderedPowerOf2</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> cc = counter(n);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;=<span class="number">32</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cc == counter(<span class="number">1</span>&lt;&lt;i))&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">counter</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(n &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            res += <span class="built_in">pow</span>(<span class="number">10</span>, n%<span class="number">10</span>);</span><br><span class="line">            n = n/<span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></n<10^9,></p>
+<p>由于1&lt;n&lt;10^9, 那么的话，n中最多有9个数字相同。我们可以直接用一个十位整数，每一位对应表示0~9的个数，若n与2的次幂转换之后的数字相同，则能够转换。</p>
+<p>同样，由于n的取值范围，2的次幂最多有32个，可以枚举计算。</p>
+<h2 id="解题代码">解题代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">reorderedPowerOf2</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> cc = counter(n);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;=<span class="number">32</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cc == counter(<span class="number">1</span>&lt;&lt;i))&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">counter</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(n &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            res += <span class="built_in">pow</span>(<span class="number">10</span>, n%<span class="number">10</span>);</span><br><span class="line">            n = n/<span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -582,7 +585,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">50</span>
+                    <span class="site-state-item-count">53</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -619,7 +622,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -724,15 +729,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -799,7 +796,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目大意"><span class="nav-number">1.</span> <span class="nav-text">题目大意：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目大意"><span class="nav-number">1.</span> <span class="nav-text">题目大意：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题代码"><span class="nav-number">3.</span> <span class="nav-text">解题代码</span></a></li></ol></div>
             
 
           </div>

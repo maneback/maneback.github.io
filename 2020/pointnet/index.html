@@ -468,20 +468,14 @@
 <h2 id="一背景">一、背景</h2>
 <p>先来看一看点云与深度学习结合的问题。近年来，深度学习方法取得了广泛的关注和应用，在图像、语音、文字等领域都取得了很好的应用成果。而点云是一种新型的 3D 空间的数据表示格式。它一般以一个四维向量 (x, y, z, i) 表示一个点。其中， (x, y, z) 是空间中的三维坐标，而 i 表示的是该点的反射强度。</p>
 <p>当 2D 图像输入到深度学习的网络中时，它是规则的数据，每个像素值的位置都可以以一个二维坐标来表示，且它在空间上是连续的表示，即相邻像素就是在图像中相邻的。而点云的表示方法有所不同。它是无序且非结构化的表示，只是一个由点的坐标构成的集合，而相邻点之间并没有这种空间的相邻关系。这就会造成如下面这样的结果：</p>
-<div class="figure">
-<img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224102056.png">
-
-</div>
+<p><img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224102056.png"></p>
 <p>如上图：一副点云由若干的点构成，但是同一副点云图像其中点的排列顺序可能会不同，当以两者分别输入卷积网络中时，无论对于分类任务还是对于目标检测任务来讲，会带来不同的结果。然而实际上二者表示的是同一个物体或内容。这显然不是我们想要的结果。</p>
 <p>卷积网络需要结构化的输入，而点云的输入是非结构化的，这样就会导致卷积网络并不适用于点云数据，基于此，人们想出了两种预处理方式，来使点云成为结构化的输入。</p>
 <ul>
 <li><p>第一种方法是 multi-view 投影的方法。即以点云在多个视角的投影作为输入，用原来的 2D 图像的卷积网络来处理。</p></li>
 <li><p>第二种方法是 voxelization 的方法，即把空间划分成离散的体素 (3D voxel)， 然后每个点按照坐标位置决定落到那个体素单元中。这样，就可以把原来无序的点云输入规则化。</p></li>
 </ul>
-<div class="figure">
-<img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224102059.png">
-
-</div>
+<p><img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224102059.png"></p>
 <p>但是这种预处理的方式肯定会造成一定的信息损失。</p>
 <p>基于此问题，本文的作者就提出了 PointNet 神经网络来处理点云数据。设计了一种直接处理点云来提取特征的新型网络，很好地考虑了对于输入点<strong>排列顺序</strong>的不变性。以及网络对于输入点集小的扰动和数据破坏（丢失）也具有很好的鲁棒性。</p>
 <h2 id="二网络结构">二、网络结构</h2>
@@ -493,10 +487,7 @@
 </ul>
 <p>针对以上的问题，本文采取的方法是：在初始阶段，对点云中每个点都<strong>单独</strong>进行<strong>相同</strong>的处理，然后再应用一个对称函数(MaxPooling)来解决点集的无序性问题。</p>
 <p><strong>PointNet 的网络结构如下：</strong></p>
-<div class="figure">
-<img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224102102.png">
-
-</div>
+<p><img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224102102.png"></p>
 <p>网络的输入即为一个 nx3 的向量，表示 n 个点的三维坐标。可以用于分类任务与分割任务。对于分类任务，输出结果为 k 个分类类别的得分；对于分割任务，输出结果为 n 个点逐个的所属分割部分的得分。</p>
 <p>最重要的三个部分已在图中圈出：</p>
 <ul>
@@ -515,22 +506,13 @@ f(x_1, x_2,...x_n)=g(h(x_1), h(x_2),...h(x_n))
 <p>在论文中，作者给出了 PointNet 网络在分类、部分分割与场景语义分割三项任务上的结果。</p>
 <h3 id="分类">3.1 分类</h3>
 <p>在 ModelNet40 数据集上分类的准确率如下：</p>
-<div class="figure">
-<img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224102105.png">
-
-</div>
+<p><img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224102105.png"></p>
 <p>在这项任务中，与 multi-view 与 voxel 的方法进行了对比。</p>
 <h3 id="部分分割">3.2 部分分割</h3>
 <p>所谓部分分割，就是对每个点生成一个类别标记：</p>
-<div class="figure">
-<img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224102111.png">
-
-</div>
+<p><img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224102111.png"></p>
 <p>在 ModelNet40 部分分割结果如下，评价指标为 IoU:</p>
-<div class="figure">
-<img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224102115.png">
-
-</div>
+<p><img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224102115.png"></p>
 <h3 id="场景语义分割">3.3 场景语义分割</h3>
 <p>场景语义分割任务与部分分割任务类似，也是为每个点分配一个类别标记，判断每个点属于哪个物体。数据集为 Stanford 3D semantic parsing data Set.</p>
 <p>在这一项任务中，输入不在是三维向量，而是九维，包括 (三维坐标，RGB值，归一化后的三维坐标)。得到的结果如下：</p>
@@ -560,8 +542,7 @@ f(x_1, x_2,...x_n)=g(h(x_1), h(x_2),...h(x_n))
 <p>那么，对于任意一个点集 S，都存在另外两个点集 C 和 N ，使得在任意一个不小于 C 且不大于N 的点集 T，<span class="math inline">\(f(S) = f(T)\)</span>。即对于一个集合 <span class="math inline">\(S\)</span>, <span class="math inline">\(f(S)\)</span> 的函数值，只受到这个集合 <span class="math inline">\(C\)</span> 的影响，更多的点对于函数的结果并不起到作用。</p>
 <p>b)说明C中点的个数不大于K。这个K就是特征的维度。因为我们在用 <span class="math inline">\(u\)</span> 做最大池化操作时，对于 K 维中的每一个，只会选择来自一个点的特征作为该位的最大值，也就是说 MAXPOOLING 操作只会选择 K 个起作用的点。</p>
 <p>因此，maxpooling 时候的特征维度K会影响C，进而影响分类的准确率。</p>
-$$
-<span class="math display">\[\begin{align}
+<p>$$ <span class="math display">\[\begin{align}
 &amp; 令\; u: \chi\to\mathbb{R}^K\\
 &amp;u=MAX_{X_i\in S}\{h(x_i)\}\;\;即u由一组点生成一个K维的向量。\\
 &amp;f=\gamma\circ u,则有：\\
@@ -569,8 +550,7 @@ $$
 f(S)=f(T)\;if\;\mathcal{C}_s\subseteq T\subseteq \mathcal{N}_S\\
 &amp;(b)\; |\mathcal{C}_S|\leq K
 
-\end{align}\]</span>
-<p>$$</p>
+\end{align}\]</span> $$</p>
 <p><span class="math display">\[
 \begin{align}
 &amp;(a)式说明\;f(S)\;的函数值由一组关键点\mathcal{C}_S 决定\\
@@ -584,23 +564,14 @@ f(S)=f(T)\;if\;\mathcal{C}_s\subseteq T\subseteq \mathcal{N}_S\\
 \]</span></p>
 <p>上述证明说明了此网络对于输入中一些微小的扰动与离群点具有很好的鲁棒性，并不会很大程度上影响结果。</p>
 <p>下面给出了一些点云输入的 $_S $ 和 <span class="math inline">\(\mathcal{C}_N\)</span> 集合可视化例子。可以看出经过这个网络提取出的 <span class="math inline">\(\mathcal{C}_S\)</span> 集合，大体上描绘了这个物体的大致轮廓。</p>
-<div class="figure">
-<img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224102120.png">
-
-</div>
+<p><img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224102120.png"></p>
 <p>下图是 maxpooling 的维度 K 对准确率的影响。横坐标是 K 设置的数值，纵坐标是分类的准确率。每条线是每个输入中点的数量。可以看到随着 K 的增加，准确率有所上升，但是当 K 到达 1000 左右时基本上就不再变了，所以本文中 K 的取值就是选择 1024 ，以达到效率与精确度的最好权衡。</p>
 <h3 id="设计分析">4.3 设计分析</h3>
 <p>在之前，提到过有三种方法解决无序性问题：排序、RNN、对称函数，现在给出这三种设计方法的效果对比：</p>
-<div class="figure">
-<img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224102123.png">
-
-</div>
+<p><img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224102123.png"></p>
 <p>可以看到对称函数操作的准确性最高，而在所考虑的三种对称函数中，maxpooling 的准确性又是其中最高的。</p>
 <p>此外，我们提到过 T-Net 对齐网络的作用，在这里给出它的实际效果，可以看出它可以在一定程度上提高分类的准确率。</p>
-<div class="figure">
-<img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224102125.png">
-
-</div>
+<p><img src="https://gitee.com/MyTypora/typorapic/raw/master/20210224102125.png"></p>
 
       
     </div>
@@ -729,7 +700,7 @@ f(S)=f(T)\;if\;\mathcal{C}_s\subseteq T\subseteq \mathcal{N}_S\\
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">50</span>
+                    <span class="site-state-item-count">53</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -766,7 +737,9 @@ f(S)=f(T)\;if\;\mathcal{C}_s\subseteq T\subseteq \mathcal{N}_S\\
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -871,15 +844,7 @@ f(S)=f(T)\;if\;\mathcal{C}_s\subseteq T\subseteq \mathcal{N}_S\\
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

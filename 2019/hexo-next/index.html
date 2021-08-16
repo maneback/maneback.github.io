@@ -102,12 +102,12 @@
 <meta property="og:site_name" content="漠·然">
 <meta property="og:description" content="给你的网站添加一些功能。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://maneback.github.io/2019/hexo-next/Users/dell/AppData/Roaming/Typora/typora-user-images/1553782179250.png">
+<meta property="og:image" content="c:/Users/dell/AppData/Roaming/Typora/typora-user-images/1553782179250.png">
 <meta property="og:updated_time" content="2021-01-04T13:36:59.317Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Next主题个性化--hexo">
 <meta name="twitter:description" content="给你的网站添加一些功能。">
-<meta name="twitter:image" content="http://maneback.github.io/2019/hexo-next/Users/dell/AppData/Roaming/Typora/typora-user-images/1553782179250.png">
+<meta name="twitter:image" content="c:/Users/dell/AppData/Roaming/Typora/typora-user-images/1553782179250.png">
 
 
 
@@ -459,23 +459,18 @@
 <p>valine是一款基于leancloud的快速、简洁、高效地无后台的评论系统。</p>
 <h3 id="配置过程">配置过程</h3>
 <ul>
-<li>首先，注册<a href="https://leancloud.cn/dashboard/applist.html#/apps" target="_blank" rel="noopener">leancloud</a> 获取APP ID 和APP KEY，应用名称自己起一个，选择免费的开发版。</li>
-</ul>
-<div class="figure">
-<img src="/2019/hexo-next/Users\dell\AppData\Roaming\Typora\typora-user-images\1553782179250.png" alt="1553782179250">
-<p class="caption">1553782179250</p>
-</div>
-<ul>
+<li><p>首先，注册<a href="https://leancloud.cn/dashboard/applist.html#/apps" target="_blank" rel="noopener">leancloud</a> 获取APP ID 和APP KEY，应用名称自己起一个，选择免费的开发版。</p>
+<figure>
+<img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\1553782179250.png" alt="1553782179250"><figcaption aria-hidden="true">1553782179250</figcaption>
+</figure></li>
 <li><p>创建好后，进入应用，选择设置-&gt;应用key，复制App ID 和App Key。</p></li>
-<li><p>在Next主题的配置文件中搜索valine，将enable 设置为true，将App ID 和App Key复制到相应位置。同时还可以开启其他功能，如邮件通知，评论计数等，按需操作</p></li>
-</ul>
-<p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">valine:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span> <span class="comment"># When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.</span></span><br><span class="line"><span class="attr">  appid:</span> <span class="string">YOUR-APPID</span></span><br><span class="line"><span class="attr">  appkey:</span> <span class="string">YOUR-APPKEY</span></span><br><span class="line"><span class="attr">  notify:</span> <span class="literal">false</span> <span class="comment"># mail notifier, See: https://github.com/xCss/Valine/wiki</span></span><br><span class="line"><span class="attr">  verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line"><span class="attr">  placeholder:</span> <span class="string">what</span> <span class="string">do</span> <span class="string">you</span> <span class="string">want</span> <span class="string">to</span> <span class="string">say</span> <span class="comment"># comment box placeholder</span></span><br><span class="line"><span class="attr">  avatar:</span> <span class="string">mm</span> <span class="comment"># gravatar style</span></span><br><span class="line"><span class="attr">  guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># custom comment header</span></span><br><span class="line"><span class="attr">  pageSize:</span> <span class="number">10</span> <span class="comment"># pagination size</span></span><br><span class="line"><span class="attr">  visitor:</span> <span class="literal">true</span> <span class="comment"># leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html</span></span><br><span class="line"><span class="attr">  comment_count:</span> <span class="literal">true</span> <span class="comment"># if false, comment count will only be displayed in post page, not in home page</span></span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>然后，在leancloud设置--&gt;安全中心，将你的博客的网址填写到Web安全域名中就可以了。</li>
+<li><p>在Next主题的配置文件中搜索valine，将enable 设置为true，将App ID 和App Key复制到相应位置。同时还可以开启其他功能，如邮件通知，评论计数等，按需操作</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">valine:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span> <span class="comment"># When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.</span></span><br><span class="line"><span class="attr">  appid:</span> <span class="string">YOUR-APPID</span></span><br><span class="line"><span class="attr">  appkey:</span> <span class="string">YOUR-APPKEY</span></span><br><span class="line"><span class="attr">  notify:</span> <span class="literal">false</span> <span class="comment"># mail notifier, See: https://github.com/xCss/Valine/wiki</span></span><br><span class="line"><span class="attr">  verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line"><span class="attr">  placeholder:</span> <span class="string">what</span> <span class="string">do</span> <span class="string">you</span> <span class="string">want</span> <span class="string">to</span> <span class="string">say</span> <span class="comment"># comment box placeholder</span></span><br><span class="line"><span class="attr">  avatar:</span> <span class="string">mm</span> <span class="comment"># gravatar style</span></span><br><span class="line"><span class="attr">  guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># custom comment header</span></span><br><span class="line"><span class="attr">  pageSize:</span> <span class="number">10</span> <span class="comment"># pagination size</span></span><br><span class="line"><span class="attr">  visitor:</span> <span class="literal">true</span> <span class="comment"># leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html</span></span><br><span class="line"><span class="attr">  comment_count:</span> <span class="literal">true</span> <span class="comment"># if false, comment count will only be displayed in post page, not in home page</span></span><br></pre></td></tr></table></figure></li>
+<li><p>然后，在leancloud设置–&gt;安全中心，将你的博客的网址填写到Web安全域名中就可以了。</p></li>
 </ul>
 <p>我不知道为什么，这个评论系统并不能在本地预览，但是部署到github.io 之后就能正常显示了。</p>
 <ul>
-<li>这样在leancloud的后台，你就可以查看留言了。选择存储--&gt;Comment 查看留言信息，还可以删除留言。</li>
+<li>这样在leancloud的后台，你就可以查看留言了。选择存储–&gt;Comment 查看留言信息，还可以删除留言。</li>
 </ul>
 <h3 id="配置项">配置项</h3>
 <p>可以看到在Next配置文件中，Valine有很多配置项可用。下面分别讲解一下。</p>
@@ -606,7 +601,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">50</span>
+                    <span class="site-state-item-count">53</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -643,7 +638,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -748,15 +745,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
