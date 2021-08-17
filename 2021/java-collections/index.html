@@ -94,18 +94,21 @@
 
 
 
-  <meta name="description" content="Java 集合的使用">
+  <meta name="description" content="Java 集合的使用方式">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 集合">
 <meta property="og:url" content="http://maneback.github.io/2021/java-collections/index.html">
 <meta property="og:site_name" content="漠·然">
-<meta property="og:description" content="Java 集合的使用">
+<meta property="og:description" content="Java 集合的使用方式">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-08-16T03:08:23.561Z">
+<meta property="og:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210816132257.png">
+<meta property="og:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210816164347.png">
+<meta property="og:updated_time" content="2021-08-16T08:57:01.405Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 集合">
-<meta name="twitter:description" content="Java 集合的使用">
+<meta name="twitter:description" content="Java 集合的使用方式">
+<meta name="twitter:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210816132257.png">
 
 
 
@@ -435,7 +438,7 @@
           
 
           
-            <div class="post-description">Java 集合的使用</div>
+            <div class="post-description">Java 集合的使用方式</div>
           
 
         </div>
@@ -451,7 +454,7 @@
       
 
       
-        <p>集合提供了一个对象来在内部容纳若干其他的Java对象，并提供相应的访问接口。Java 的<code>java.util</code> 包主要提供了一下三种不同类型的集合：</p>
+        <p>集合提供了一个对象来在内部容纳若干其他的 Java 对象，并提供相应的访问接口。Java 的<code>java.util</code> 包主要提供了一下三种不同类型的集合：</p>
 <ul>
 <li><code>List</code> 有序列表的集合，可按插入顺序访问。，</li>
 <li><code>Set</code> 确保不可以插入重复元素的集合。</li>
@@ -498,6 +501,17 @@
 <li>stack 是用Deque接口来模拟的，原来的stack被占用。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Deque&lt;Character&gt; stack = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">stack.isEmpty();</span><br><span class="line">stack.pop();</span><br><span class="line">stack.push(ch);</span><br><span class="line">stack.peek()</span><br></pre></td></tr></table></figure>
+<h4 id="继承关系">继承关系</h4>
+<p>橙色为类，蓝色为接口。</p>
+<p><code>List</code>， <code>Queue</code>， <code>Set</code>类</p>
+<p><img src="https://gitee.com/MyTypora/typorapic/raw/master/img/20210816132257.png" alt="image-20210816132257321" style="zoom:80%;"></p>
+<hr>
+<p><code>Map</code> 类</p>
+<p><img src="https://gitee.com/MyTypora/typorapic/raw/master/img/20210816164347.png" alt="image-20210816164347532" style="zoom:80%;"></p>
+<p><strong>参考链接</strong></p>
+<ul>
+<li><a href="https://www.runoob.com/java/java-tutorial.html" target="_blank" rel="noopener">菜鸟教程</a></li>
+</ul>
 
       
     </div>
@@ -543,6 +557,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/java-reflection/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -618,7 +636,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-count">55</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -630,8 +648,6 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
-                    
-                      
                     
                       
                     
@@ -829,7 +845,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#list"><span class="nav-number">1.</span> <span class="nav-text">List</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map"><span class="nav-number">2.</span> <span class="nav-text">map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set"><span class="nav-number">3.</span> <span class="nav-text">Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#queue"><span class="nav-number">4.</span> <span class="nav-text">Queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#priorityqueue"><span class="nav-number">5.</span> <span class="nav-text">PriorityQueue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deque"><span class="nav-number">6.</span> <span class="nav-text">Deque</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stack"><span class="nav-number">7.</span> <span class="nav-text">Stack</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#list"><span class="nav-number">1.</span> <span class="nav-text">List</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map"><span class="nav-number">2.</span> <span class="nav-text">map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set"><span class="nav-number">3.</span> <span class="nav-text">Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#queue"><span class="nav-number">4.</span> <span class="nav-text">Queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#priorityqueue"><span class="nav-number">5.</span> <span class="nav-text">PriorityQueue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deque"><span class="nav-number">6.</span> <span class="nav-text">Deque</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stack"><span class="nav-number">7.</span> <span class="nav-text">Stack</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#继承关系"><span class="nav-number">7.1.</span> <span class="nav-text">继承关系</span></a></li></ol></li></ol></div>
             
 
           </div>

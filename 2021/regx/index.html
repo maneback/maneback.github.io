@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="漠·然">
 <meta property="og:description" content="正则表达式">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-08-16T03:10:50.152Z">
+<meta property="og:updated_time" content="2021-08-16T09:03:05.964Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式">
 <meta name="twitter:description" content="正则表达式">
@@ -601,9 +601,7 @@
 <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">a-z</span>] <span class="comment">//匹配所有的小写字母 </span></span><br><span class="line">[<span class="meta">A-Z</span>] <span class="comment">//匹配所有的大写字母 </span></span><br><span class="line">[<span class="meta">a-zA-Z</span>] <span class="comment">//匹配所有的字母 </span></span><br><span class="line">[<span class="meta">0-9</span>] <span class="comment">//匹配所有的数字 </span></span><br><span class="line">[<span class="meta">0-9\.\-</span>] <span class="comment">//匹配所有的数字，句号和减号</span></span><br></pre></td></tr></table></figure>
 <p>这些字符族只表示一个字符。如我们要匹配又一个小写字母加一位数字组成的两位的字符串，可以用以下这个模式：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[<span class="string">a-z</span>][<span class="symbol">0-9</span>]$</span><br></pre></td></tr></table></figure>
-<p>这里的<code>^</code>表示字符串开头，但是在一组方括号中使用<code>^</code>时，表示“非”和“排除”的意思，即不能包含该字符</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[<span class="string">^0-9</span>][<span class="symbol">0-9</span>]$</span><br></pre></td></tr></table></figure>
-<p>表示第一位不能为数字</p>
+<p>这里的<code>^</code>表示字符串开头，但是在一组方括号中使用<code>^</code>时，表示“非”和“排除”的意思，即不能包含该字符如： <code>^[^0-9][0-9]$表示第一位不能为数字</code></p>
 
       
     </div>
@@ -728,7 +726,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-count">55</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -740,8 +738,6 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
-                    
-                      
                     
                       
                     

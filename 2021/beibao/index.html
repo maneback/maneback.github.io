@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="漠·然">
 <meta property="og:description" content="背包问题">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-08-16T03:11:01.490Z">
+<meta property="og:updated_time" content="2021-08-16T08:57:34.257Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="背包问题">
 <meta name="twitter:description" content="背包问题">
@@ -507,6 +507,10 @@ negative = \frac{sum-target}{2}
 </blockquote>
 <p>同样，在每一个数组开始循环前，</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">canPatrition</span><span class="params">(nums)</span>:</span></span><br><span class="line">    s = sum(nums)</span><br><span class="line">    <span class="keyword">if</span> s%<span class="number">2</span>==<span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">   	V = s//<span class="number">2</span></span><br><span class="line">    dp = [<span class="keyword">False</span>]*(V+<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> nums:</span><br><span class="line">        <span class="keyword">for</span> v <span class="keyword">in</span> range(V, n<span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">            dp[v] = dp[v]|dp[v-n]</span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment"># 二维 dp</span></span><br><span class="line">    n = len(nums)</span><br><span class="line">    V = s//<span class="number">2</span></span><br><span class="line">    dp = [[<span class="keyword">False</span>]*(V+<span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> range(n+<span class="number">1</span>)]</span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="keyword">True</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(V+<span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 因为这第 i 行还没有被赋值，而前面的可能会被下一行用到，所以要从 0 开始赋值。把上一行的复制下来</span></span><br><span class="line">            dp[i][j] = dp[i<span class="number">-1</span>][j]</span><br><span class="line">            <span class="keyword">if</span> j&gt;=nums[i<span class="number">-1</span>]:</span><br><span class="line">                dp[i][j] = dp[i][j] | dp[i<span class="number">-1</span>][j-nums[i<span class="number">-1</span>]]</span><br><span class="line">	<span class="keyword">return</span> dp[<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+<p><strong>参考链接</strong></p>
+<ul>
+<li>背包九讲</li>
+</ul>
 
       
     </div>
@@ -631,7 +635,7 @@ negative = \frac{sum-target}{2}
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-count">55</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -643,8 +647,6 @@ negative = \frac{sum-target}{2}
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
-                    
-                      
                     
                       
                     
