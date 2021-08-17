@@ -8,6 +8,8 @@ categories: 技术
 
 介绍 Linux 定时任务命令 `crontab ` 的使用
 
+<!--more-->
+
 # linux crontab
 
 linux crontab 是用来定期执行程序的命令。系统会默认启动此任务调度命令。

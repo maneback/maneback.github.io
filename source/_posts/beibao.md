@@ -4,9 +4,10 @@ date: 2021-06-15 19:22:56
 tags:
   - 背包问题
 categories: Algorithm
+description: 背包问题
 ---
 
-<!--more-->
+
 
 ### 问题描述
 
@@ -178,3 +179,6 @@ def canPatrition(nums):
 
 
 
+**参考链接**
+
+- 背包九讲
