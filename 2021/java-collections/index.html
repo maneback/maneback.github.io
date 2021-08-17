@@ -104,7 +104,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210816132257.png">
 <meta property="og:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210816164347.png">
-<meta property="og:updated_time" content="2021-08-16T08:57:01.405Z">
+<meta property="og:updated_time" content="2021-08-16T14:03:26.935Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 集合">
 <meta name="twitter:description" content="Java 集合的使用方式">
@@ -472,7 +472,7 @@
 <li><code>HashMap</code> 的 <code>key</code>必须实现<code>equals()</code> 和 <code>hashCode()</code> 方法。</li>
 <li>有序 map 必须实现<code>Comparable</code> 接口；或者在声明时传入一个<code>Comparator</code> 接口，里面声明<code>compare</code> 函数，</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//无序map</span></span><br><span class="line">Map&lt;String, Integer&gt; mapper = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">mapper.put(<span class="string">')'</span>, <span class="string">'('</span>);</span><br><span class="line">mapper.containsKey(ch);</span><br><span class="line">mapper.get(key);</span><br><span class="line"><span class="comment">//遍历</span></span><br><span class="line"><span class="keyword">for</span> (String key : mapper.keySet());</span><br><span class="line"><span class="keyword">for</span> (Map.Entry&lt;String, Integer&gt; entry : mapper.entrySet());</span><br><span class="line"><span class="keyword">for</span>(String value: mapper.valueSet());</span><br><span class="line"><span class="comment">//有序map</span></span><br><span class="line">Map&lt;String, Integer&gt; order_map = <span class="keyword">new</span> TreeMap&lt;&gt;();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//无序map</span></span><br><span class="line">Map&lt;String, Integer&gt; mapper = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">mapper.put(<span class="string">')'</span>, <span class="string">'('</span>);</span><br><span class="line">mapper.containsKey(ch);</span><br><span class="line">mapper.get(key);</span><br><span class="line"><span class="comment">//遍历</span></span><br><span class="line"><span class="keyword">for</span> (String key : mapper.keySet());</span><br><span class="line"><span class="keyword">for</span> (Map.Entry&lt;String, Integer&gt; entry : mapper.entrySet());</span><br><span class="line"><span class="keyword">for</span>(String value: mapper.valueSet());</span><br><span class="line"><span class="comment">//有序map</span></span><br><span class="line">Map&lt;String, Integer&gt; order_map = <span class="keyword">new</span> TreeMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">//基础的使用map计数出现次数</span></span><br><span class="line">Map&lt;Integer, Integer&gt; mapper1 = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num: arr)&#123;</span><br><span class="line">            mapper1.put(num, occur.getOrDefault(num, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 <h3 id="set">Set</h3>
 <ul>
 <li><p>只会存储 <code>key</code> 的值。</p></li>
@@ -548,8 +548,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/regx/" rel="next" title="正则表达式">
-                <i class="fa fa-chevron-left"></i> 正则表达式
+              <a href="/2021/db-lock/" rel="next" title="数据库事务管理与锁">
+                <i class="fa fa-chevron-left"></i> 数据库事务管理与锁
               </a>
             
           </div>
@@ -558,8 +558,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/java-reflection/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2021/java-reflection/" rel="prev" title="Java 反射机制研究">
+                Java 反射机制研究 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -636,7 +636,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">55</span>
+                    <span class="site-state-item-count">56</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -778,7 +778,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">34</span>
+                      
+                    
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -845,7 +847,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#list"><span class="nav-number">1.</span> <span class="nav-text">List</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map"><span class="nav-number">2.</span> <span class="nav-text">map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set"><span class="nav-number">3.</span> <span class="nav-text">Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#queue"><span class="nav-number">4.</span> <span class="nav-text">Queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#priorityqueue"><span class="nav-number">5.</span> <span class="nav-text">PriorityQueue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deque"><span class="nav-number">6.</span> <span class="nav-text">Deque</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stack"><span class="nav-number">7.</span> <span class="nav-text">Stack</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#继承关系"><span class="nav-number">7.1.</span> <span class="nav-text">继承关系</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#list"><span class="nav-text">List</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map"><span class="nav-text">map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set"><span class="nav-text">Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#queue"><span class="nav-text">Queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#priorityqueue"><span class="nav-text">PriorityQueue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deque"><span class="nav-text">Deque</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stack"><span class="nav-text">Stack</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#继承关系"><span class="nav-text">继承关系</span></a></li></ol></li></ol></div>
             
 
           </div>
