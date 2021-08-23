@@ -2,406 +2,413 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://maneback.github.io/2019/nginx-dash/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2021/db-index/</loc>
     
-    <lastmod>2021-08-17T15:08:50.120Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maneback.github.io/2021/db-lock/</loc>
-    
-    <lastmod>2021-08-17T15:07:07.625Z</lastmod>
+    <lastmod>2021-08-23T00:27:55.615Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2021/db-index/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2021/java-collections/</loc>
     
-    <lastmod>2021-08-17T15:03:35.714Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maneback.github.io/2021/java-collections/</loc>
-    
-    <lastmod>2021-08-16T14:03:26.935Z</lastmod>
+    <lastmod>2021-08-21T09:41:49.063Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2020/regx/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2021/db-lock/</loc>
+    
+    <lastmod>2021-08-19T10:19:59.664Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://github.com/maneback/maneback.github.io/2021/network-TCP/</loc>
+    
+    <lastmod>2021-08-19T08:35:36.585Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://github.com/maneback/maneback.github.io/2021/installed-plugin/</loc>
+    
+    <lastmod>2021-08-19T08:27:40.293Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://github.com/maneback/maneback.github.io/2019/hexo-next/</loc>
+    
+    <lastmod>2021-08-19T08:21:17.441Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://github.com/maneback/maneback.github.io/2019/nginx-dash/</loc>
+    
+    <lastmod>2021-08-18T00:11:28.859Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://github.com/maneback/maneback.github.io/2020/regx/</loc>
     
     <lastmod>2021-08-16T10:44:39.721Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2021/java-reflection/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2021/java-reflection/</loc>
     
     <lastmod>2021-08-16T09:07:54.603Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2021/select-poll-epoll/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2021/select-poll-epoll/</loc>
     
     <lastmod>2021-08-16T09:01:30.357Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2021/sortings/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2021/sortings/</loc>
     
     <lastmod>2021-08-16T08:58:06.897Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2021/beibao/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2021/beibao/</loc>
     
     <lastmod>2021-08-16T08:57:34.257Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2021/slidingwindow/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2021/slidingwindow/</loc>
     
     <lastmod>2021-08-16T03:11:24.433Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2021/crontab/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2021/crontab/</loc>
     
     <lastmod>2021-08-14T03:55:24.071Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2020/unique-binary-search-trees-ii/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2020/unique-binary-search-trees-ii/</loc>
     
     <lastmod>2021-08-14T03:44:59.962Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2021/monotonic-stack/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2021/monotonic-stack/</loc>
     
     <lastmod>2021-08-14T03:25:34.523Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2020/wechat-account/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2020/wechat-account/</loc>
     
     <lastmod>2021-03-17T11:03:01.099Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2020/pointnet/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2020/pointnet/</loc>
     
     <lastmod>2021-03-17T11:03:01.098Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2021/monotonic-queue/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2021/merge-intervals/</loc>
     
     <lastmod>2021-03-17T11:03:01.096Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2021/merge-intervals/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2021/monotonic-queue/</loc>
     
     <lastmod>2021-03-17T11:03:01.096Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2021/couple-holding/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2021/longest-turbulent-subarray/</loc>
     
     <lastmod>2021-03-17T11:03:01.095Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2021/longest-turbulent-subarray/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2021/couple-holding/</loc>
     
     <lastmod>2021-03-17T11:03:01.095Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2020/binary-tree-maximum-path-sum/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2020/binary-tree-maximum-path-sum/</loc>
     
     <lastmod>2021-03-17T11:03:01.093Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2021/installed-plugin/</loc>
-    
-    <lastmod>2021-01-18T11:54:00.077Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maneback.github.io/2021/vscodeshortcut/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2021/vscodeshortcut/</loc>
     
     <lastmod>2021-01-17T13:18:53.583Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/tags/index.html</loc>
+    <loc>https://github.com/maneback/maneback.github.io/tags/index.html</loc>
     
     <lastmod>2021-01-04T13:36:59.338Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2018/yaml/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2018/yaml/</loc>
     
     <lastmod>2021-01-04T13:36:59.337Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/categories/index.html</loc>
+    <loc>https://github.com/maneback/maneback.github.io/categories/index.html</loc>
     
     <lastmod>2021-01-04T13:36:59.337Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2019/taoludaijianshi/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2018/taowang/</loc>
     
     <lastmod>2021-01-04T13:36:59.330Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2018/taowang/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2019/taoludaijianshi/</loc>
     
     <lastmod>2021-01-04T13:36:59.330Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2018/str2bin/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2020/subset/</loc>
     
     <lastmod>2021-01-04T13:36:59.329Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2020/subset/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2018/str2bin/</loc>
     
     <lastmod>2021-01-04T13:36:59.329Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2019/see-and-not-see/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2018/reorder-pow-of-2/</loc>
     
     <lastmod>2021-01-04T13:36:59.328Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2018/reorder-pow-of-2/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2019/see-and-not-see/</loc>
     
     <lastmod>2021-01-04T13:36:59.328Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2018/prime-ring/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2019/python-exception/</loc>
     
     <lastmod>2021-01-04T13:36:59.327Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2019/python-exception/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2020/python-functions/</loc>
     
     <lastmod>2021-01-04T13:36:59.327Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2020/python-functions/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2020/python-list/</loc>
     
     <lastmod>2021-01-04T13:36:59.327Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2020/python-list/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2018/prime-ring/</loc>
     
     <lastmod>2021-01-04T13:36:59.327Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2018/prim/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2018/prime-number/</loc>
     
     <lastmod>2021-01-04T13:36:59.326Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2018/prime-number/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2018/prim/</loc>
     
     <lastmod>2021-01-04T13:36:59.326Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2018/oil-deposit/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2018/oil-deposit/</loc>
     
     <lastmod>2021-01-04T13:36:59.320Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2018/max-product-subarray/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2018/max-subarray/</loc>
     
     <lastmod>2021-01-04T13:36:59.319Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2020/music-test/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2020/music-test/</loc>
     
     <lastmod>2021-01-04T13:36:59.319Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2018/max-subarray/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2018/max-product-subarray/</loc>
     
     <lastmod>2021-01-04T13:36:59.319Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2020/latex/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2018/kruskal/</loc>
     
     <lastmod>2021-01-04T13:36:59.318Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2018/kruskal/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2020/latex/</loc>
     
     <lastmod>2021-01-04T13:36:59.318Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2018/gcd-lcm/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2018/hexo-guide-2/</loc>
     
     <lastmod>2021-01-04T13:36:59.317Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2018/git/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2018/gcd-lcm/</loc>
     
     <lastmod>2021-01-04T13:36:59.317Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2019/hexo-next/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2018/git/</loc>
     
     <lastmod>2021-01-04T13:36:59.317Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2018/hexo-guide-3/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2018/hexo-guide-3/</loc>
     
     <lastmod>2021-01-04T13:36:59.317Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2018/hexo-guide-2/</loc>
-    
-    <lastmod>2021-01-04T13:36:59.317Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maneback.github.io/2018/floyd/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2018/floyd/</loc>
     
     <lastmod>2021-01-04T13:36:59.316Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2019/emoji-in-git-commit/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2018/dijistra/</loc>
     
     <lastmod>2021-01-04T13:36:59.315Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2018/dijistra/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2019/emoji-in-git-commit/</loc>
     
     <lastmod>2021-01-04T13:36:59.315Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2018/catalan/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2018/catalan/</loc>
     
     <lastmod>2021-01-04T13:36:59.305Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2020/books/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2020/books/</loc>
     
     <lastmod>2021-01-04T13:36:59.305Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2018/bingchaji/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2018/bingchaji/</loc>
     
     <lastmod>2021-01-04T13:36:59.304Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2019/Map-Reduce-in-python/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2018/HTMLform/</loc>
     
     <lastmod>2021-01-04T13:36:59.303Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2018/Hexo-guide-1/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2019/Map-Reduce-in-python/</loc>
     
     <lastmod>2021-01-04T13:36:59.303Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2018/HTMLform/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2018/Hexo-guide-1/</loc>
     
     <lastmod>2021-01-04T13:36:59.303Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://maneback.github.io/2020/2github/</loc>
+    <loc>https://github.com/maneback/maneback.github.io/2020/2github/</loc>
     
     <lastmod>2021-01-04T13:36:59.302Z</lastmod>
     

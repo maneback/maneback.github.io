@@ -98,13 +98,13 @@
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 集合">
-<meta property="og:url" content="http://maneback.github.io/2021/java-collections/index.html">
+<meta property="og:url" content="https://github.com/maneback/maneback.github.io/2021/java-collections/index.html">
 <meta property="og:site_name" content="漠·然">
 <meta property="og:description" content="Java 集合的使用方式">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210816132257.png">
 <meta property="og:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210816164347.png">
-<meta property="og:updated_time" content="2021-08-16T14:03:26.935Z">
+<meta property="og:updated_time" content="2021-08-21T09:41:49.063Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 集合">
 <meta name="twitter:description" content="Java 集合的使用方式">
@@ -117,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="http://maneback.github.io/2021/java-collections/">
+  <link rel="canonical" href="https://github.com/maneback/maneback.github.io/2021/java-collections/">
 
 
 
@@ -332,7 +332,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://maneback.github.io/2021/java-collections/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/maneback/maneback.github.io/2021/java-collections/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Maneback">
@@ -466,18 +466,21 @@
 <p><code>Hashtable</code>, <code>Vector</code>, <code>Stack</code>, <code>Enumeration&lt;E&gt;</code>.</p>
 <h3 id="list">List</h3>
 <p>需要实现<code>equals</code> 方法。</p>
+<p><code>ArrayList</code>基于动态数组实现，支持随机访问。<code>LinkedList</code>：基于双向链表实现，只能顺序访问，但是可以快速地在链表中间插⼊和删除元素。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; array = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">List&lt;Integer&gt; array2 = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</span><br><span class="line">List&lt;Integer&gt; array = List.of(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">array.add(<span class="number">1</span>);</span><br><span class="line">array.add(<span class="number">1</span>, <span class="number">2</span>); <span class="comment">//(index, elem)</span></span><br><span class="line">array.remove(<span class="number">1</span>);<span class="comment">//(elem)</span></span><br><span class="line"><span class="keyword">int</span> elem = array.get(<span class="number">1</span>)<span class="comment">//(index)</span></span><br><span class="line"><span class="keyword">int</span> n = array.size();</span><br></pre></td></tr></table></figure>
 <h3 id="map">map</h3>
 <ul>
 <li><code>HashMap</code> 的 <code>key</code>必须实现<code>equals()</code> 和 <code>hashCode()</code> 方法。</li>
-<li>有序 map 必须实现<code>Comparable</code> 接口；或者在声明时传入一个<code>Comparator</code> 接口，里面声明<code>compare</code> 函数，</li>
+<li>有序 map 必须实现<code>Comparable</code> 接口；或者在声明时传入一个<code>Comparator</code> 接口，里面声明<code>compare</code> 函数</li>
+<li>无序的 <code>HashMap</code>基于哈希表实现， 有序的 <code>TreeMap</code>基于红⿊树实现 。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//无序map</span></span><br><span class="line">Map&lt;String, Integer&gt; mapper = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">mapper.put(<span class="string">')'</span>, <span class="string">'('</span>);</span><br><span class="line">mapper.containsKey(ch);</span><br><span class="line">mapper.get(key);</span><br><span class="line"><span class="comment">//遍历</span></span><br><span class="line"><span class="keyword">for</span> (String key : mapper.keySet());</span><br><span class="line"><span class="keyword">for</span> (Map.Entry&lt;String, Integer&gt; entry : mapper.entrySet());</span><br><span class="line"><span class="keyword">for</span>(String value: mapper.valueSet());</span><br><span class="line"><span class="comment">//有序map</span></span><br><span class="line">Map&lt;String, Integer&gt; order_map = <span class="keyword">new</span> TreeMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">//基础的使用map计数出现次数</span></span><br><span class="line">Map&lt;Integer, Integer&gt; mapper1 = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num: arr)&#123;</span><br><span class="line">            mapper1.put(num, occur.getOrDefault(num, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 <h3 id="set">Set</h3>
 <ul>
-<li><p>只会存储 <code>key</code> 的值。</p></li>
-<li><p>需要正确实现<code>equals()</code>和<code>hashCode()</code>方法。</p></li>
-<li><p>有序的Set还要实现<code>Comparable</code> 接口； 或者在声明时传入一个<code>Comparator</code> 接口，里面声明<code>compare</code> 函数，</p></li>
+<li>只会存储 <code>key</code> 的值。</li>
+<li>需要正确实现<code>equals()</code>和<code>hashCode()</code>方法。</li>
+<li>有序的Set还要实现<code>Comparable</code> 接口； 或者在声明时传入一个<code>Comparator</code> 接口，里面声明<code>compare</code> 函数</li>
+<li><code>HashSet</code>基于哈希表实现， <code>TreeSet</code>基于红黑树实现。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//无序Set</span></span><br><span class="line">Set&lt;String&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">set.add(<span class="string">"123"</span>);</span><br><span class="line">set.contains(<span class="string">"123"</span>);</span><br><span class="line">set.remove(<span class="string">"123"</span>);</span><br><span class="line"><span class="keyword">int</span> n = set.size();</span><br><span class="line"><span class="comment">//有序</span></span><br><span class="line"></span><br><span class="line">Set&lt;String&gt; set = <span class="keyword">new</span> TreeSet&lt;&gt;();</span><br></pre></td></tr></table></figure>
 <h3 id="queue">Queue</h3>
@@ -489,16 +492,17 @@
 <h3 id="priorityqueue">PriorityQueue</h3>
 <ul>
 <li>放入的元素需要实现<code>Comparable</code>，或者提供一个<code>Comparator</code>对象来判断两个元素的顺序。</li>
+<li>PriorityQueue：基于堆结构实现</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实现类与接口分离</span></span><br><span class="line">Queue&lt;<span class="keyword">int</span>&gt; que = <span class="keyword">new</span> PriorityQueue&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">//throw exception</span></span><br><span class="line">que.add();</span><br><span class="line">que.remove();</span><br><span class="line">que.element();</span><br><span class="line"></span><br><span class="line"><span class="comment">//return false or null</span></span><br><span class="line">que.offer();</span><br><span class="line">que.poll();</span><br><span class="line">que.peek();</span><br></pre></td></tr></table></figure>
 <h3 id="deque">Deque</h3>
 <ul>
-<li>deque 是用 LinkedList 实现的接口，赋予了不同的功能。</li>
+<li>deque 是用 <code>LinkedList</code>实现的接口，赋予了不同的功能。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Deque&lt;<span class="keyword">int</span>&gt; que = <span class="keyword">new</span> LinkedList&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">//throw exception</span></span><br><span class="line">que.addLast(); <span class="comment">//addFirst</span></span><br><span class="line">que.removeLast(); <span class="comment">//removeFirst</span></span><br><span class="line">que.getLast(); <span class="comment">// getFirst</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//return false or null</span></span><br><span class="line">que.offerLast(); <span class="comment">//offerFirst</span></span><br><span class="line">que.pollLast(); <span class="comment">//pollLast</span></span><br><span class="line">que.peekLast(); <span class="comment">//peekLast</span></span><br></pre></td></tr></table></figure>
 <h3 id="stack">Stack</h3>
 <ul>
-<li>stack 是用Deque接口来模拟的，原来的stack被占用。</li>
+<li>stack 是用<code>Deque</code>接口来模拟的，原来的stack被不推荐使用。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Deque&lt;Character&gt; stack = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">stack.isEmpty();</span><br><span class="line">stack.pop();</span><br><span class="line">stack.push(ch);</span><br><span class="line">stack.peek()</span><br></pre></td></tr></table></figure>
 <h4 id="继承关系">继承关系</h4>
@@ -636,7 +640,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -780,7 +784,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">35</span>
+                      
+                    
+                    <span class="site-state-item-count">36</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -808,7 +814,7 @@
                   
                     
                   
-                  <a href="https://github.com/maneback" title="GitHub &rarr; https://github.com/maneback" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  <a href="https://github.com/maneback" title="GitHub &rarr; https://github.com/maneback"><i class="fa fa-fw fa-globe"></i>GitHub</a>
                 </span>
               
             </div>

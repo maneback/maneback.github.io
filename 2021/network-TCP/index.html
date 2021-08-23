@@ -94,18 +94,22 @@
 
 
 
-  <meta name="description" content="原题链接：https://leetcode-cn.com/problems/subsets/">
-<meta name="keywords" content="Leetcode,backtrack">
+  <meta name="description" content="TCP 知识： 三次握手、四次挥手、流量控制、拥塞控制">
+<meta name="keywords" content="Network">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode -- Subsets">
-<meta property="og:url" content="https://github.com/maneback/maneback.github.io/2020/subset/index.html">
+<meta property="og:title" content="TCP 相关知识">
+<meta property="og:url" content="https://github.com/maneback/maneback.github.io/2021/network-TCP/index.html">
 <meta property="og:site_name" content="漠·然">
-<meta property="og:description" content="原题链接：https://leetcode-cn.com/problems/subsets/">
+<meta property="og:description" content="TCP 知识： 三次握手、四次挥手、流量控制、拥塞控制">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-01-04T13:36:59.329Z">
+<meta property="og:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210819155803.png">
+<meta property="og:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210819163508.png">
+<meta property="og:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210819163519.png">
+<meta property="og:updated_time" content="2021-08-19T08:35:36.585Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leetcode -- Subsets">
-<meta name="twitter:description" content="原题链接：https://leetcode-cn.com/problems/subsets/">
+<meta name="twitter:title" content="TCP 相关知识">
+<meta name="twitter:description" content="TCP 知识： 三次握手、四次挥手、流量控制、拥塞控制">
+<meta name="twitter:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210819155803.png">
 
 
 
@@ -114,7 +118,7 @@
 
 
 
-  <link rel="canonical" href="https://github.com/maneback/maneback.github.io/2020/subset/">
+  <link rel="canonical" href="https://github.com/maneback/maneback.github.io/2021/network-TCP/">
 
 
 
@@ -124,7 +128,7 @@
   };
 </script>
 
-  <title>Leetcode -- Subsets | 漠·然</title>
+  <title>TCP 相关知识 | 漠·然</title>
   
 
 
@@ -329,7 +333,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/maneback/maneback.github.io/2020/subset/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/maneback/maneback.github.io/2021/network-TCP/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Maneback">
@@ -346,7 +350,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Leetcode -- Subsets
+          <h1 class="post-title" itemprop="name headline">TCP 相关知识
 
               
             
@@ -372,7 +376,7 @@
                 
               
 
-              <time title="创建时间：2020-06-09 08:38:42" itemprop="dateCreated datePublished" datetime="2020-06-09T08:38:42+08:00">2020-06-09</time>
+              <time title="创建时间：2021-08-11 15:22:29" itemprop="dateCreated datePublished" datetime="2021-08-11T15:22:29+08:00">2021-08-11</time>
             
 
             
@@ -390,7 +394,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/基础知识/" itemprop="url" rel="index"><span itemprop="name">基础知识</span></a></span>
 
                 
                 
@@ -409,8 +413,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2020/subset/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/subset/" itemprop="commentCount"></span>
+                <a href="/2021/network-TCP/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2021/network-TCP/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -418,7 +422,7 @@
 
           
           
-            <span id="/2020/subset/" class="leancloud_visitors" data-flag-title="Leetcode -- Subsets">
+            <span id="/2021/network-TCP/" class="leancloud_visitors" data-flag-title="TCP 相关知识">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -435,6 +439,8 @@
           
 
           
+            <div class="post-description">TCP 知识： 三次握手、四次挥手、流量控制、拥塞控制</div>
+          
 
         </div>
       </header>
@@ -449,18 +455,98 @@
       
 
       
-        <p>原题链接：<a href="https://leetcode-cn.com/problems/subsets/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/subsets/</a></p>
-<a id="more"></a>
-<h5 id="题目描述">题目描述：</h5>
-<p>给定一组<strong>不含重复元素</strong>的整数数组 <em>nums</em>，返回该数组所有可能的子集（幂集）。</p>
-<p><strong>说明：</strong>解集不能包含重复的子集。</p>
-<h5 id="示例">示例：</h5>
-<blockquote>
-<p>输入: nums = [1,2,3] 输出: [ [3], [1], [2], [1,2,3], [1,3], [2,3], [1,2], []]</p>
-</blockquote>
-<h5 id="解法">解法：</h5>
-<p>本题是非常经典的回溯法解决的题目。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">subset</span><span class="params">(nums)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(first=<span class="number">0</span>, curr=[])</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(curr)==k:</span><br><span class="line">            output.append(curr)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(first, n):</span><br><span class="line">            curr.append(nums[i])</span><br><span class="line">            backtrack(i+<span class="number">1</span>, curr)</span><br><span class="line">            curr.pop()</span><br><span class="line">    output = []</span><br><span class="line">    n = len(nums)</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(n+<span class="number">1</span>):</span><br><span class="line">        backtrack()</span><br><span class="line">    <span class="keyword">return</span> output</span><br></pre></td></tr></table></figure>
+        <p>TCP 是一种面向连接的网络层传输协议，它建立在不可靠的 IP 层之上，向上层应用层提供可靠的传输服务。</p>
+<p>它是面向字节流的传输。</p>
+<p>TCP 报文头部：</p>
+<p><img src="https://gitee.com/MyTypora/typorapic/raw/master/img/20210819155803.png"></p>
+<h4 id="可靠传输">可靠传输</h4>
+<p>其可靠传输主要依赖于以下几方面实现：校验和、序列号和确认序号、三次握手建立连接、超时重传、流量控制、拥塞控制。</p>
+<h5 id="三次握手">三次握手</h5>
+<ol type="1">
+<li>客户端 发送建立连接请求，设置 <code>SYN=1</code>， 初始化序列号 <code>seq=x</code>，发送请求连接报文给 服务端，然后客户端 进入 <code>SYN_SEND</code> 状态，等待服务器确定。</li>
+<li>服务端 接收到 客户端 的 <code>SYN</code> 报文，对该报文进行确认，设置 <code>ACK=x+1</code>。 同时还要发送自己的 SYN 报文，设置 SYN=1, seq=y， 将确认报文和 SYN 报文合并到同一个报文中，发送给 客户端， 此时 服务端 进入 <code>SYN_RECV</code> 状态。</li>
+<li>客户端 收到 服务端 的 <code>SYN_ACK</code> 报文后，向 <code>sever</code> 发送<code>ACK</code>报文，将 ACK=y+1，发送给 服务端， 服务端 接收到报文后，都进入 建立状态，完成三次握手。</li>
+</ol>
+<div id="sequence-0">
+
+</div>
+<p><img src="https://gitee.com/MyTypora/typorapic/raw/master/img/20210819163508.png"></p>
+<h5 id="四次挥手">四次挥手</h5>
+<p><strong>TCP断开连接都由用户请求。</strong></p>
+<ol type="1">
+<li>客户端 发送数据完成后，向服务端发送释放连接报文，报文 FIN=1， 发送后，客户端只能接受数据，不能发送。客户端进入 <code>FIN_WAIT_1</code> 状态。</li>
+<li>服务端收到释放连接报文后，向客户端发送 ACK 报文，报文 ACK=1。此时服务端能向客户端单向传输数据。进入 <code>CLOSE_WAIT</code> 状态。客户端收到后，进入 <code>FIN_WAIT_2</code> 状态。</li>
+<li>客户端完成数据发送后，向客户端发送释放连接报文， 报文 FIN=1, ACK=1。 进入<code>LAST_ACK</code> 状态。</li>
+<li>客户端收到释放连接报文后，向服务端发送 ACK 报文，报文 ACK=1。进入 <code>TIME_WAIT</code> 状态。等待两个 MSL 长度后，关闭连接。</li>
+</ol>
+<div id="sequence-1">
+
+</div>
+<p><img src="https://gitee.com/MyTypora/typorapic/raw/master/img/20210819163519.png"></p>
+<h5 id="连接相关问题">连接相关问题：</h5>
+<h6 id="为什么不能两次握手">为什么不能两次握手？</h6>
+<p>三次握手是为了保证双方都能确认自己和对方都能正常的发送和接收。考虑丢失，如果第二个报文丢失，则客户端认为还没有建立连接，而在服务端看来已经正常建立连接，这样会浪费服务端的资源。</p>
+<h6 id="为什么关闭四次">为什么关闭四次</h6>
+<p>因为要确保双方都能通知对方释放连接。第一次是断开客户端到服务端的单向连接，而此时服务端可能还没发送完所有数据，还要继续发送。当服务端发送完成后，再通知客户端断开连接。同时每一次释放连接的报文都需要分别收到对方的确认报文。其实是，在建立连接时，服务端的 ACK 和 SYN 都在第二次的握手过程中一次性完成了，而在断开连接时，则要先传 ACK， 等自己发送完成后才能传 SYN。所以需要四次。</p>
+<h6 id="为什么-需要等待-2msl">为什么 需要等待 2MSL</h6>
+<p>可以使每次 TCP 连接的报文全部消失，不会出现在下一次的 TCP 连接中。</p>
+<p>如果第四次握手信息丢失，则服务端无法收到客户端的确认信息，就需要重发第三次握手的报文。如果此时客户端已关闭，则会导致服务端无法正常关闭。</p>
+<h6 id="syn-flood-攻击">SYN flood 攻击</h6>
+<p>如果恶意地向某个服务器端口发送大量的SYN包而并不完成建立连接的全过程，则可以使服务器打开大量的半开连接，从而消耗大量的服务器资源，同时也使得正常的连接请求无法被相应。</p>
+<h5 id="流量控制">流量控制</h5>
+<h6 id="什么情况下需要流量控制">什么情况下需要流量控制？</h6>
+<p>流量控制是为了避免接收方缓冲区溢出造成的丢包。如果发送端发送的数据过快，接收端来不及接收就会出现丢包，这时就要用到流量控制，避免因接收端缓冲区溢出的丢包。</p>
+<p>如图所示，在TCP首部有一个窗口大小字段，表示当前接收端缓冲区的大小。每当接收端发送ACK报文时，会将窗口大小填入其中，发送方会根据窗口大小调整发送速度。当窗口大小为0， 发送方会停止发送数据。</p>
+<h6 id="流量控制出现死锁怎么办">流量控制出现死锁怎么办？</h6>
+<p>发送方在接收到一个窗口大小为0的ACK报文后，发送方便停止发送，等待下一个ACK。但是如果下一个ACK丢失，则发送方就会一直等待下去，而接收方会认为发送方已经收到该ACK，等待新数据，便会产生死锁。</p>
+<p>为避免死锁的发生，TCP采用计时器，当接收到一个零窗口的ACK后便启动计时器，一旦到达计时器的实践便主动询问接收方窗口大小，如果仍返回零则继续等待，若窗口不为零则开始发送。</p>
+<h5 id="拥塞控制">拥塞控制</h5>
+<h6 id="什么时候需要拥塞控制">什么时候需要拥塞控制</h6>
+<p>拥塞控制是为了避免网络状况拥塞造成的丢包。 注意其与流量控制的作用的不同之处。</p>
+<h6 id="拥塞控制方法">拥塞控制方法</h6>
+<p>拥塞控制方法主要包括：<strong>慢启动、拥塞避免。快速重传。快速恢复。</strong></p>
+<ul>
+<li><p>慢启动</p>
+<p>发送方维持一个叫做拥塞窗口<code>cwnd</code>的变量，取决于网络的拥塞程度，并在不断变化。注意由于可能存在接收方的流量控制的缓冲区窗口，所以发送方的真正的发送窗口可能小于拥塞窗口。</p>
+<p>慢启动的思想就是不要一开就发送大量数据，而是不断增加发送的数据的大小，不断试探一下网络的拥塞程度。</p>
+<p>在慢启动中<code>cwnd</code>的每次加倍</p></li>
+<li><p>拥塞避免</p>
+<p>当拥塞窗口<code>cwnd</code>增加到一定程度超过门限值<code>ssthresh</code>后，再每次倍增则风险太高。这时就进入慢启动阶段</p>
+<p>在拥塞避免中<code>cwnd</code>每次增加一</p>
+<p>当判断网络出现拥塞（根据没能按时收到<code>ACK</code>）则开始把拥塞避免的门限<code>ssthresh</code>变为<strong>出现拥塞时发送窗口的一半</strong>。并将拥塞窗口置为一，重新进入慢启动。</p></li>
+<li><p>快速重传</p>
+<p>若接收方连续收到三个重复确认则立即重传对方尚未接收到的报文段，而不必继续等待计时器时间到期。（因为这表明是发生了丢包，而不是网络延迟大）</p></li>
+<li><p>快速恢复</p>
+<p>在拥塞避免时，一旦发送拥塞则<code>cwnd</code>重置为慢启动阶段，为提高性能则把<code>cwnd</code>设置为<code>ssthresh</code>减半后的值，而不是重新从头开始进入慢启动。</p></li>
+</ul>
+<h5 id="总结">总结</h5>
+<p>注意到流量控制会存在一个流量控制窗口，而拥塞控制中同样存在一个拥塞控制窗口，因此在实际传输时，TCP 传输窗口的大小取决于这两个值的最小值。</p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.27/webfontloader.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script>
+<textarea id="sequence-0-code" style="display: none">participant  Client as cc
+participant  Server as ss
+note left of cc: SYN_SEND
+cc-->ss: SYN=1 seq=x
+note right of ss:SYN_Rcvd
+ss-->cc: ACK=1 SYN=1  ack=x+1 seq=y
+note left of cc: ESTABLISHED
+cc-->ss: ACK=y+1 seq=x+1 ack=y+1
+note right of ss: ESTABLISHED</textarea><textarea id="sequence-0-options" style="display: none">{"theme":"simple","scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("sequence-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("sequence-0-options").value));  var diagram = Diagram.parse(code);  diagram.drawSVG("sequence-0", options);</script>
+<textarea id="sequence-1-code" style="display: none">title: 四次挥手
+participant Client as cc
+participant Server as ss
+note left of cc: FIN_WAIT_1\n[close()]
+cc->ss:FIN=1     ACK=1
+note right of ss: CLOSE_WAIT
+ss->cc: ACK=1 
+note left of cc: FIN_WAIT_2
+ss->cc: FIN=1     ACK=1
+note right of ss: LAST_ACK
+cc->ss: ACK=1
+note left of cc: TIME_WAIT
+note left of cc: WAIT FOR 2MSL  close</textarea><textarea id="sequence-1-options" style="display: none">{"theme":"simple","scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("sequence-1-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("sequence-1-options").value));  var diagram = Diagram.parse(code);  diagram.drawSVG("sequence-1", options);</script>
 
       
     </div>
@@ -484,9 +570,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
-          
-            <a href="/tags/backtrack/" rel="tag"># backtrack</a>
+            <a href="/tags/Network/" rel="tag"># Network</a>
           
         </div>
       
@@ -499,8 +583,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/pointnet/" rel="next" title="论文解读|点云深度学习方法--PointNet">
-                <i class="fa fa-chevron-left"></i> 论文解读|点云深度学习方法--PointNet
+              <a href="/2021/sortings/" rel="next" title="排序算法汇总">
+                <i class="fa fa-chevron-left"></i> 排序算法汇总
               </a>
             
           </div>
@@ -509,8 +593,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/binary-tree-maximum-path-sum/" rel="prev" title="Leetcode -- Binary Tree Maximum Path Sum">
-                Leetcode -- Binary Tree Maximum Path Sum <i class="fa fa-chevron-right"></i>
+              <a href="/2021/db-index/" rel="prev" title="数据库索引">
+                数据库索引 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -800,7 +884,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述"><span class="nav-text">题目描述：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#示例"><span class="nav-text">示例：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解法"><span class="nav-text">解法：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#可靠传输"><span class="nav-text">可靠传输</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#三次握手"><span class="nav-text">三次握手</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#四次挥手"><span class="nav-text">四次挥手</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#连接相关问题"><span class="nav-text">连接相关问题：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#为什么不能两次握手"><span class="nav-text">为什么不能两次握手？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#为什么关闭四次"><span class="nav-text">为什么关闭四次</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#为什么-需要等待-2msl"><span class="nav-text">为什么 需要等待 2MSL</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#syn-flood-攻击"><span class="nav-text">SYN flood 攻击</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#流量控制"><span class="nav-text">流量控制</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#什么情况下需要流量控制"><span class="nav-text">什么情况下需要流量控制？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#流量控制出现死锁怎么办"><span class="nav-text">流量控制出现死锁怎么办？</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#拥塞控制"><span class="nav-text">拥塞控制</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#什么时候需要拥塞控制"><span class="nav-text">什么时候需要拥塞控制</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#拥塞控制方法"><span class="nav-text">拥塞控制方法</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></li></ol></div>
             
 
           </div>

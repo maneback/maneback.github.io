@@ -331,7 +331,7 @@ span.exturl:hover {
 }
 blockquote {
   margin: 0;
-  padding: 0;
+  padding: 15px;
 }
 img {
   display: block;
@@ -348,16 +348,18 @@ hr {
 }
 blockquote {
   padding: 0 15px;
-  color: #666;
-  border-left: 4px solid #ddd;
+  background: #ebf7f1;
+  border-left: 4px solid #2f845e;
 }
 blockquote cite::before {
   content: "-";
   padding: 0 5px;
 }
+strong {
+  color: #b5302e;
+}
 dt {
   font-weight: 700;
-  color: #b5302e;
 }
 dd {
   margin: 0;
@@ -1986,7 +1988,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #05bd42;
+  background: #777c7f;
 }
 .links-of-blogroll {
   font-size: 13px;

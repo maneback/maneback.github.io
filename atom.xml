@@ -5,9 +5,9 @@
   <subtitle>Maneback&#39;s Blog</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://maneback.github.io/"/>
+  <link href="https://github.com/maneback/maneback.github.io/"/>
   <updated>2021-08-16T09:01:30.357Z</updated>
-  <id>http://maneback.github.io/</id>
+  <id>https://github.com/maneback/maneback.github.io/</id>
   
   <author>
     <name>Maneback</name>
@@ -17,9 +17,9 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>select/poll/epoll的区别</title>
-    <link href="http://maneback.github.io/2021/select-poll-epoll/"/>
-    <id>http://maneback.github.io/2021/select-poll-epoll/</id>
+    <title>Select/poll/epoll的区别</title>
+    <link href="https://github.com/maneback/maneback.github.io/2021/select-poll-epoll/"/>
+    <id>https://github.com/maneback/maneback.github.io/2021/select-poll-epoll/</id>
     <published>2021-08-16T08:59:52.000Z</published>
     <updated>2021-08-16T09:01:30.357Z</updated>
     
@@ -31,17 +31,17 @@
     
     </summary>
     
-      <category term="技术" scheme="http://maneback.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="https://github.com/maneback/maneback.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Linux" scheme="http://maneback.github.io/tags/Linux/"/>
+      <category term="Linux" scheme="https://github.com/maneback/maneback.github.io/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>Java 反射机制研究</title>
-    <link href="http://maneback.github.io/2021/java-reflection/"/>
-    <id>http://maneback.github.io/2021/java-reflection/</id>
+    <link href="https://github.com/maneback/maneback.github.io/2021/java-reflection/"/>
+    <id>https://github.com/maneback/maneback.github.io/2021/java-reflection/</id>
     <published>2021-08-16T03:25:11.000Z</published>
     <updated>2021-08-16T09:07:54.603Z</updated>
     
@@ -53,21 +53,21 @@
     
     </summary>
     
-      <category term="基础知识" scheme="http://maneback.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+      <category term="基础知识" scheme="https://github.com/maneback/maneback.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
     
     
-      <category term="Java" scheme="http://maneback.github.io/tags/Java/"/>
+      <category term="Java" scheme="https://github.com/maneback/maneback.github.io/tags/Java/"/>
     
   </entry>
   
   <entry>
     <title>Java 集合</title>
-    <link href="http://maneback.github.io/2021/java-collections/"/>
-    <id>http://maneback.github.io/2021/java-collections/</id>
+    <link href="https://github.com/maneback/maneback.github.io/2021/java-collections/"/>
+    <id>https://github.com/maneback/maneback.github.io/2021/java-collections/</id>
     <published>2021-08-16T02:59:10.000Z</published>
-    <updated>2021-08-16T14:03:26.935Z</updated>
+    <updated>2021-08-21T09:41:49.063Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>集合提供了一个对象来在内部容纳若干其他的 Java 对象，并提供相应的访问接口。Java 的<code>java.util</code> 包主要提供了一下三种不同类型的集合：</p><ul><li><code>List</code> 有序列表的集合，可按插入顺序访问。，</li><li><code>Set</code> 确保不可以插入重复元素的集合。</li><li><code>Map</code> 通过 <code>key-value</code> 快速查找元素的集合。</li></ul><p>Java的集合设计有两个特点：一是支持泛型，可以限制插入到集合中元素的数据类型；二是实现了接口与类的分离，以上三种均为接口而非具体的实现类。并且可以通过统一的迭代器方式进行访问。</p><p><strong>我们尽量以接口而非具体的实现类来访问元素。</strong></p><p><strong>重要</strong> 以下遗留类不应该被继续使用：</p><p><code>Hashtable</code>, <code>Vector</code>, <code>Stack</code>, <code>Enumeration&lt;E&gt;</code>.</p><h3 id="list">List</h3><p>需要实现<code>equals</code> 方法。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; array = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">List&lt;Integer&gt; array2 = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</span><br><span class="line">List&lt;Integer&gt; array = List.of(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">array.add(<span class="number">1</span>);</span><br><span class="line">array.add(<span class="number">1</span>, <span class="number">2</span>); <span class="comment">//(index, elem)</span></span><br><span class="line">array.remove(<span class="number">1</span>);<span class="comment">//(elem)</span></span><br><span class="line"><span class="keyword">int</span> elem = array.get(<span class="number">1</span>)<span class="comment">//(index)</span></span><br><span class="line"><span class="keyword">int</span> n = array.size();</span><br></pre></td></tr></table></figure><h3 id="map">map</h3><ul><li><code>HashMap</code> 的 <code>key</code>必须实现<code>equals()</code> 和 <code>hashCode()</code> 方法。</li><li>有序 map 必须实现<code>Comparable</code> 接口；或者在声明时传入一个<code>Comparator</code> 接口，里面声明<code>compare</code> 函数，</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//无序map</span></span><br><span class="line">Map&lt;String, Integer&gt; mapper = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">mapper.put(<span class="string">')'</span>, <span class="string">'('</span>);</span><br><span class="line">mapper.containsKey(ch);</span><br><span class="line">mapper.get(key);</span><br><span class="line"><span class="comment">//遍历</span></span><br><span class="line"><span class="keyword">for</span> (String key : mapper.keySet());</span><br><span class="line"><span class="keyword">for</span> (Map.Entry&lt;String, Integer&gt; entry : mapper.entrySet());</span><br><span class="line"><span class="keyword">for</span>(String value: mapper.valueSet());</span><br><span class="line"><span class="comment">//有序map</span></span><br><span class="line">Map&lt;String, Integer&gt; order_map = <span class="keyword">new</span> TreeMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">//基础的使用map计数出现次数</span></span><br><span class="line">Map&lt;Integer, Integer&gt; mapper1 = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num: arr)&#123;</span><br><span class="line">            mapper1.put(num, occur.getOrDefault(num, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure><h3 id="set">Set</h3><ul><li><p>只会存储 <code>key</code> 的值。</p></li><li><p>需要正确实现<code>equals()</code>和<code>hashCode()</code>方法。</p></li><li><p>有序的Set还要实现<code>Comparable</code> 接口； 或者在声明时传入一个<code>Comparator</code> 接口，里面声明<code>compare</code> 函数，</p></li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//无序Set</span></span><br><span class="line">Set&lt;String&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">set.add(<span class="string">"123"</span>);</span><br><span class="line">set.contains(<span class="string">"123"</span>);</span><br><span class="line">set.remove(<span class="string">"123"</span>);</span><br><span class="line"><span class="keyword">int</span> n = set.size();</span><br><span class="line"><span class="comment">//有序</span></span><br><span class="line"></span><br><span class="line">Set&lt;String&gt; set = <span class="keyword">new</span> TreeSet&lt;&gt;();</span><br></pre></td></tr></table></figure><h3 id="queue">Queue</h3><ul><li>实现类为 <code>LinkedList</code></li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Queue&lt;<span class="keyword">int</span>&gt; que = <span class="keyword">new</span> LinkedList&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line"><span class="keyword">int</span> n = que.size();</span><br><span class="line"><span class="comment">//throw exception</span></span><br><span class="line">que.add();</span><br><span class="line">que.remove();</span><br><span class="line">que.element();</span><br><span class="line"></span><br><span class="line"><span class="comment">//return false or null</span></span><br><span class="line">que.offer();</span><br><span class="line">que.poll();</span><br><span class="line">que.peel();</span><br></pre></td></tr></table></figure><p>注意有两套方法，对应不同的情况。</p><h3 id="priorityqueue">PriorityQueue</h3><ul><li>放入的元素需要实现<code>Comparable</code>，或者提供一个<code>Comparator</code>对象来判断两个元素的顺序。</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实现类与接口分离</span></span><br><span class="line">Queue&lt;<span class="keyword">int</span>&gt; que = <span class="keyword">new</span> PriorityQueue&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">//throw exception</span></span><br><span class="line">que.add();</span><br><span class="line">que.remove();</span><br><span class="line">que.element();</span><br><span class="line"></span><br><span class="line"><span class="comment">//return false or null</span></span><br><span class="line">que.offer();</span><br><span class="line">que.poll();</span><br><span class="line">que.peek();</span><br></pre></td></tr></table></figure><h3 id="deque">Deque</h3><ul><li>deque 是用 LinkedList 实现的接口，赋予了不同的功能。</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Deque&lt;<span class="keyword">int</span>&gt; que = <span class="keyword">new</span> LinkedList&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">//throw exception</span></span><br><span class="line">que.addLast(); <span class="comment">//addFirst</span></span><br><span class="line">que.removeLast(); <span class="comment">//removeFirst</span></span><br><span class="line">que.getLast(); <span class="comment">// getFirst</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//return false or null</span></span><br><span class="line">que.offerLast(); <span class="comment">//offerFirst</span></span><br><span class="line">que.pollLast(); <span class="comment">//pollLast</span></span><br><span class="line">que.peekLast(); <span class="comment">//peekLast</span></span><br></pre></td></tr></table></figure><h3 id="stack">Stack</h3><ul><li>stack 是用Deque接口来模拟的，原来的stack被占用。</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Deque&lt;Character&gt; stack = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">stack.isEmpty();</span><br><span class="line">stack.pop();</span><br><span class="line">stack.push(ch);</span><br><span class="line">stack.peek()</span><br></pre></td></tr></table></figure><h4 id="继承关系">继承关系</h4><p>橙色为类，蓝色为接口。</p><p><code>List</code>， <code>Queue</code>， <code>Set</code>类</p><p><img src="https://gitee.com/MyTypora/typorapic/raw/master/img/20210816132257.png" alt="image-20210816132257321" style="zoom:80%;"></p><hr><p><code>Map</code> 类</p><p><img src="https://gitee.com/MyTypora/typorapic/raw/master/img/20210816164347.png" alt="image-20210816164347532" style="zoom:80%;"></p><p><strong>参考链接</strong></p><ul><li><a href="https://www.runoob.com/java/java-tutorial.html" target="_blank" rel="noopener">菜鸟教程</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>集合提供了一个对象来在内部容纳若干其他的 Java 对象，并提供相应的访问接口。Java 的<code>java.util</code> 包主要提供了一下三种不同类型的集合：</p><ul><li><code>List</code> 有序列表的集合，可按插入顺序访问。，</li><li><code>Set</code> 确保不可以插入重复元素的集合。</li><li><code>Map</code> 通过 <code>key-value</code> 快速查找元素的集合。</li></ul><p>Java的集合设计有两个特点：一是支持泛型，可以限制插入到集合中元素的数据类型；二是实现了接口与类的分离，以上三种均为接口而非具体的实现类。并且可以通过统一的迭代器方式进行访问。</p><p><strong>我们尽量以接口而非具体的实现类来访问元素。</strong></p><p><strong>重要</strong> 以下遗留类不应该被继续使用：</p><p><code>Hashtable</code>, <code>Vector</code>, <code>Stack</code>, <code>Enumeration&lt;E&gt;</code>.</p><h3 id="list">List</h3><p>需要实现<code>equals</code> 方法。</p><p><code>ArrayList</code>基于动态数组实现，支持随机访问。<code>LinkedList</code>：基于双向链表实现，只能顺序访问，但是可以快速地在链表中间插⼊和删除元素。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; array = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">List&lt;Integer&gt; array2 = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</span><br><span class="line">List&lt;Integer&gt; array = List.of(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">array.add(<span class="number">1</span>);</span><br><span class="line">array.add(<span class="number">1</span>, <span class="number">2</span>); <span class="comment">//(index, elem)</span></span><br><span class="line">array.remove(<span class="number">1</span>);<span class="comment">//(elem)</span></span><br><span class="line"><span class="keyword">int</span> elem = array.get(<span class="number">1</span>)<span class="comment">//(index)</span></span><br><span class="line"><span class="keyword">int</span> n = array.size();</span><br></pre></td></tr></table></figure><h3 id="map">map</h3><ul><li><code>HashMap</code> 的 <code>key</code>必须实现<code>equals()</code> 和 <code>hashCode()</code> 方法。</li><li>有序 map 必须实现<code>Comparable</code> 接口；或者在声明时传入一个<code>Comparator</code> 接口，里面声明<code>compare</code> 函数</li><li>无序的 <code>HashMap</code>基于哈希表实现， 有序的 <code>TreeMap</code>基于红⿊树实现 。</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//无序map</span></span><br><span class="line">Map&lt;String, Integer&gt; mapper = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">mapper.put(<span class="string">')'</span>, <span class="string">'('</span>);</span><br><span class="line">mapper.containsKey(ch);</span><br><span class="line">mapper.get(key);</span><br><span class="line"><span class="comment">//遍历</span></span><br><span class="line"><span class="keyword">for</span> (String key : mapper.keySet());</span><br><span class="line"><span class="keyword">for</span> (Map.Entry&lt;String, Integer&gt; entry : mapper.entrySet());</span><br><span class="line"><span class="keyword">for</span>(String value: mapper.valueSet());</span><br><span class="line"><span class="comment">//有序map</span></span><br><span class="line">Map&lt;String, Integer&gt; order_map = <span class="keyword">new</span> TreeMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">//基础的使用map计数出现次数</span></span><br><span class="line">Map&lt;Integer, Integer&gt; mapper1 = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num: arr)&#123;</span><br><span class="line">            mapper1.put(num, occur.getOrDefault(num, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure><h3 id="set">Set</h3><ul><li>只会存储 <code>key</code> 的值。</li><li>需要正确实现<code>equals()</code>和<code>hashCode()</code>方法。</li><li>有序的Set还要实现<code>Comparable</code> 接口； 或者在声明时传入一个<code>Comparator</code> 接口，里面声明<code>compare</code> 函数</li><li><code>HashSet</code>基于哈希表实现， <code>TreeSet</code>基于红黑树实现。</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//无序Set</span></span><br><span class="line">Set&lt;String&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">set.add(<span class="string">"123"</span>);</span><br><span class="line">set.contains(<span class="string">"123"</span>);</span><br><span class="line">set.remove(<span class="string">"123"</span>);</span><br><span class="line"><span class="keyword">int</span> n = set.size();</span><br><span class="line"><span class="comment">//有序</span></span><br><span class="line"></span><br><span class="line">Set&lt;String&gt; set = <span class="keyword">new</span> TreeSet&lt;&gt;();</span><br></pre></td></tr></table></figure><h3 id="queue">Queue</h3><ul><li>实现类为 <code>LinkedList</code></li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Queue&lt;<span class="keyword">int</span>&gt; que = <span class="keyword">new</span> LinkedList&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line"><span class="keyword">int</span> n = que.size();</span><br><span class="line"><span class="comment">//throw exception</span></span><br><span class="line">que.add();</span><br><span class="line">que.remove();</span><br><span class="line">que.element();</span><br><span class="line"></span><br><span class="line"><span class="comment">//return false or null</span></span><br><span class="line">que.offer();</span><br><span class="line">que.poll();</span><br><span class="line">que.peel();</span><br></pre></td></tr></table></figure><p>注意有两套方法，对应不同的情况。</p><h3 id="priorityqueue">PriorityQueue</h3><ul><li>放入的元素需要实现<code>Comparable</code>，或者提供一个<code>Comparator</code>对象来判断两个元素的顺序。</li><li>PriorityQueue：基于堆结构实现</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实现类与接口分离</span></span><br><span class="line">Queue&lt;<span class="keyword">int</span>&gt; que = <span class="keyword">new</span> PriorityQueue&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">//throw exception</span></span><br><span class="line">que.add();</span><br><span class="line">que.remove();</span><br><span class="line">que.element();</span><br><span class="line"></span><br><span class="line"><span class="comment">//return false or null</span></span><br><span class="line">que.offer();</span><br><span class="line">que.poll();</span><br><span class="line">que.peek();</span><br></pre></td></tr></table></figure><h3 id="deque">Deque</h3><ul><li>deque 是用 <code>LinkedList</code>实现的接口，赋予了不同的功能。</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Deque&lt;<span class="keyword">int</span>&gt; que = <span class="keyword">new</span> LinkedList&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">//throw exception</span></span><br><span class="line">que.addLast(); <span class="comment">//addFirst</span></span><br><span class="line">que.removeLast(); <span class="comment">//removeFirst</span></span><br><span class="line">que.getLast(); <span class="comment">// getFirst</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//return false or null</span></span><br><span class="line">que.offerLast(); <span class="comment">//offerFirst</span></span><br><span class="line">que.pollLast(); <span class="comment">//pollLast</span></span><br><span class="line">que.peekLast(); <span class="comment">//peekLast</span></span><br></pre></td></tr></table></figure><h3 id="stack">Stack</h3><ul><li>stack 是用<code>Deque</code>接口来模拟的，原来的stack被不推荐使用。</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Deque&lt;Character&gt; stack = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">stack.isEmpty();</span><br><span class="line">stack.pop();</span><br><span class="line">stack.push(ch);</span><br><span class="line">stack.peek()</span><br></pre></td></tr></table></figure><h4 id="继承关系">继承关系</h4><p>橙色为类，蓝色为接口。</p><p><code>List</code>， <code>Queue</code>， <code>Set</code>类</p><p><img src="https://gitee.com/MyTypora/typorapic/raw/master/img/20210816132257.png" alt="image-20210816132257321" style="zoom:80%;"></p><hr><p><code>Map</code> 类</p><p><img src="https://gitee.com/MyTypora/typorapic/raw/master/img/20210816164347.png" alt="image-20210816164347532" style="zoom:80%;"></p><p><strong>参考链接</strong></p><ul><li><a href="https://www.runoob.com/java/java-tutorial.html" target="_blank" rel="noopener">菜鸟教程</a></li></ul>]]></content>
     
     <summary type="html">
     
@@ -75,21 +75,21 @@
     
     </summary>
     
-      <category term="基础知识" scheme="http://maneback.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+      <category term="基础知识" scheme="https://github.com/maneback/maneback.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
     
     
-      <category term="Java" scheme="http://maneback.github.io/tags/Java/"/>
+      <category term="Java" scheme="https://github.com/maneback/maneback.github.io/tags/Java/"/>
     
   </entry>
   
   <entry>
     <title>数据库事务管理与锁</title>
-    <link href="http://maneback.github.io/2021/db-lock/"/>
-    <id>http://maneback.github.io/2021/db-lock/</id>
+    <link href="https://github.com/maneback/maneback.github.io/2021/db-lock/"/>
+    <id>https://github.com/maneback/maneback.github.io/2021/db-lock/</id>
     <published>2021-08-12T02:57:18.000Z</published>
-    <updated>2021-08-17T15:07:07.625Z</updated>
+    <updated>2021-08-19T10:19:59.664Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="数据库的事务与锁">数据库的事务与锁</h2><h3 id="事务及其性质">事务及其性质</h3><p>事务必须满足：ACID（原子性，一致性，隔离性，持久性）四特性，事务是恢复和并发控制的基本单位。</p><ol type="1"><li>原子性指的是事务是数据库的逻辑工作单位，事务中操作要么都做，要么都不做；</li><li>一致性指的是事务的执行结果必须是使数据库从一个一致性状态变成另一个一致性状态，一致性和原子性是密切相关的；</li><li>隔离性指的是一个事务执行不能被其他事务干扰；</li><li>持久性指的是一个事务一旦提交，他对数据库中数据的改变就是永久性的。</li></ol><h4 id="事务隔离级别">事务隔离级别</h4><p>数据库的隔离级别可以分为：<strong>读未提交、读提交、可重复读和串行化</strong>。</p><blockquote><p>在学习这里的时候，总感觉说得满头雾水的，怎么也不能理解，因为它又联系着三个现象： <strong>脏读、不可重复读、幻读</strong>。</p></blockquote><p>当时很难理解隔离级别与现象之间的关系，现象可以理解为多个事务并发时候如不哦不加控制而导致的<strong>问题</strong>。隔离级别是为了避免其中的某种或某几种问题而设置的一种<strong>执行要求</strong> 或<strong>执行流程</strong>。</p><p>我们假设有两个事务 A 和 B 在进行读写操作。先来看现象：</p><ul><li><p><strong>脏读</strong>： B读到了A未提交的修改数据 A修改未提交—B读—A回滚 （A写的时候B读），这时候B读到的就是错误的数据。</p></li><li><p><strong>不可重复读</strong>： 在两次读之间插入了另一个事务的修改操作，并提交，导致两次读取不一致。 （A读的时候B写）</p></li><li><p><strong>幻读</strong>：在两次读取之间，出现了 INSERT 操作。 A读—–B插入—–A读。两次读取不一致。</p></li></ul><p>不可重复读与幻读之间的区别在于，A 两次读之间的差别，是由于 <strong>UPDATE</strong> 操作还是由 <strong>INSERT</strong> 操作引起的。</p><p>那么为了避免这些问题的发送，数据库设计了不同的事务隔离级别。</p><ul><li><p><strong>读未提交</strong>：一个事务可以读取另一个未提交事务的数据</p><p>这种情况下不会带来任何的隔离，三种情况都可能发生。</p></li><li><p><strong>读提交</strong>：一个事务要等另一个事务提交后才能读取数据（<strong>避免脏读</strong>）（给修改加锁禁止读）</p><p>B无法读到A未提交的修改，避免了脏读。</p></li><li><p><strong>可重复读</strong>：读取事务开始后，不允许修改（<strong>避免不可重复读</strong>）（读加锁禁止修改）</p><p>A在读取的时候，B只能读，不能改，可以保证A读取的过程的一致性。</p><p>但是只能锁住表中已有的行，而不能阻止其他事务的插入，无法避免幻读。</p></li><li><p><strong>串行化</strong>：每个事务完全串行化进行。（<strong>避免幻读</strong>）</p></li></ul><p>事务隔离级别和可能存在的问题如下：</p><table><thead><tr class="header"><th></th><th>脏读</th><th>不可重复读</th><th>幻读</th></tr></thead><tbody><tr class="odd"><td>读未提交</td><td>√</td><td>√</td><td>√</td></tr><tr class="even"><td>读已提交</td><td></td><td>√</td><td>√</td></tr><tr class="odd"><td>可重复读</td><td></td><td></td><td>√</td></tr><tr class="even"><td>串行化</td><td></td><td></td><td></td></tr></tbody></table><hr><h3 id="锁">锁</h3><p>数据库锁出现的原因是为了处理并发问题。数据库并发需要使用事务来控制，事务并发问题需要数据库锁来控制。</p><p>数据库的锁根据不同的分类角度可以由不同的分类：</p><ul><li>从使用角度： 乐观锁与悲观锁</li><li>从数据库机制上：共享锁与排它锁</li><li>从锁的粒度上： 行级锁和表级锁</li></ul><h5 id="悲观锁与乐观锁">悲观锁与乐观锁</h5><ul><li>悲观锁：假定会发生并发冲突，在最整个数据处理过程中都将数据处于锁定的状态。 适用于写操作多的场景。</li><li>乐观锁：假设不会发生并发冲突，只有在提交时检查是否违反数据的完整性。适用于读操作多的场景。</li></ul><h5 id="排它锁与共享锁">排它锁与共享锁</h5><ul><li>排它锁：也叫写锁，表示对数据进行写操作。如果一个事务对对象加了排他锁，其他事务就不能再给它加任何锁了。</li><li>共享锁：也叫读锁，用于所有的只读数据操作。共享锁是非独占的，允许多个并发事务读取其锁定的资源。</li></ul><h4 id="行级锁与表级锁">行级锁与表级锁</h4><ul><li>行级锁： 是粒度最小的一种锁，只会对当前进行操作的行进行加锁，能够大大减少数据库操作的冲突，并发度最高，同时有可能出现死锁。但是加锁慢，开销也最大。</li><li>表级锁：是粒度最大的一种锁，会对当前进行操作的整个数据表进行加锁。但是实现简单，加锁快，消耗资源少。发生锁冲突的概率最高，并发度最低</li></ul><h5 id="二阶段锁">二阶段锁</h5><p>每个事务分两个阶段提出加锁和解锁申请。最初处于加锁阶段，事务根据需要获得锁。一旦该事务释放了锁，它就进入了缩减阶段，并且不能再发出加锁请求。<strong>二阶段封锁并不会保证不发生死锁</strong>（如果请求锁的数据顺序不同）。</p><p>引入2PL是为了保证事务的隔离性，<strong>保证并发调度的准确性</strong>，多个事务在并发的情况下依然是串行的。</p><h4 id="锁与隔离级别">锁与隔离级别</h4><ul><li>在 RU 中，读取数据不需要加锁，这样读写都没有被保护。</li><li>在 RC 中，写过程需要排他锁，禁止读进程读取到未提交的修改。</li><li>在 RR 中，读过程需要加共享锁，这是可以几个进程共享地读，但是禁止被修改，可以保证一个事务中读到的数据是一致的。</li></ul><hr><h3 id="mvcc版本控制">MVCC版本控制</h3><p><strong>多版本并发控制（MVCC）</strong> 是通过保存数据在某个时间点的快照来实现并发控制的。也就是说，不管事务执行多长时间，事务内部看到的数据是不受其它事务影响的，根据事务开始的时间不同，每个事务对同一张表，同一时刻看到的数据可能是不一样的。简单来说，<strong>MVCC</strong> 的思想就是保存数据的历史版本，通过对数据行的多个版本管理来实现数据库的并发控制。 是乐观锁的一种实现方式。</p><p>MVCC 是通过在每行记录后面保存两个隐藏的列来实现的。一个保存了行的创建版本号，一个保存了行的删除版本号。每开启一个新的事务，系统版本号都会自动递增，作为事务的版本号。</p><ul><li><p>MVCC读写不冲突不加锁，写写之间互相冲突需要加锁串联执行。（乐观锁）</p></li><li><p>select</p><p>只会查找版本号小于等于当前事务版本的数据行。这样保证事务读取的是之前已经存在的或是事务自身插入的。</p></li><li><p>insert</p><p>每插入新的一行，都保存当前的系统版本号作为行的版本号。</p></li><li><p>delete</p><p>为删除的每一行保存当前系统版本号作为行删除版本号。</p></li><li><p>update</p><p>插入一条新的记录，保存当前系统版本号为行版本号，同时保存当前系统版本号到原来的行作为删除版本号。</p></li></ul><h5 id="mvcc-解决了哪些问题">MVCC 解决了哪些问题</h5><ol type="1"><li>读写阻塞问题：MVCC 可以让读写互相不阻塞，即读不阻塞写，写不阻塞读，这样就可以提升事务并发处理能力。</li><li>降低了死锁的概率：读取数据时并不需要加锁，对于写操作，也只锁定必要的行。</li></ol><h5 id="快照读与当前度">快照读与当前度</h5><p>MVCC 版本控制引入了一个新的概念：即快照读与当前读的区别。</p><p><strong>快照读</strong>（SnapShot Read） 是一种一致性不加锁的读，是InnoDB并发如此之高的核心原因之一。</p><blockquote><p>这里的<strong>一致性</strong>是指，事务读取到的数据，要么是<strong>事务开始前就已经存在的数据</strong>，要么是<strong>事务自身插入或者修改过的数据</strong>。</p></blockquote><p>不加锁的简单的 SELECT 都属于<strong>快照读</strong>。</p><p>与 <strong>快照读</strong> 相对应的则是 <strong>当前读</strong>，<strong>当前读</strong>就是读取最新数据，而不是历史版本的数据。加锁的 SELECT 就属于当前读，例如：</p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="数据库的事务与锁">数据库的事务与锁</h2><h3 id="事务及其性质">事务及其性质</h3><p>事务必须满足：ACID（原子性，一致性，隔离性，持久性）四特性，事务是恢复和并发控制的基本单位。</p><ol type="1"><li>原子性指的是事务是数据库的逻辑工作单位，事务中操作要么都做，要么都不做；</li><li>一致性指的是事务的执行结果必须是使数据库从一个一致性状态变成另一个一致性状态，一致性和原子性是密切相关的；</li><li>隔离性指的是一个事务执行不能被其他事务干扰；</li><li>持久性指的是一个事务一旦提交，他对数据库中数据的改变就是永久性的。</li></ol><h4 id="事务隔离级别">事务隔离级别</h4><p>数据库的隔离级别可以分为：<strong>读未提交、读提交、可重复读和串行化</strong>。</p><blockquote><p>在学习这里的时候，总感觉说得满头雾水的，怎么也不能理解，因为它又联系着三个现象： <strong>脏读、不可重复读、幻读</strong>。</p></blockquote><p>当时很难理解隔离级别与现象之间的关系，现象可以理解为多个事务并发时候如不哦不加控制而导致的<strong>问题</strong>。隔离级别是为了避免其中的某种或某几种问题而设置的一种<strong>执行要求</strong> 或<strong>执行流程</strong>。</p><p>我们假设有两个事务 A 和 B 在进行读写操作。先来看现象：</p><ul><li><p><strong>脏读</strong>： B读到了A未提交的修改数据 A修改未提交—B读—A回滚 （A写的时候B读），这时候B读到的就是错误的数据。</p></li><li><p><strong>不可重复读</strong>： 在两次读之间插入了另一个事务的修改操作，并提交，导致两次读取不一致。 （A读的时候B写）</p></li><li><p><strong>幻读</strong>：在两次读取之间，出现了 INSERT 操作。 A读—–B插入—–A读。两次读取不一致。</p></li></ul><p>不可重复读与幻读之间的区别在于，A 两次读之间的差别，是由于 <strong>UPDATE</strong> 操作还是由 <strong>INSERT</strong> 操作引起的。</p><p>那么为了避免这些问题的发送，数据库设计了不同的事务隔离级别。</p><ul><li><p><strong>读未提交</strong>：一个事务可以读取另一个未提交事务的数据</p><p>这种情况下不会带来任何的隔离，三种情况都可能发生。</p></li><li><p><strong>读提交</strong>：一个事务要等另一个事务提交后才能读取数据（<strong>避免脏读</strong>）（给修改加锁禁止读）</p><p>B无法读到A未提交的修改，避免了脏读。</p></li><li><p><strong>可重复读</strong>：读取事务开始后，不允许修改（<strong>避免不可重复读</strong>）（读加锁禁止修改）</p><p>A在读取的时候，B只能读，不能改，可以保证A读取的过程的一致性。</p><p>但是只能锁住表中已有的行，而不能阻止其他事务的插入，无法避免幻读。</p></li><li><p><strong>串行化</strong>：每个事务完全串行化进行。（<strong>避免幻读</strong>）</p></li></ul><p>MySQL 默认的事务隔离级别为 可重复读。</p><p>事务隔离级别和可能存在的问题如下：</p><table><thead><tr class="header"><th></th><th>脏读</th><th>不可重复读</th><th>幻读</th></tr></thead><tbody><tr class="odd"><td>读未提交</td><td>√</td><td>√</td><td>√</td></tr><tr class="even"><td>读已提交</td><td></td><td>√</td><td>√</td></tr><tr class="odd"><td>可重复读</td><td></td><td></td><td>√</td></tr><tr class="even"><td>串行化</td><td></td><td></td><td></td></tr></tbody></table><hr><h3 id="锁">锁</h3><p>数据库锁出现的原因是为了处理并发问题。数据库并发需要使用事务来控制，事务并发问题需要数据库锁来控制。</p><p>数据库的锁根据不同的分类角度可以由不同的分类：</p><ul><li>从使用角度： 乐观锁与悲观锁</li><li>从数据库机制上：共享锁与排它锁</li><li>从锁的粒度上： 行级锁和表级锁</li></ul><h5 id="悲观锁与乐观锁">悲观锁与乐观锁</h5><ul><li>悲观锁：假定会发生并发冲突，在最整个数据处理过程中都将数据处于锁定的状态。 适用于写操作多的场景。</li><li>乐观锁：假设不会发生并发冲突，只有在提交时检查是否违反数据的完整性。适用于读操作多的场景。</li></ul><h5 id="排它锁与共享锁">排它锁与共享锁</h5><ul><li>排它锁：也叫写锁，表示对数据进行写操作。如果一个事务对对象加了排他锁，其他事务就不能再给它加任何锁了。</li><li>共享锁：也叫读锁，用于所有的只读数据操作。共享锁是非独占的，允许多个并发事务读取其锁定的资源。</li></ul><h4 id="行级锁与表级锁">行级锁与表级锁</h4><ul><li>行级锁： 是粒度最小的一种锁，只会对当前进行操作的行进行加锁，能够大大减少数据库操作的冲突，并发度最高，同时有可能出现死锁。但是加锁慢，开销也最大。</li><li>表级锁：是粒度最大的一种锁，会对当前进行操作的整个数据表进行加锁。但是实现简单，加锁快，消耗资源少。发生锁冲突的概率最高，并发度最低。</li><li>页面锁：粒度介于行级锁和表级锁之间；会出现死锁，并发度一般。</li></ul><h5 id="二阶段锁">二阶段锁</h5><p>每个事务分两个阶段提出加锁和解锁申请。最初处于加锁阶段，事务根据需要获得锁。一旦该事务释放了锁，它就进入了缩减阶段，并且不能再发出加锁请求。<strong>二阶段封锁并不会保证不发生死锁</strong>（如果请求锁的数据顺序不同）。</p><p>引入2PL是为了保证事务的隔离性，<strong>保证并发调度的准确性</strong>，多个事务在并发的情况下依然是串行的。</p><h4 id="锁与隔离级别">锁与隔离级别</h4><ul><li>在 RU 中，读取数据不需要加锁，这样读写都没有被保护。</li><li>在 RC 中，写过程需要排他锁，禁止读进程读取到未提交的修改。</li><li>在 RR 中，读过程需要加共享锁，这是可以几个进程共享地读，但是禁止被修改，可以保证一个事务中读到的数据是一致的。</li></ul><hr><h3 id="mvcc版本控制">MVCC版本控制</h3><p><strong>多版本并发控制（MVCC）</strong> 是通过保存数据在某个时间点的快照来实现并发控制的。也就是说，不管事务执行多长时间，事务内部看到的数据是不受其它事务影响的，根据事务开始的时间不同，每个事务对同一张表，同一时刻看到的数据可能是不一样的。简单来说，<strong>MVCC</strong> 的思想就是保存数据的历史版本，通过对数据行的多个版本管理来实现数据库的并发控制。 是乐观锁的一种实现方式。</p><p>MVCC 是通过在每行记录后面保存两个隐藏的列来实现的。一个保存了行的创建版本号，一个保存了行的删除版本号。每开启一个新的事务，系统版本号都会自动递增，作为事务的版本号。</p><ul><li><p>MVCC读写不冲突不加锁，写写之间互相冲突需要加锁串联执行。（乐观锁）</p></li><li><p>select</p><p>只会查找版本号小于等于当前事务版本的数据行。这样保证事务读取的是之前已经存在的或是事务自身插入的。</p></li><li><p>insert</p><p>每插入新的一行，都保存当前的系统版本号作为行的版本号。</p></li><li><p>delete</p><p>为删除的每一行保存当前系统版本号作为行删除版本号。</p></li><li><p>update</p><p>插入一条新的记录，保存当前系统版本号为行版本号，同时保存当前系统版本号到原来的行作为删除版本号。</p></li></ul><h5 id="mvcc-解决了哪些问题">MVCC 解决了哪些问题</h5><ol type="1"><li>读写阻塞问题：MVCC 可以让读写互相不阻塞，即读不阻塞写，写不阻塞读，这样就可以提升事务并发处理能力。</li><li>降低了死锁的概率：读取数据时并不需要加锁，对于写操作，也只锁定必要的行。</li></ol><h5 id="快照读与当前度">快照读与当前度</h5><p>MVCC 版本控制引入了一个新的概念：即快照读与当前读的区别。</p><p><strong>快照读</strong>（SnapShot Read） 是一种一致性不加锁的读，是InnoDB并发如此之高的核心原因之一。</p><blockquote><p>这里的<strong>一致性</strong>是指，事务读取到的数据，要么是<strong>事务开始前就已经存在的数据</strong>，要么是<strong>事务自身插入或者修改过的数据</strong>。</p></blockquote><p>不加锁的简单的 SELECT 都属于<strong>快照读</strong>。</p><p>与 <strong>快照读</strong> 相对应的则是 <strong>当前读</strong>，<strong>当前读</strong>就是读取最新数据，而不是历史版本的数据。加锁的 SELECT 就属于当前读，例如：</p>]]></content>
     
     <summary type="html">
     
@@ -97,21 +97,21 @@
     
     </summary>
     
-      <category term="基础知识" scheme="http://maneback.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+      <category term="基础知识" scheme="https://github.com/maneback/maneback.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
     
     
-      <category term="database" scheme="http://maneback.github.io/tags/database/"/>
+      <category term="database" scheme="https://github.com/maneback/maneback.github.io/tags/database/"/>
     
   </entry>
   
   <entry>
     <title>数据库索引</title>
-    <link href="http://maneback.github.io/2021/db-index/"/>
-    <id>http://maneback.github.io/2021/db-index/</id>
+    <link href="https://github.com/maneback/maneback.github.io/2021/db-index/"/>
+    <id>https://github.com/maneback/maneback.github.io/2021/db-index/</id>
     <published>2021-08-12T02:56:04.000Z</published>
-    <updated>2021-08-17T15:03:35.714Z</updated>
+    <updated>2021-08-23T00:27:55.615Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="索引的数据结构">1 索引的数据结构</h3><p>MySQL的底层存储引擎支持 InnoDB 和 MyISAM 两种，而默认存储引擎 InnoDB 采用的是B+树来作为索引的存储结构。</p><p><strong>那么为什么 InnoDB 存储引擎会使用 B+ 树来存储数据</strong> ，而不是采用 <strong>B- 树</strong>、<strong>红黑树</strong> 或是 <strong>AVL 树</strong> 来存储索引？</p><h3 id="数据结构的比较">2 数据结构的比较</h3><p>MySQL需要把数据持久化到磁盘上，因此需要频繁地读取磁盘上的数据，因此磁盘IO的次数很大程度上决定了查询效率。</p><p>对于大规模数据的索引来讲， 红黑树和 AVL 的结构往往会导致 <strong>深度过大</strong> 而造成磁盘IO过于频繁导致效率低下。而B-树和B+树的特点是每一个层的节点数量更多，树的层数更小，这样查询的时候就能够减少磁盘IO的次数。</p><p>另外B-树的非叶子节点都存有数据域，这无疑增加了节点的大小，而减少了每一页中所能容纳的节点数量；而B+树只有叶子结点来存储数据，节点更小，磁盘IO更少。</p><p>除此之外，深入分析数据库索引和底层的存储结构能发现B-树和B+树更大也更重要的区别。</p><h3 id="数据库存储结构">3 数据库存储结构</h3><h4 id="b-树">① B-树</h4><p>对于 InnoDB 来说，所有的数据都是以键值对（key-data）的方式存储的，主键索引和辅助索引在存储数据时会将 <code>id</code> 和 <code>index</code> 作为键，将所有列和 <code>id</code> 作为键对应的值。 这个key就是存储在B+树非叶子节点中的值。在B-树中除了键外，还会存储data值。</p><p>再提一次这句话： <strong>B-树可以在非叶结点中存储数据，但是 B+ 树的所有数据其实都存储在叶子节点中。</strong></p><p>在B-树中，由于所有的节点都可能包含目标数据，我们总是要从根节点向下遍历子树查找满足条件的数据行，这个特点带来了大量的随机 I/O，也是 B 树最大的性能问题。</p><p><img src="https://gitee.com/MyTypora/typorapic/raw/master/img/20210816090826.png" alt="image-20210816090826822" style="zoom:50%;"></p><p>如上：如果我要查找 【<strong>位于4到16之间的所有值</strong>】的时候，就需要：</p><ul><li>加载node1 所在的页</li><li>找到指向node2的指针，并加载所在页，遍历页面中的数据，发现还没找全；</li><li>回来加载node1所在的页，发现还没找全；</li><li>找到指向node3的指针，并加载所在也，遍历页面中的数据，完成查找。</li></ul><p>这样一来，每次都需要从根节点向下遍历所有子节点来查找。会经历多次磁盘IO。</p><h4 id="b-树-1">② B+ 树</h4><p>B+ 树是数据库底层的真实数据存储结构。</p><p>而使用B+树，所有的节点都储存在叶子节点中，此外通过构建树的过程中， 还可以保证叶子节点中的数据都是有序的，所以我们还可以在叶子节点中增加一个（双向）的指针，来只想相邻节点。图中每个灰色节点都代表磁盘上存储数据的一个页。这样当出现跨页的时候，就不需要从根节点从上至下查找了，只需要根据指针找到下一页。</p><p>此外也可以发现，由于B+ 树中所有的数据都连在叶子节点上，那么对于所有的查询来讲，其查询时间都是相等的。</p><p><img src="https://gitee.com/MyTypora/typorapic/raw/master/img/20210816092140.png" alt="image-20210816092140647" style="zoom:50%;"></p><h4 id="聚簇索引与非聚簇索引">③ 聚簇索引与非聚簇索引</h4><p><strong>聚簇索引</strong></p><p>在数据库中，我们可能会根据需要建立多个不同用途的索引，每个索引都是组成像上述B+树的结构，但是实际上在硬盘中只会存储一个数据文件。像上述图中这样把索引与数据建在一起的索引称为<strong>聚簇索引</strong>。</p><p><strong>聚簇索引默认建立在数据表的主键上。</strong></p><p><strong>非聚簇索引</strong></p><p>当再建立新的索引时，就不需要存储data文件了，而是只需要存储索引，这种索引与数据分离的就成为 <strong>非聚簇索引</strong> 。这时候每个叶子结点存储的不是data而是指向聚簇索引的key值，通过key值再反过来查找聚簇索引。也就是需要二次查找。</p><p><strong>覆盖索引</strong></p><p>当一个语句检索的列只包含建立非聚簇索引的列及主键，这样非聚簇索引中就包含了我们需要的全部数据项，不用再去二次查找聚簇索引了。</p><h3 id="myisam-与-innodb-的索引的区别">4. MyISAM 与 InnoDB 的索引的区别</h3><h5 id="myisam">MyISAM</h5><ul><li>主键索引：MyISAM 引擎使用B+树作为主键索引结果，叶节点的data域存放的是数据记录的<strong>地址</strong>。</li><li>辅助索引：MyISAM 的辅助索引在结构上跟主键索引没有什么区别，只是辅助索引的 key 可以重复，同样节点的data 域存放数据记录的地址。</li></ul><h5 id="innodb">InnoDB</h5><ul><li>主键索引： InnoDB 表数据文件本身就是一个索引结构，树的叶节点data域保存了完整的数据记录，即主键索引是<strong>聚集索引</strong>。</li><li>辅助索引： InnoDB 的所有辅助索引也构成一个B+ 树来存放，叶节点的data域存放的是数据记录的<strong>主键</strong>。即辅助索引需要通过这个主键再去二次检索主键索引。</li></ul><h3 id="索引失效的情况">5 索引失效的情况</h3><p>在一定条件下，索引可能会失效，即无法通过索引来加速查询过程。</p><ul><li>where 子句中进行 NULL 判断</li><li>where 子句中使用 <code>!=, &lt;&gt;, not</code> 这样的判断</li><li>避免在 where 子句中使用 or， 如果其中一个字段没有索引的话，将放弃使用索引</li><li>避免在 where 子句中使用 <code>in</code></li><li>避免在 where 子句中<code>=</code>的左边使用表达式操作或者函数操作</li><li>避免在 where 子句中使用 ‘like’ 模糊查询</li><li>联合索引的最左原则，如联合索引为<code>&lt;a,b,c&gt;</code>, 则对 <code>a</code> 会使用联合索引，而<code>b,c</code> 则不会用到联合索引。</li></ul><h3 id="数据库存储引擎的对比">6 数据库存储引擎的对比</h3><ol type="1"><li><strong>事务支持</strong>： InnoDB 支持事务，MyISAM 不支持事务。</li><li><strong>外键支持</strong>： InnoDB 支持外键，而 MyISAM 不支持。</li><li><strong>索引支持</strong>： InnoDB 是聚集索引，MyISAM 是非聚集索引。</li><li><strong>锁支持</strong>： InnoDB 最小的锁粒度是行锁，MyISAM 最小的锁粒度是表锁。</li><li><strong>恢复</strong>： 系统崩溃后，MyISAM恢复起来更困难。</li><li>InnoDB 不保存表的具体行数，执行 select count(*) from table 时需要全表扫描。而MyISAM 用一个变量保存了整个表的行数，执行上述语句时只需要读出该变量即可，速度很快。</li><li>innoDB所有的表在磁盘上保存在一个文件中；myISAM存储成三个文件。</li></ol><blockquote><p>6.1 如何选择</p></blockquote><ol type="1"><li>如果要支持事务，选择 InnoDB。</li><li>如果大多是只是读查询，可以考虑MyISAM。如果既有读写也挺频繁，请使用InnoDB。</li></ol><h3 id="索引的设计原则">7. 索引的设计原则</h3><ol type="1"><li>符合<strong>最左前缀</strong>原则。组合索引时候，MySQL会匹配所有的等式条件知道第一个范围查询（<code>&gt;</code>, <code>&lt;</code>, <code>between</code>, <code>like</code>） 这些就停止匹配。</li><li>较为频繁被查询的字段才适合创建索引</li><li>更新频繁的字段不适合创建索引</li><li>不能有效区分数据的列不适合建立索引（如性别）</li><li>尽量地扩展索引，而不是新建索引</li><li>定义外键的数据列一定要创建索引</li><li>对于查询中很少涉及到的列，重复值较多的不要建立索引</li><li>适合索引的列是出现在 <code>where</code> 子句的列，或者是连接子句中指定的列</li><li>基数较小的列，索引效果较差，没有必要建立索引</li><li>使用短索引，如果对长字符串建立索引，应该指定一个前缀长度，这样能节省索引空间。</li><li>不要过度索引。索引需要占用存储空间。此外增删改操作都需要重新更新索引，会带来额外的时间消耗。</li></ol><h3 id="其他小问题">8. 其他小问题</h3><ol type="1"><li>为什么主键通常建议使用自增id</li></ol><p><strong>聚簇索引的数据的物理存放顺序与索引顺序是一致的</strong>，即：<strong>只要索引是相邻的，那么对应的数据一定也是相邻地存放在磁盘上的</strong>。</p><p>如果主键不是自增id，在不断地插入数据的过程中主键值是完全随机的，就需要不断地调整数据的物理地址、分页。而使用自增id作为主键，可以保证，相邻插入的数据一定保存在磁盘中相邻的位置，避免聚集索引的不断调整。</p><ol start="2" type="1"><li>默认聚簇索引</li></ol><p>聚簇索引<strong>默认是主键</strong>，如果表中没有定义主键，InnoDB 会选择一个<strong>唯一的非空索引</strong>代替。如果没有这样的索引，InnoDB 会<strong>隐式定义一个主键</strong>来作为聚簇索引。</p><ol start="3" type="1"><li>聚簇索引的劣势</li></ol><p><strong>维护索引很昂贵，特别是插入新行或者主键被更新导至要分页(page split)的时候</strong>。如果使用UUId（随机ID）作为主键，使数据存储稀疏，这就会出现聚簇索引有可能有比全表扫面更慢，所以建议使用int的auto_increment作为主键。</p><ol start="3" type="1"><li>索引的优缺点</li></ol><ul><li>优点：加快查询速度</li><li>降低增删改速度，存储索引需要占用额外的空间。</li><li>每当数据库中有记录插入或删除时，索引都需要更新。如果有记录更新，任何搜索码属性受影响的索引也必须更新。</li></ul><hr><p><strong>参考链接</strong></p><ul><li><a href="https://draveness.me/whys-the-design-mysql-b-plus-tree/" target="_blank" rel="noopener">为什么 MySQL 使用 B+ 树</a></li><li><a href="https://www.runoob.com/w3cnote/mysql-different-nnodb-myisam.html" target="_blank" rel="noopener">菜鸟教程</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="索引的数据结构">1 索引的数据结构</h3><p>MySQL的底层存储引擎支持 InnoDB 和 MyISAM 两种，而默认存储引擎 InnoDB 采用的是B+树来作为索引的存储结构。</p><p><strong>那么为什么 InnoDB 存储引擎会使用 B+ 树来存储数据</strong> ，而不是采用 <strong>B- 树</strong>、<strong>红黑树</strong> 或是 <strong>AVL 树</strong> 来存储索引？</p><h3 id="数据结构的比较">2 数据结构的比较</h3><p>MySQL需要把数据持久化到磁盘上，因此需要频繁地读取磁盘上的数据，因此磁盘 IO 的次数很大程度上决定了查询效率，磁盘 IO 每次以<strong>页</strong>为单位进行。</p><p>对于大规模数据的索引来讲， 红黑树和 AVL 的结构往往会导致 <strong>深度过大</strong> 而造成磁盘 IO 次数增多导致效率低下。同时为了保证平衡会进行频繁的结构调整。而B-树和B+树的特点是每一个层的节点数量更多，树的层数更小，这样查询的时候就能够减少磁盘 IO 的次数。</p><p>另外B-树的非叶子节点都存有数据域，这无疑增加了非叶子节点的大小，而减少了每一磁盘页中所能容纳的节点数量；而B+树只有叶子结点来存储数据，节点更小，从而磁盘页能够存储更多的节点，磁盘 IO 次数更少。</p><p>除此之外，深入分析数据库索引和底层的存储结构能发现B-树和B+树更重要的区别。</p><h3 id="数据库存储结构">3 数据库存储结构</h3><h4 id="b-树">① B-树</h4><p>对于 InnoDB 来说，所有的数据都是以键值对（key-data）的方式存储的，主键索引和辅助索引在存储数据时会将 <code>id</code> 和 <code>index</code> 作为键，将所有列和 <code>id</code> 作为键对应的值。 这个key就是存储在B+树非叶子节点中的值。在B-树中除了键外，还会存储data值。</p><p>再提一次这句话： <strong>B-树可以在非叶结点中存储数据，但是 B+ 树的所有数据其实都存储在叶子节点中。</strong></p><p>在B-树中，由于所有的节点都可能包含目标数据，我们总是要不止一次地从根节点向下遍历子树查找满足条件的数据行，这个特点带来了大量的随机 IO，也是 B-树最大的性能问题。</p><p><img src="https://gitee.com/MyTypora/typorapic/raw/master/img/20210816090826.png" alt="image-20210816090826822" style="zoom:50%;"></p><p>如上：如果我要查找 【<strong>位于4到16之间的所有值</strong>】的时候，就需要：</p><ul><li>加载 node1 所在的页</li><li>找到指向 node2 的指针，并加载所在页，遍历页面中的数据，发现还没找全；</li><li>再一次加载 node1 所在的页，发现还没找全；</li><li>找到指向 node3 的指针，并加载所在也，遍历页面中的数据，完成查找。</li></ul><p>这样一来，如果范围查询需要跨越不同的节点，都需要从根节点向下遍历所有子节点来查找。会经历多次磁盘 IO。</p><h4 id="b-树-1">② B+ 树</h4><p>而使用 B+树，所有的节点都储存在叶子节点中，此外通过构建树的过程中， 还可以保证每一个叶子节点中的数据都是有序（按照键值排序）的，所以我们还可以在叶子节点中增加一个（双向）的指针，来指向相邻节点。如图中每个灰色节点都代表磁盘上存储数据的一个页。这样当出现跨页的时候，就不需要从根节点从上至下查找了，只需要根据指针找到下一页。</p><p>此外也可以发现，由于 B+ 树中所有的数据都连在叶子节点上，那么对于所有的查询来讲，其查询时间即查询层数都是相等的，比较稳定。B+ 树是数据库底层的真实数据存储结构。</p><p><img src="https://gitee.com/MyTypora/typorapic/raw/master/img/20210816092140.png" alt="image-20210816092140647" style="zoom:50%;"></p><h4 id="聚簇索引与非聚簇索引">③ 聚簇索引与非聚簇索引</h4><p><strong>聚簇索引</strong></p><p>在数据库中，我们可能会根据需要建立多个不同用途的索引，每个索引都是组成像上述B+树的结构，但是实际上在硬盘中只会存储一份数据文件。像上述图中这样把索引与数据建在一起的索引称为<strong>聚簇索引</strong>。</p><p><strong>聚簇索引默认建立在数据表的主键上。</strong></p><p><strong>非聚簇索引</strong></p><p>当再建立新的索引时，就不需要存储data文件了，而是只需要存储索引结构，这种索引与数据分离的就成为 <strong>非聚簇索引</strong> 。这时候每个叶子结点存储的不是 data 而是指向聚簇索引的 key值，通过 key 值再反过来查找聚簇索引。也就是需要二次查找。</p><p><strong>覆盖索引</strong></p><p>当一个语句检索的列只包含建立非聚簇索引的列及主键，这样在非聚簇索引的结构中就包含了我们需要的全部数据项，不用再去二次查找聚簇索引了。</p><p><strong>最左匹配原则</strong> <a label="left"></a></p><p>在建立联合索引时，如 <code>(a,b,c)</code>上建立索引，会先对 <code>a</code> 进行排序，在此基础上对 <code>b</code>排序，最后是 <code>c</code>。因此 <code>a</code> 是有序的，而 <code>b</code> 和<code>c</code> 无序。简单理解的话，假设<code>a,b,c</code>的取值范围都是 <code>0~9</code> 那么在建立索引的时候就是把 <code>a</code>放在百位，把<code>b</code>放在十位，把<code>c</code>放在个位，再对这些数字排序。</p><p>联合索引在检索数据是，会从索引的最左边开始匹配，直到匹配到 <code>where</code> 子句中一个无法使用索引的条件。</p><p>所以单独对<code>a</code>进行检索，可以使用上述索引<code>abc</code>，但是对<code>b,c</code>单独检索，则无法使用。索引的匹配一定是与索引建立时候的顺序是一致的。</p><p>此外，对 <code>a,c</code> 进行检索，则只能对 <code>a</code>使用索引，而<code>c</code>则不能。</p><p>（<strong>这里不考虑无法使用索引的条件，只是说明匹配原则。</strong>）</p><h3 id="索引失效的情况">4. 索引失效的情况</h3><p>在一定条件下，索引可能会失效，即无法通过索引来加速查询过程。</p><ul><li>where 子句中进行 NULL 判断</li><li>where 子句中使用 <code>!=, &lt;&gt;, not</code> 这样的判断</li><li>避免在 where 子句中使用 or， 如果其中一个字段没有索引的话，将放弃使用索引</li><li>避免在 where 子句中使用 <code>in</code></li><li>避免在 where 子句中<code>=</code>的左边使用表达式操作或者函数操作</li><li>避免在 where 子句中使用 ‘like’ 模糊查询</li><li>联合索引的<a href="#left">最左原则</a></li></ul><h3 id="myisam-与-innodb-的索引的区别">5. MyISAM 与 InnoDB 的索引的区别</h3><h5 id="myisam">MyISAM</h5><ul><li>主键索引：MyISAM 引擎使用B+树作为主键索引结果，叶节点的data域存放的是数据记录的<strong>地址</strong>。</li><li>辅助索引：MyISAM 的辅助索引在结构上跟主键索引没有什么区别，只是辅助索引的 key 可以重复，同样节点的data 域存放数据记录的地址。</li></ul><h5 id="innodb">InnoDB</h5><ul><li>主键索引： InnoDB 表数据文件本身就是一个索引结构，树的叶节点data域保存了完整的数据记录，即主键索引是<strong>聚集索引</strong>。</li><li>辅助索引： InnoDB 的所有辅助索引也构成一个B+ 树来存放，叶节点的data域存放的是数据记录的<strong>主键</strong>。即辅助索引需要通过这个主键再去二次检索主键索引。</li></ul><h3 id="数据库存储引擎的对比">6. 数据库存储引擎的对比</h3><ol type="1"><li><strong>事务支持</strong>： InnoDB 支持事务，MyISAM 不支持事务。</li><li><strong>外键支持</strong>： InnoDB 支持外键，而 MyISAM 不支持。</li><li><strong>索引支持</strong>： InnoDB 是聚集索引，MyISAM 是非聚集索引。</li><li><strong>锁支持</strong>： InnoDB 最小的锁粒度是行锁，MyISAM 最小的锁粒度是表锁。</li><li><strong>恢复</strong>： 系统崩溃后，MyISAM恢复起来更困难。</li><li>InnoDB 不保存表的具体行数，执行 select count(*) from table 时需要全表扫描。而MyISAM 用一个变量保存了整个表的行数，执行上述语句时只需要读出该变量即可，速度很快。</li><li>innoDB所有的表在磁盘上保存在一个文件中；myISAM存储成三个文件。</li></ol><blockquote><p>6.1 如何选择</p></blockquote><ol type="1"><li>如果要支持事务，选择 InnoDB。</li><li>如果大多是只是读查询，可以考虑MyISAM。如果既有读写也挺频繁，请使用InnoDB。</li></ol><h3 id="索引的设计原则">7. 索引的设计原则</h3><ol type="1"><li>符合<strong>最左前缀</strong>原则。联合索引时候，MySQL会匹配所有的等式条件直到第一个范围查询（<code>&gt;</code>, <code>&lt;</code>, <code>between</code>, <code>like</code>） 这些就停止匹配。</li><li>更新频繁的字段不适合创建索引</li><li>较为频繁被查询的字段才适合创建索引</li><li>对于查询中很少涉及到的列，重复值较多的不要建立索引</li><li>不能有效区分数据的列不适合建立索引（如性别）</li><li>尽量地扩展索引，而不是新建索引</li><li>定义外键的数据列一定要创建索引</li><li>适合索引的列是出现在 <code>where</code> 子句的列，或者是连接子句中指定的列</li><li>使用短索引，如果对长字符串建立索引，应该指定一个前缀长度，这样能节省索引空间。</li><li>不要过度索引。索引需要占用存储空间。此外增删改操作都需要重新更新索引，会带来额外的时间消耗。</li></ol><h3 id="其他小问题">8. 其他小问题</h3><ol type="1"><li>为什么主键通常建议使用自增id</li></ol><p><strong>聚簇索引的数据的物理存放顺序与索引顺序是一致的</strong>，即：<strong>只要索引是相邻的，那么对应的数据一定也是相邻地存放在磁盘上的</strong>。</p><p>如果主键不是自增id，在不断地插入数据的过程中主键值是完全随机的，就需要不断地调整数据的物理地址、分页。而使用自增id作为主键，可以保证，相邻插入的数据一定保存在磁盘中相邻的位置，避免聚集索引的不断调整。</p><ol start="2" type="1"><li>默认聚簇索引</li></ol><p>聚簇索引<strong>默认是主键</strong>，如果表中没有定义主键，InnoDB 会选择一个<strong>唯一的非空索引</strong>代替。如果没有这样的索引，InnoDB 会<strong>隐式定义一个主键</strong>来作为聚簇索引。</p><ol start="3" type="1"><li>聚簇索引的劣势</li></ol><p><strong>维护索引很昂贵，特别是插入新行或者主键被更新导至要分页 (page split) 的时候</strong>。如果使用UUId（随机ID）作为主键，使数据存储稀疏，这就会出现聚簇索引有可能有比全表扫面更慢，所以建议使用<code>int</code>类型的<code>auto_increment</code>作为主键。</p><ol start="3" type="1"><li>索引的优缺点</li></ol><ul><li>优点：加快查询速度</li><li>降低增删改速度，存储索引需要占用额外的空间。</li><li>每当数据库中有记录插入或删除时，索引都需要更新。如果有记录更新，任何搜索码属性受影响的索引也必须更新。</li></ul><hr><p><strong>参考链接</strong></p><ul><li><a href="https://draveness.me/whys-the-design-mysql-b-plus-tree/" target="_blank" rel="noopener">为什么 MySQL 使用 B+ 树</a></li><li><a href="https://www.runoob.com/w3cnote/mysql-different-nnodb-myisam.html" target="_blank" rel="noopener">菜鸟教程</a></li></ul>]]></content>
     
     <summary type="html">
     
@@ -119,17 +119,39 @@
     
     </summary>
     
-      <category term="基础知识" scheme="http://maneback.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+      <category term="基础知识" scheme="https://github.com/maneback/maneback.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
     
     
-      <category term="database" scheme="http://maneback.github.io/tags/database/"/>
+      <category term="database" scheme="https://github.com/maneback/maneback.github.io/tags/database/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>TCP 相关知识</title>
+    <link href="https://github.com/maneback/maneback.github.io/2021/network-TCP/"/>
+    <id>https://github.com/maneback/maneback.github.io/2021/network-TCP/</id>
+    <published>2021-08-11T07:22:29.000Z</published>
+    <updated>2021-08-19T08:35:36.585Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>TCP 是一种面向连接的网络层传输协议，它建立在不可靠的 IP 层之上，向上层应用层提供可靠的传输服务。</p><p>它是面向字节流的传输。</p><p>TCP 报文头部：</p><p><img src="https://gitee.com/MyTypora/typorapic/raw/master/img/20210819155803.png"></p><h4 id="可靠传输">可靠传输</h4><p>其可靠传输主要依赖于以下几方面实现：校验和、序列号和确认序号、三次握手建立连接、超时重传、流量控制、拥塞控制。</p><h5 id="三次握手">三次握手</h5><ol type="1"><li>客户端 发送建立连接请求，设置 <code>SYN=1</code>， 初始化序列号 <code>seq=x</code>，发送请求连接报文给 服务端，然后客户端 进入 <code>SYN_SEND</code> 状态，等待服务器确定。</li><li>服务端 接收到 客户端 的 <code>SYN</code> 报文，对该报文进行确认，设置 <code>ACK=x+1</code>。 同时还要发送自己的 SYN 报文，设置 SYN=1, seq=y， 将确认报文和 SYN 报文合并到同一个报文中，发送给 客户端， 此时 服务端 进入 <code>SYN_RECV</code> 状态。</li><li>客户端 收到 服务端 的 <code>SYN_ACK</code> 报文后，向 <code>sever</code> 发送<code>ACK</code>报文，将 ACK=y+1，发送给 服务端， 服务端 接收到报文后，都进入 建立状态，完成三次握手。</li></ol><div id="sequence-0"></div><p><img src="https://gitee.com/MyTypora/typorapic/raw/master/img/20210819163508.png"></p><h5 id="四次挥手">四次挥手</h5><p><strong>TCP断开连接都由用户请求。</strong></p><ol type="1"><li>客户端 发送数据完成后，向服务端发送释放连接报文，报文 FIN=1， 发送后，客户端只能接受数据，不能发送。客户端进入 <code>FIN_WAIT_1</code> 状态。</li><li>服务端收到释放连接报文后，向客户端发送 ACK 报文，报文 ACK=1。此时服务端能向客户端单向传输数据。进入 <code>CLOSE_WAIT</code> 状态。客户端收到后，进入 <code>FIN_WAIT_2</code> 状态。</li><li>客户端完成数据发送后，向客户端发送释放连接报文， 报文 FIN=1, ACK=1。 进入<code>LAST_ACK</code> 状态。</li><li>客户端收到释放连接报文后，向服务端发送 ACK 报文，报文 ACK=1。进入 <code>TIME_WAIT</code> 状态。等待两个 MSL 长度后，关闭连接。</li></ol><div id="sequence-1"></div><p><img src="https://gitee.com/MyTypora/typorapic/raw/master/img/20210819163519.png"></p><h5 id="连接相关问题">连接相关问题：</h5><h6 id="为什么不能两次握手">为什么不能两次握手？</h6><p>三次握手是为了保证双方都能确认自己和对方都能正常的发送和接收。考虑丢失，如果第二个报文丢失，则客户端认为还没有建立连接，而在服务端看来已经正常建立连接，这样会浪费服务端的资源。</p><h6 id="为什么关闭四次">为什么关闭四次</h6><p>因为要确保双方都能通知对方释放连接。第一次是断开客户端到服务端的单向连接，而此时服务端可能还没发送完所有数据，还要继续发送。当服务端发送完成后，再通知客户端断开连接。同时每一次释放连接的报文都需要分别收到对方的确认报文。其实是，在建立连接时，服务端的 ACK 和 SYN 都在第二次的握手过程中一次性完成了，而在断开连接时，则要先传 ACK， 等自己发送完成后才能传 SYN。所以需要四次。</p><h6 id="为什么-需要等待-2msl">为什么 需要等待 2MSL</h6><p>可以使每次 TCP 连接的报文全部消失，不会出现在下一次的 TCP 连接中。</p><p>如果第四次握手信息丢失，则服务端无法收到客户端的确认信息，就需要重发第三次握手的报文。如果此时客户端已关闭，则会导致服务端无法正常关闭。</p><h6 id="syn-flood-攻击">SYN flood 攻击</h6><p>如果恶意地向某个服务器端口发送大量的SYN包而并不完成建立连接的全过程，则可以使服务器打开大量的半开连接，从而消耗大量的服务器资源，同时也使得正常的连接请求无法被相应。</p><h5 id="流量控制">流量控制</h5><h6 id="什么情况下需要流量控制">什么情况下需要流量控制？</h6><p>流量控制是为了避免接收方缓冲区溢出造成的丢包。如果发送端发送的数据过快，接收端来不及接收就会出现丢包，这时就要用到流量控制，避免因接收端缓冲区溢出的丢包。</p><p>如图所示，在TCP首部有一个窗口大小字段，表示当前接收端缓冲区的大小。每当接收端发送ACK报文时，会将窗口大小填入其中，发送方会根据窗口大小调整发送速度。当窗口大小为0， 发送方会停止发送数据。</p><h6 id="流量控制出现死锁怎么办">流量控制出现死锁怎么办？</h6><p>发送方在接收到一个窗口大小为0的ACK报文后，发送方便停止发送，等待下一个ACK。但是如果下一个ACK丢失，则发送方就会一直等待下去，而接收方会认为发送方已经收到该ACK，等待新数据，便会产生死锁。</p><p>为避免死锁的发生，TCP采用计时器，当接收到一个零窗口的ACK后便启动计时器，一旦到达计时器的实践便主动询问接收方窗口大小，如果仍返回零则继续等待，若窗口不为零则开始发送。</p><h5 id="拥塞控制">拥塞控制</h5><h6 id="什么时候需要拥塞控制">什么时候需要拥塞控制</h6><p>拥塞控制是为了避免网络状况拥塞造成的丢包。 注意其与流量控制的作用的不同之处。</p><h6 id="拥塞控制方法">拥塞控制方法</h6><p>拥塞控制方法主要包括：<strong>慢启动、拥塞避免。快速重传。快速恢复。</strong></p><ul><li><p>慢启动</p><p>发送方维持一个叫做拥塞窗口<code>cwnd</code>的变量，取决于网络的拥塞程度，并在不断变化。注意由于可能存在接收方的流量控制的缓冲区窗口，所以发送方的真正的发送窗口可能小于拥塞窗口。</p><p>慢启动的思想就是不要一开就发送大量数据，而是不断增加发送的数据的大小，不断试探一下网络的拥塞程度。</p><p>在慢启动中<code>cwnd</code>的每次加倍</p></li><li><p>拥塞避免</p><p>当拥塞窗口<code>cwnd</code>增加到一定程度超过门限值<code>ssthresh</code>后，再每次倍增则风险太高。这时就进入慢启动阶段</p><p>在拥塞避免中<code>cwnd</code>每次增加一</p><p>当判断网络出现拥塞（根据没能按时收到<code>ACK</code>）则开始把拥塞避免的门限<code>ssthresh</code>变为<strong>出现拥塞时发送窗口的一半</strong>。并将拥塞窗口置为一，重新进入慢启动。</p></li><li><p>快速重传</p><p>若接收方连续收到三个重复确认则立即重传对方尚未接收到的报文段，而不必继续等待计时器时间到期。（因为这表明是发生了丢包，而不是网络延迟大）</p></li><li><p>快速恢复</p><p>在拥塞避免时，一旦发送拥塞则<code>cwnd</code>重置为慢启动阶段，为提高性能则把<code>cwnd</code>设置为<code>ssthresh</code>减半后的值，而不是重新从头开始进入慢启动。</p></li></ul><h5 id="总结">总结</h5><p>注意到流量控制会存在一个流量控制窗口，而拥塞控制中同样存在一个拥塞控制窗口，因此在实际传输时，TCP 传输窗口的大小取决于这两个值的最小值。</p><script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.27/webfontloader.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script><textarea id="sequence-0-code" style="display: none">participant  Client as ccparticipant  Server as ssnote left of cc: SYN_SENDcc-->ss: SYN=1 seq=xnote right of ss:SYN_Rcvdss-->cc: ACK=1 SYN=1  ack=x+1 seq=ynote left of cc: ESTABLISHEDcc-->ss: ACK=y+1 seq=x+1 ack=y+1note right of ss: ESTABLISHED</textarea><textarea id="sequence-0-options" style="display: none">{"theme":"simple","scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("sequence-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("sequence-0-options").value));  var diagram = Diagram.parse(code);  diagram.drawSVG("sequence-0", options);</script><textarea id="sequence-1-code" style="display: none">title: 四次挥手participant Client as ccparticipant Server as ssnote left of cc: FIN_WAIT_1\n[close()]cc->ss:FIN=1     ACK=1note right of ss: CLOSE_WAITss->cc: ACK=1 note left of cc: FIN_WAIT_2ss->cc: FIN=1     ACK=1note right of ss: LAST_ACKcc->ss: ACK=1note left of cc: TIME_WAITnote left of cc: WAIT FOR 2MSL  close</textarea><textarea id="sequence-1-options" style="display: none">{"theme":"simple","scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("sequence-1-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("sequence-1-options").value));  var diagram = Diagram.parse(code);  diagram.drawSVG("sequence-1", options);</script>]]></content>
+    
+    <summary type="html">
+    
+      TCP 知识： 三次握手、四次挥手、流量控制、拥塞控制
+    
+    </summary>
+    
+      <category term="基础知识" scheme="https://github.com/maneback/maneback.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+    
+      <category term="Network" scheme="https://github.com/maneback/maneback.github.io/tags/Network/"/>
     
   </entry>
   
   <entry>
     <title>排序算法汇总</title>
-    <link href="http://maneback.github.io/2021/sortings/"/>
-    <id>http://maneback.github.io/2021/sortings/</id>
+    <link href="https://github.com/maneback/maneback.github.io/2021/sortings/"/>
+    <id>https://github.com/maneback/maneback.github.io/2021/sortings/</id>
     <published>2021-07-22T02:01:30.000Z</published>
     <updated>2021-08-16T08:58:06.897Z</updated>
     
@@ -142,17 +164,17 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://maneback.github.io/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://github.com/maneback/maneback.github.io/categories/Algorithm/"/>
     
     
-      <category term="排序算法" scheme="http://maneback.github.io/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
+      <category term="排序算法" scheme="https://github.com/maneback/maneback.github.io/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>背包问题</title>
-    <link href="http://maneback.github.io/2021/beibao/"/>
-    <id>http://maneback.github.io/2021/beibao/</id>
+    <link href="https://github.com/maneback/maneback.github.io/2021/beibao/"/>
+    <id>https://github.com/maneback/maneback.github.io/2021/beibao/</id>
     <published>2021-06-15T11:22:56.000Z</published>
     <updated>2021-08-16T08:57:34.257Z</updated>
     
@@ -164,17 +186,17 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://maneback.github.io/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://github.com/maneback/maneback.github.io/categories/Algorithm/"/>
     
     
-      <category term="背包问题" scheme="http://maneback.github.io/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/"/>
+      <category term="背包问题" scheme="https://github.com/maneback/maneback.github.io/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/"/>
     
   </entry>
   
   <entry>
     <title>滑动窗口</title>
-    <link href="http://maneback.github.io/2021/slidingwindow/"/>
-    <id>http://maneback.github.io/2021/slidingwindow/</id>
+    <link href="https://github.com/maneback/maneback.github.io/2021/slidingwindow/"/>
+    <id>https://github.com/maneback/maneback.github.io/2021/slidingwindow/</id>
     <published>2021-06-14T13:29:42.000Z</published>
     <updated>2021-08-16T03:11:24.433Z</updated>
     
@@ -186,17 +208,17 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://maneback.github.io/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://github.com/maneback/maneback.github.io/categories/Algorithm/"/>
     
     
-      <category term="滑动窗口" scheme="http://maneback.github.io/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/"/>
+      <category term="滑动窗口" scheme="https://github.com/maneback/maneback.github.io/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/"/>
     
   </entry>
   
   <entry>
     <title>Linux 定时任务</title>
-    <link href="http://maneback.github.io/2021/crontab/"/>
-    <id>http://maneback.github.io/2021/crontab/</id>
+    <link href="https://github.com/maneback/maneback.github.io/2021/crontab/"/>
+    <id>https://github.com/maneback/maneback.github.io/2021/crontab/</id>
     <published>2021-05-22T07:29:33.000Z</published>
     <updated>2021-08-14T03:55:24.071Z</updated>
     
@@ -208,17 +230,17 @@
     
     </summary>
     
-      <category term="技术" scheme="http://maneback.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="https://github.com/maneback/maneback.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Linux" scheme="http://maneback.github.io/tags/Linux/"/>
+      <category term="Linux" scheme="https://github.com/maneback/maneback.github.io/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>Leetcode -- 情侣牵手</title>
-    <link href="http://maneback.github.io/2021/couple-holding/"/>
-    <id>http://maneback.github.io/2021/couple-holding/</id>
+    <link href="https://github.com/maneback/maneback.github.io/2021/couple-holding/"/>
+    <id>https://github.com/maneback/maneback.github.io/2021/couple-holding/</id>
     <published>2021-02-24T02:51:51.000Z</published>
     <updated>2021-03-17T11:03:01.095Z</updated>
     
@@ -230,19 +252,19 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://maneback.github.io/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://github.com/maneback/maneback.github.io/categories/Algorithm/"/>
     
     
-      <category term="Leetcode" scheme="http://maneback.github.io/tags/Leetcode/"/>
+      <category term="Leetcode" scheme="https://github.com/maneback/maneback.github.io/tags/Leetcode/"/>
     
-      <category term="并查集" scheme="http://maneback.github.io/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/"/>
+      <category term="并查集" scheme="https://github.com/maneback/maneback.github.io/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/"/>
     
   </entry>
   
   <entry>
     <title>单调栈基础</title>
-    <link href="http://maneback.github.io/2021/monotonic-stack/"/>
-    <id>http://maneback.github.io/2021/monotonic-stack/</id>
+    <link href="https://github.com/maneback/maneback.github.io/2021/monotonic-stack/"/>
+    <id>https://github.com/maneback/maneback.github.io/2021/monotonic-stack/</id>
     <published>2021-02-24T02:46:14.000Z</published>
     <updated>2021-08-14T03:25:34.523Z</updated>
     
@@ -254,19 +276,19 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://maneback.github.io/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://github.com/maneback/maneback.github.io/categories/Algorithm/"/>
     
     
-      <category term="Leetcode" scheme="http://maneback.github.io/tags/Leetcode/"/>
+      <category term="Leetcode" scheme="https://github.com/maneback/maneback.github.io/tags/Leetcode/"/>
     
-      <category term="单调栈" scheme="http://maneback.github.io/tags/%E5%8D%95%E8%B0%83%E6%A0%88/"/>
+      <category term="单调栈" scheme="https://github.com/maneback/maneback.github.io/tags/%E5%8D%95%E8%B0%83%E6%A0%88/"/>
     
   </entry>
   
   <entry>
     <title>单调队列基础</title>
-    <link href="http://maneback.github.io/2021/monotonic-queue/"/>
-    <id>http://maneback.github.io/2021/monotonic-queue/</id>
+    <link href="https://github.com/maneback/maneback.github.io/2021/monotonic-queue/"/>
+    <id>https://github.com/maneback/maneback.github.io/2021/monotonic-queue/</id>
     <published>2021-02-24T02:30:35.000Z</published>
     <updated>2021-03-17T11:03:01.096Z</updated>
     
@@ -278,19 +300,19 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://maneback.github.io/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://github.com/maneback/maneback.github.io/categories/Algorithm/"/>
     
     
-      <category term="Leetcode" scheme="http://maneback.github.io/tags/Leetcode/"/>
+      <category term="Leetcode" scheme="https://github.com/maneback/maneback.github.io/tags/Leetcode/"/>
     
-      <category term="单调队列" scheme="http://maneback.github.io/tags/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/"/>
+      <category term="单调队列" scheme="https://github.com/maneback/maneback.github.io/tags/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/"/>
     
   </entry>
   
   <entry>
     <title>Leetcode - 区间合并</title>
-    <link href="http://maneback.github.io/2021/merge-intervals/"/>
-    <id>http://maneback.github.io/2021/merge-intervals/</id>
+    <link href="https://github.com/maneback/maneback.github.io/2021/merge-intervals/"/>
+    <id>https://github.com/maneback/maneback.github.io/2021/merge-intervals/</id>
     <published>2021-02-24T02:06:25.000Z</published>
     <updated>2021-03-17T11:03:01.096Z</updated>
     
@@ -302,17 +324,17 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://maneback.github.io/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://github.com/maneback/maneback.github.io/categories/Algorithm/"/>
     
     
-      <category term="Leetcode" scheme="http://maneback.github.io/tags/Leetcode/"/>
+      <category term="Leetcode" scheme="https://github.com/maneback/maneback.github.io/tags/Leetcode/"/>
     
   </entry>
   
   <entry>
-    <title>Leetcode -- unique binary search trees II</title>
-    <link href="http://maneback.github.io/2021/longest-turbulent-subarray/"/>
-    <id>http://maneback.github.io/2021/longest-turbulent-subarray/</id>
+    <title>Leetcode -- Unique Binary Search Trees II</title>
+    <link href="https://github.com/maneback/maneback.github.io/2021/longest-turbulent-subarray/"/>
+    <id>https://github.com/maneback/maneback.github.io/2021/longest-turbulent-subarray/</id>
     <published>2021-02-09T03:02:50.000Z</published>
     <updated>2021-03-17T11:03:01.095Z</updated>
     
@@ -324,19 +346,19 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://maneback.github.io/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://github.com/maneback/maneback.github.io/categories/Algorithm/"/>
     
     
-      <category term="Leetcode" scheme="http://maneback.github.io/tags/Leetcode/"/>
+      <category term="Leetcode" scheme="https://github.com/maneback/maneback.github.io/tags/Leetcode/"/>
     
-      <category term="动态规划" scheme="http://maneback.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+      <category term="动态规划" scheme="https://github.com/maneback/maneback.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
   </entry>
   
   <entry>
     <title>VScode 快捷键</title>
-    <link href="http://maneback.github.io/2021/vscodeshortcut/"/>
-    <id>http://maneback.github.io/2021/vscodeshortcut/</id>
+    <link href="https://github.com/maneback/maneback.github.io/2021/vscodeshortcut/"/>
+    <id>https://github.com/maneback/maneback.github.io/2021/vscodeshortcut/</id>
     <published>2021-01-17T13:15:35.000Z</published>
     <updated>2021-01-17T13:18:53.583Z</updated>
     
@@ -348,21 +370,21 @@
     
     </summary>
     
-      <category term="技术" scheme="http://maneback.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="https://github.com/maneback/maneback.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="VScode" scheme="http://maneback.github.io/tags/VScode/"/>
+      <category term="VScode" scheme="https://github.com/maneback/maneback.github.io/tags/VScode/"/>
     
   </entry>
   
   <entry>
     <title>Hexo 必要的插件</title>
-    <link href="http://maneback.github.io/2021/installed-plugin/"/>
-    <id>http://maneback.github.io/2021/installed-plugin/</id>
+    <link href="https://github.com/maneback/maneback.github.io/2021/installed-plugin/"/>
+    <id>https://github.com/maneback/maneback.github.io/2021/installed-plugin/</id>
     <published>2021-01-05T09:53:18.000Z</published>
-    <updated>2021-01-18T11:54:00.077Z</updated>
+    <updated>2021-08-19T08:27:40.293Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="基础环境及必要插件">基础环境及必要插件</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-index --save</span><br><span class="line">npm install hexo-generator-archive --save  ##wenti</span><br><span class="line">npm install hexo-generator-category --save</span><br><span class="line">npm install hexo-generator-tag --save</span><br><span class="line">npm install hexo-server --save</span><br><span class="line">npm install hexo-deployer-git --save ##</span><br><span class="line">npm install hexo-deployer-heroku --save</span><br><span class="line">npm install hexo-deployer-rsync --save</span><br><span class="line">npm install hexo-deployer-openshift --save</span><br><span class="line">npm install hexo-renderer-marked@0.2 --save</span><br><span class="line">npm install hexo-renderer-stylus@0.2 --save</span><br><span class="line">npm install hexo-generator-feed@1 --save</span><br><span class="line">npm install hexo-generator-sitemap@1 --save</span><br></pre></td></tr></table></figure><h4 id="在hexo-博客中插入图片">在hexo 博客中插入图片。</h4><p>先安装插件 <code>hexo-asset-image</code></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli --save</span><br><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure><p>第一种最简单的方法是使用图床，但是之前折腾过一段时间使用 PicGO +github 图床，但是稳定，后放弃。改用 hexo 自带的资源文件夹。</p><p>第二种方法是启用 assert 资源文件夹，但是这个东西很不智能。当你在 markdown 文档引用图片（不管是相对路径还是绝对路径）都能在文档中显示，但是渲染成 HTML 文件时，就会路径出错了。要用这个新的插件 <code>hexo-asset-image</code> 。</p><h4 id="在-hexo-博客中正常显示-latex-公式">在 hexo 博客中正常显示 latex 公式</h4><p>hexo 竟然对 latex 公式的支持这么不智能。唉，绝了。</p><p>更换 renderer。</p><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> uninstall hexo-renderer-marked</span><br><span class="line"><span class="built_in">npm</span> install hexo-renderer-pandoc</span><br></pre></td></tr></table></figure><p>安装完 <code>hexo-render-pandoc</code> ，它在运行 <code>hexo s</code> 命令时会报错：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ERROR][hexo-renderer-pandoc] pandoc exited with code 9: pandoc: Unknown extension: smart</span><br></pre></td></tr></table></figure><p>这时需要把 <code>node_modules\hexo-renderer-pandoc\index.js</code> 文件中的这个东西</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> args = [ <span class="string">'-f'</span>, <span class="string">'markdown-smart'</span>+extensions, <span class="string">'-t'</span>, <span class="string">'html-smart'</span>, math]</span><br></pre></td></tr></table></figure><p>改成：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> args = [ <span class="string">'-f'</span>, <span class="string">'markdown'</span>+extensions, <span class="string">'-t'</span>, <span class="string">'html'</span>, math]</span><br></pre></td></tr></table></figure><p>参考来源 <a href="https://github.com/wzpan/hexo-renderer-pandoc/issues/36#issuecomment-555134526" target="_blank" rel="noopener">hexo-renderer-pandoc issues36</a></p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="基础环境及必要插件">基础环境及必要插件</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-index --save</span><br><span class="line">npm install hexo-generator-archive --save  ##wenti</span><br><span class="line">npm install hexo-generator-category --save</span><br><span class="line">npm install hexo-generator-tag --save</span><br><span class="line">npm install hexo-server --save</span><br><span class="line">npm install hexo-deployer-git --save ##</span><br><span class="line">npm install hexo-deployer-heroku --save</span><br><span class="line">npm install hexo-deployer-rsync --save</span><br><span class="line">npm install hexo-deployer-openshift --save</span><br><span class="line">npm install hexo-renderer-marked@0.2 --save</span><br><span class="line">npm install hexo-renderer-stylus@0.2 --save</span><br><span class="line">npm install hexo-generator-feed@1 --save</span><br><span class="line">npm install hexo-generator-sitemap@1 --save</span><br></pre></td></tr></table></figure><h4 id="在hexo-博客中插入图片">在hexo 博客中插入图片。</h4><p>先安装插件 <code>hexo-asset-image</code></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli --save</span><br><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure><p>第一种最简单的方法是使用图床，但是之前折腾过一段时间使用 PicGO +github 图床，但是稳定，后放弃。改用 hexo 自带的资源文件夹。</p><p><del>第二种方法是启用 assert 资源文件夹，但是这个东西很不智能。当你在 markdown 文档引用图片（不管是相对路径还是绝对路径）都能在文档中显示，但是渲染成 HTML 文件时，就会路径出错了。要用这个新的插件 <code>hexo-asset-image</code>。</del></p><p>最终还是用上了 PicGo+Gitee 的在线图床，更加方便，也比 GitHub 更加稳定，速度更快。等有时间，出教程【TODO】。</p><h4 id="在-hexo-博客中正常显示-latex-公式">在 hexo 博客中正常显示 latex 公式</h4><p>hexo 竟然对 latex 公式的支持这么不智能。唉，绝了。</p><p>更换 renderer。</p><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> uninstall hexo-renderer-marked</span><br><span class="line"><span class="built_in">npm</span> install hexo-renderer-pandoc</span><br></pre></td></tr></table></figure><p>安装完 <code>hexo-render-pandoc</code> ，它在运行 <code>hexo s</code> 命令时会报错：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ERROR][hexo-renderer-pandoc] pandoc exited with code 9: pandoc: Unknown extension: smart</span><br></pre></td></tr></table></figure><p>这时需要把 <code>node_modules\hexo-renderer-pandoc\index.js</code> 文件中的这个东西</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> args = [ <span class="string">'-f'</span>, <span class="string">'markdown-smart'</span>+extensions, <span class="string">'-t'</span>, <span class="string">'html-smart'</span>, math]</span><br></pre></td></tr></table></figure><p>改成：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> args = [ <span class="string">'-f'</span>, <span class="string">'markdown'</span>+extensions, <span class="string">'-t'</span>, <span class="string">'html'</span>, math]</span><br></pre></td></tr></table></figure><p>参考来源 <a href="https://github.com/wzpan/hexo-renderer-pandoc/issues/36#issuecomment-555134526" target="_blank" rel="noopener">hexo-renderer-pandoc issues36</a></p><h4 id="支持使用-sequences-画时序图">支持使用 sequences 画时序图</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-filter-sequence</span><br></pre></td></tr></table></figure><p>注意，装完后要重新 <code>hexo g</code> 一下才能在本地预览。</p><h4 id="流程图">流程图</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-filter-flowchart</span><br></pre></td></tr></table></figure><p>虽然还没用上，但是先装上。</p>]]></content>
     
     <summary type="html">
     
@@ -370,19 +392,19 @@
     
     </summary>
     
-      <category term="Blog" scheme="http://maneback.github.io/categories/Blog/"/>
+      <category term="Blog" scheme="https://github.com/maneback/maneback.github.io/categories/Blog/"/>
     
     
-      <category term="blog" scheme="http://maneback.github.io/tags/blog/"/>
+      <category term="blog" scheme="https://github.com/maneback/maneback.github.io/tags/blog/"/>
     
-      <category term="hexo" scheme="http://maneback.github.io/tags/hexo/"/>
+      <category term="hexo" scheme="https://github.com/maneback/maneback.github.io/tags/hexo/"/>
     
   </entry>
   
   <entry>
     <title>正则表达式</title>
-    <link href="http://maneback.github.io/2020/regx/"/>
-    <id>http://maneback.github.io/2020/regx/</id>
+    <link href="https://github.com/maneback/maneback.github.io/2020/regx/"/>
+    <id>https://github.com/maneback/maneback.github.io/2020/regx/</id>
     <published>2020-08-14T10:37:17.000Z</published>
     <updated>2021-08-16T10:44:39.721Z</updated>
     
@@ -394,17 +416,17 @@
     
     </summary>
     
-      <category term="技术" scheme="http://maneback.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="https://github.com/maneback/maneback.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="正则表达式" scheme="http://maneback.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+      <category term="正则表达式" scheme="https://github.com/maneback/maneback.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
-    <title>Leetcode -- unique binary search trees II</title>
-    <link href="http://maneback.github.io/2020/unique-binary-search-trees-ii/"/>
-    <id>http://maneback.github.io/2020/unique-binary-search-trees-ii/</id>
+    <title>Leetcode -- Unique Binary Search Trees II</title>
+    <link href="https://github.com/maneback/maneback.github.io/2020/unique-binary-search-trees-ii/"/>
+    <id>https://github.com/maneback/maneback.github.io/2020/unique-binary-search-trees-ii/</id>
     <published>2020-06-16T03:39:50.000Z</published>
     <updated>2021-08-14T03:44:59.962Z</updated>
     
@@ -416,21 +438,21 @@
     
     </summary>
     
-      <category term="Algorithm" scheme="http://maneback.github.io/categories/Algorithm/"/>
+      <category term="Algorithm" scheme="https://github.com/maneback/maneback.github.io/categories/Algorithm/"/>
     
     
-      <category term="Leetcode" scheme="http://maneback.github.io/tags/Leetcode/"/>
+      <category term="Leetcode" scheme="https://github.com/maneback/maneback.github.io/tags/Leetcode/"/>
     
-      <category term="tree" scheme="http://maneback.github.io/tags/tree/"/>
+      <category term="tree" scheme="https://github.com/maneback/maneback.github.io/tags/tree/"/>
     
-      <category term="动态规划" scheme="http://maneback.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+      <category term="动态规划" scheme="https://github.com/maneback/maneback.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
   </entry>
   
   <entry>
-    <title>Leetcode -- binary tree maximum path sum</title>
-    <link href="http://maneback.github.io/2020/binary-tree-maximum-path-sum/"/>
-    <id>http://maneback.github.io/2020/binary-tree-maximum-path-sum/</id>
+    <title>Leetcode -- Binary Tree Maximum Path Sum</title>
+    <link href="https://github.com/maneback/maneback.github.io/2020/binary-tree-maximum-path-sum/"/>
+    <id>https://github.com/maneback/maneback.github.io/2020/binary-tree-maximum-path-sum/</id>
     <published>2020-06-15T13:04:57.000Z</published>
     <updated>2021-03-17T11:03:01.093Z</updated>
     
@@ -443,35 +465,11 @@
     </summary>
     
     
-      <category term="Leetcode" scheme="http://maneback.github.io/tags/Leetcode/"/>
+      <category term="Leetcode" scheme="https://github.com/maneback/maneback.github.io/tags/Leetcode/"/>
     
-      <category term="tree" scheme="http://maneback.github.io/tags/tree/"/>
+      <category term="tree" scheme="https://github.com/maneback/maneback.github.io/tags/tree/"/>
     
-      <category term="BFS&amp;DFS" scheme="http://maneback.github.io/tags/BFS-DFS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode -- subsets</title>
-    <link href="http://maneback.github.io/2020/subset/"/>
-    <id>http://maneback.github.io/2020/subset/</id>
-    <published>2020-06-09T00:38:42.000Z</published>
-    <updated>2021-01-04T13:36:59.329Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>原题链接：<a href="https://leetcode-cn.com/problems/subsets/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/subsets/</a></p><a id="more"></a><h5 id="题目描述">题目描述：</h5><p>给定一组<strong>不含重复元素</strong>的整数数组 <em>nums</em>，返回该数组所有可能的子集（幂集）。</p><p><strong>说明：</strong>解集不能包含重复的子集。</p><h5 id="示例">示例：</h5><blockquote><p>输入: nums = [1,2,3] 输出: [ [3], [1], [2], [1,2,3], [1,3], [2,3], [1,2], []]</p></blockquote><h5 id="解法">解法：</h5><p>本题是非常经典的回溯法解决的题目。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">subset</span><span class="params">(nums)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(first=<span class="number">0</span>, curr=[])</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(curr)==k:</span><br><span class="line">            output.append(curr)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(first, n):</span><br><span class="line">            curr.append(nums[i])</span><br><span class="line">            backtrack(i+<span class="number">1</span>, curr)</span><br><span class="line">            curr.pop()</span><br><span class="line">    output = []</span><br><span class="line">    n = len(nums)</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(n+<span class="number">1</span>):</span><br><span class="line">        backtrack()</span><br><span class="line">    <span class="keyword">return</span> output</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;原题链接：&lt;a href=&quot;https://leetcode-cn.com/problems/subsets/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://leetcode-cn.com/problems/subsets/&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Algorithm" scheme="http://maneback.github.io/categories/Algorithm/"/>
-    
-    
-      <category term="Leetcode" scheme="http://maneback.github.io/tags/Leetcode/"/>
-    
-      <category term="backtrack" scheme="http://maneback.github.io/tags/backtrack/"/>
+      <category term="BFS&amp;DFS" scheme="https://github.com/maneback/maneback.github.io/tags/BFS-DFS/"/>
     
   </entry>
   

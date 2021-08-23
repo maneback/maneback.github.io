@@ -98,11 +98,11 @@
 <meta name="keywords" content="database">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库事务管理与锁">
-<meta property="og:url" content="http://maneback.github.io/2021/db-lock/index.html">
+<meta property="og:url" content="https://github.com/maneback/maneback.github.io/2021/db-lock/index.html">
 <meta property="og:site_name" content="漠·然">
 <meta property="og:description" content="介绍数据库的事务管理，锁以及MVCC">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-08-17T15:07:07.625Z">
+<meta property="og:updated_time" content="2021-08-19T10:19:59.664Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库事务管理与锁">
 <meta name="twitter:description" content="介绍数据库的事务管理，锁以及MVCC">
@@ -114,7 +114,7 @@
 
 
 
-  <link rel="canonical" href="http://maneback.github.io/2021/db-lock/">
+  <link rel="canonical" href="https://github.com/maneback/maneback.github.io/2021/db-lock/">
 
 
 
@@ -329,7 +329,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://maneback.github.io/2021/db-lock/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/maneback/maneback.github.io/2021/db-lock/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Maneback">
@@ -484,6 +484,7 @@
 <p>但是只能锁住表中已有的行，而不能阻止其他事务的插入，无法避免幻读。</p></li>
 <li><p><strong>串行化</strong>：每个事务完全串行化进行。（<strong>避免幻读</strong>）</p></li>
 </ul>
+<p>MySQL 默认的事务隔离级别为 可重复读。</p>
 <p>事务隔离级别和可能存在的问题如下：</p>
 <table>
 <thead>
@@ -543,7 +544,8 @@
 <h4 id="行级锁与表级锁">行级锁与表级锁</h4>
 <ul>
 <li>行级锁： 是粒度最小的一种锁，只会对当前进行操作的行进行加锁，能够大大减少数据库操作的冲突，并发度最高，同时有可能出现死锁。但是加锁慢，开销也最大。</li>
-<li>表级锁：是粒度最大的一种锁，会对当前进行操作的整个数据表进行加锁。但是实现简单，加锁快，消耗资源少。发生锁冲突的概率最高，并发度最低</li>
+<li>表级锁：是粒度最大的一种锁，会对当前进行操作的整个数据表进行加锁。但是实现简单，加锁快，消耗资源少。发生锁冲突的概率最高，并发度最低。</li>
+<li>页面锁：粒度介于行级锁和表级锁之间；会出现死锁，并发度一般。</li>
 </ul>
 <h5 id="二阶段锁">二阶段锁</h5>
 <p>每个事务分两个阶段提出加锁和解锁申请。最初处于加锁阶段，事务根据需要获得锁。一旦该事务释放了锁，它就进入了缩减阶段，并且不能再发出加锁请求。<strong>二阶段封锁并不会保证不发生死锁</strong>（如果请求锁的数据顺序不同）。</p>
@@ -706,7 +708,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -850,7 +852,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">35</span>
+                      
+                    
+                    <span class="site-state-item-count">36</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -878,7 +882,7 @@
                   
                     
                   
-                  <a href="https://github.com/maneback" title="GitHub &rarr; https://github.com/maneback" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  <a href="https://github.com/maneback" title="GitHub &rarr; https://github.com/maneback"><i class="fa fa-fw fa-globe"></i>GitHub</a>
                 </span>
               
             </div>

@@ -98,11 +98,11 @@
 <meta name="keywords" content="blog,hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo 必要的插件">
-<meta property="og:url" content="http://maneback.github.io/2021/installed-plugin/index.html">
+<meta property="og:url" content="https://github.com/maneback/maneback.github.io/2021/installed-plugin/index.html">
 <meta property="og:site_name" content="漠·然">
 <meta property="og:description" content="配置环境要用到的插件。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-01-18T11:54:00.077Z">
+<meta property="og:updated_time" content="2021-08-19T08:27:40.293Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo 必要的插件">
 <meta name="twitter:description" content="配置环境要用到的插件。">
@@ -114,7 +114,7 @@
 
 
 
-  <link rel="canonical" href="http://maneback.github.io/2021/installed-plugin/">
+  <link rel="canonical" href="https://github.com/maneback/maneback.github.io/2021/installed-plugin/">
 
 
 
@@ -329,7 +329,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://maneback.github.io/2021/installed-plugin/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/maneback/maneback.github.io/2021/installed-plugin/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Maneback">
@@ -457,7 +457,8 @@
 <p>先安装插件 <code>hexo-asset-image</code></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli --save</span><br><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
 <p>第一种最简单的方法是使用图床，但是之前折腾过一段时间使用 PicGO +github 图床，但是稳定，后放弃。改用 hexo 自带的资源文件夹。</p>
-<p>第二种方法是启用 assert 资源文件夹，但是这个东西很不智能。当你在 markdown 文档引用图片（不管是相对路径还是绝对路径）都能在文档中显示，但是渲染成 HTML 文件时，就会路径出错了。要用这个新的插件 <code>hexo-asset-image</code> 。</p>
+<p><del>第二种方法是启用 assert 资源文件夹，但是这个东西很不智能。当你在 markdown 文档引用图片（不管是相对路径还是绝对路径）都能在文档中显示，但是渲染成 HTML 文件时，就会路径出错了。要用这个新的插件 <code>hexo-asset-image</code>。</del></p>
+<p>最终还是用上了 PicGo+Gitee 的在线图床，更加方便，也比 GitHub 更加稳定，速度更快。等有时间，出教程【TODO】。</p>
 <h4 id="在-hexo-博客中正常显示-latex-公式">在 hexo 博客中正常显示 latex 公式</h4>
 <p>hexo 竟然对 latex 公式的支持这么不智能。唉，绝了。</p>
 <p>更换 renderer。</p>
@@ -469,6 +470,12 @@
 <p>改成：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> args = [ <span class="string">'-f'</span>, <span class="string">'markdown'</span>+extensions, <span class="string">'-t'</span>, <span class="string">'html'</span>, math]</span><br></pre></td></tr></table></figure>
 <p>参考来源 <a href="https://github.com/wzpan/hexo-renderer-pandoc/issues/36#issuecomment-555134526" target="_blank" rel="noopener">hexo-renderer-pandoc issues36</a></p>
+<h4 id="支持使用-sequences-画时序图">支持使用 sequences 画时序图</h4>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-filter-sequence</span><br></pre></td></tr></table></figure>
+<p>注意，装完后要重新 <code>hexo g</code> 一下才能在本地预览。</p>
+<h4 id="流程图">流程图</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-filter-flowchart</span><br></pre></td></tr></table></figure>
+<p>虽然还没用上，但是先装上。</p>
 
       
     </div>
@@ -595,7 +602,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -739,7 +746,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">35</span>
+                      
+                    
+                    <span class="site-state-item-count">36</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -767,7 +776,7 @@
                   
                     
                   
-                  <a href="https://github.com/maneback" title="GitHub &rarr; https://github.com/maneback" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  <a href="https://github.com/maneback" title="GitHub &rarr; https://github.com/maneback"><i class="fa fa-fw fa-globe"></i>GitHub</a>
                 </span>
               
             </div>
@@ -806,7 +815,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础环境及必要插件"><span class="nav-text">基础环境及必要插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在hexo-博客中插入图片"><span class="nav-text">在hexo 博客中插入图片。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在-hexo-博客中正常显示-latex-公式"><span class="nav-text">在 hexo 博客中正常显示 latex 公式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础环境及必要插件"><span class="nav-text">基础环境及必要插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在hexo-博客中插入图片"><span class="nav-text">在hexo 博客中插入图片。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在-hexo-博客中正常显示-latex-公式"><span class="nav-text">在 hexo 博客中正常显示 latex 公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#支持使用-sequences-画时序图"><span class="nav-text">支持使用 sequences 画时序图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#流程图"><span class="nav-text">流程图</span></a></li></ol></div>
             
 
           </div>
