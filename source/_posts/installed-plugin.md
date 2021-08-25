@@ -28,8 +28,6 @@ npm install hexo-generator-sitemap@1 --save
 
 
 
-
-
 ####  在hexo 博客中插入图片。
 
 先安装插件 `hexo-asset-image`
@@ -40,11 +38,11 @@ npm install -g hexo-cli --save
 npm install https://github.com/CodeFalling/hexo-asset-image --save
 ```
 
-
-
 第一种最简单的方法是使用图床，但是之前折腾过一段时间使用 PicGO +github 图床，但是稳定，后放弃。改用 hexo 自带的资源文件夹。
 
-第二种方法是启用 assert 资源文件夹，但是这个东西很不智能。当你在 markdown 文档引用图片（不管是相对路径还是绝对路径）都能在文档中显示，但是渲染成 HTML 文件时，就会路径出错了。要用这个新的插件  `hexo-asset-image` 。
+~~第二种方法是启用 assert 资源文件夹，但是这个东西很不智能。当你在 markdown 文档引用图片（不管是相对路径还是绝对路径）都能在文档中显示，但是渲染成 HTML 文件时，就会路径出错了。要用这个新的插件  `hexo-asset-image`。~~
+
+最终还是用上了 PicGo+Gitee 的在线图床，更加方便，也比 GitHub 更加稳定，速度更快。等有时间，出教程【TODO】。
 
 #### 在 hexo 博客中正常显示 latex 公式
 
@@ -76,3 +74,20 @@ var args = [ '-f', 'markdown'+extensions, '-t', 'html', math]
 ```
 
 参考来源  [hexo-renderer-pandoc issues36](https://github.com/wzpan/hexo-renderer-pandoc/issues/36#issuecomment-555134526)
+
+#### 支持使用 sequences 画时序图
+
+```sh
+npm install --save hexo-filter-sequence
+```
+
+注意，装完后要重新 `hexo g ` 一下才能在本地预览。
+
+#### 流程图
+
+```shell
+npm install --save hexo-filter-flowchart
+```
+
+虽然还没用上，但是先装上。
+

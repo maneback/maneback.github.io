@@ -25,6 +25,8 @@ Java的集合设计有两个特点：一是支持泛型，可以限制插入到�
 
 需要实现`equals` 方法。
 
+`ArrayList `基于动态数组实现，支持随机访问。`LinkedList`：基于双向链表实现，只能顺序访问，但是可以快速地在链表中间插⼊和删除元素。
+
 ```java
 List<Integer> array = new ArrayList<Integer>();
 List<Integer> array2 = new LinkedList<Integer>();
@@ -39,7 +41,8 @@ int n = array.size();
 ### map
 
 - `HashMap` 的 `key`必须实现`equals()` 和 `hashCode()` 方法。
-- 有序 map 必须实现`Comparable` 接口；或者在声明时传入一个`Comparator` 接口，里面声明`compare` 函数，
+- 有序 map 必须实现`Comparable` 接口；或者在声明时传入一个`Comparator` 接口，里面声明`compare` 函数
+- 无序的 `HashMap`基于哈希表实现， 有序的  `TreeMap`基于红⿊树实现 。
 
 ```java
 //无序map
@@ -64,9 +67,9 @@ Map<Integer, Integer> mapper1 = new HashMap<Integer, Integer>();
 ### Set 
 
 - 只会存储 `key` 的值。
-
 - 需要正确实现`equals()`和`hashCode()`方法。
-- 有序的Set还要实现`Comparable` 接口； 或者在声明时传入一个`Comparator` 接口，里面声明`compare` 函数，
+- 有序的Set还要实现`Comparable` 接口； 或者在声明时传入一个`Comparator` 接口，里面声明`compare` 函数
+- `HashSet `基于哈希表实现， `TreeSet `基于红黑树实现。
 
 ```java
 //无序Set
@@ -106,6 +109,7 @@ que.peel();
 ### PriorityQueue
 
 - 放入的元素需要实现`Comparable`，或者提供一个`Comparator`对象来判断两个元素的顺序。
+- PriorityQueue：基于堆结构实现
 
 ```java
 // 实现类与接口分离
@@ -124,7 +128,7 @@ que.peek();
 
 ### Deque
 
-- deque 是用 LinkedList 实现的接口，赋予了不同的功能。
+- deque 是用 `LinkedList `实现的接口，赋予了不同的功能。
 
 ```java
 Deque<int> que = new LinkedList<int>();
@@ -142,7 +146,7 @@ que.peekLast(); //peekLast
 
 ### Stack
 
-- stack 是用Deque接口来模拟的，原来的stack被占用。
+- stack 是用`Deque`接口来模拟的，原来的stack被不推荐使用。
 
 ```java
 Deque<Character> stack = new LinkedList<>();
@@ -160,7 +164,7 @@ stack.peek()
 
 `List`， `Queue`， `Set `类
 
-<img src="https://gitee.com/MyTypora/typorapic/raw/master/img/20210816132257.png" alt="image-20210816132257321" style="zoom:80%;" />
+<img src="https://gitee.com/MyTypora/typorapic/raw/master/img/20210824100823.png" alt="image-20210824100823589" style="zoom:80%;" />
 
 --------
 

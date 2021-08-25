@@ -3,7 +3,7 @@ title: select/poll/epoll的区别
 date: 2021-08-16 16:59:52
 tags:
   - Linux
-categories: 技术 
+categories: 基础知识 
 description: select/poll/epoll的区别
 ---
 

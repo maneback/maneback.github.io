@@ -3,7 +3,7 @@ title: 正则表达式
 date: 2020-08-14 18:37:17
 tags: 
   - 正则表达式
-categories: 技术
+categories: 基础知识
 description: 正则表达式
 ---
 
