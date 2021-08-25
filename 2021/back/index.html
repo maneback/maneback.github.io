@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next pisces" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="回溯算法">
+<meta name="keywords" content="Leetcode,回溯法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="回溯算法（一）">
+<meta property="og:url" content="https://github.com/maneback/maneback.github.io/2021/back/index.html">
+<meta property="og:site_name" content="漠·然">
+<meta property="og:description" content="回溯算法">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210825141431.png">
+<meta property="og:updated_time" content="2021-08-25T07:30:17.173Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="回溯算法（一）">
+<meta name="twitter:description" content="回溯算法">
+<meta name="twitter:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210825141431.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="漠·然" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://github.com/maneback/maneback.github.io/2021/back/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>回溯算法（一） | 漠·然</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">漠·然</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Maneback's Blog</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>主页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/maneback/maneback.github.io/2021/back/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Maneback">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="漠·然">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">回溯算法（一）
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-08-25 13:29:43" itemprop="dateCreated datePublished" datetime="2021-08-25T13:29:43+08:00">2021-08-25</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2021/back/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2021/back/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2021/back/" class="leancloud_visitors" data-flag-title="回溯算法（一）">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+            <div class="post-description">回溯算法</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="回溯法介绍">回溯法介绍</h4>
+<p>最近在刷题的时候，发现之前手拿把攥的 回溯算法 下手的时候都经常有一点点疑惑和迟疑了。可能是太久没看它了，所以现在再来总结一下吧。</p>
+<p>回溯算法可以理解为一个 n 叉树的查找，再加上剪枝的过程（也可能不存在剪枝）。在每一层中试探所有对可能性，走到叶子节点后，再回溯到父节点，试探下一个可能。因此如果理解了树的三种遍历过程，就能更容易地理解回溯法了。</p>
+<p>回溯法一定是与<strong>递归</strong>紧密联系的，这样的话，就可以简化一下，在每一次递归中，只需要考虑当前步骤可选的操作以及如何进行到下一步，判断回溯是否结束。</p>
+<p>回溯法的框架如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">back</span><span class="params">(step, trace, choices, n)</span>:</span></span><br><span class="line">    <span class="keyword">if</span>(step==n)</span><br><span class="line">        ans.append([_ <span class="keyword">for</span> _ <span class="keyword">in</span> trace])</span><br><span class="line">        <span class="keyword">return</span>;// 探索到根节点, n 表示最大深度</span><br><span class="line">    </span><br><span class="line">    // 尝试每个可行的选择，可能要对可行性进行判断。</span><br><span class="line">    <span class="keyword">for</span> ch <span class="keyword">in</span> choices:</span><br><span class="line">        traces.append(ch)//加入选择</span><br><span class="line">        back(step+<span class="number">1</span>, trace, choices, n)</span><br><span class="line">        traces.pop() // 回溯回来，撤销选择</span><br><span class="line"></span><br><span class="line">ans = []</span><br><span class="line">nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">trace</span><br><span class="line">back(<span class="number">0</span>, trace, nums, len(nums))</span><br></pre></td></tr></table></figure>
+<h4 id="例题1-全排列">例题1 全排列</h4>
+<p>链接： <a href="https://leetcode-cn.com/problems/permutations/*" target="_blank" rel="noopener">Leetcode-46</a></p>
+<blockquote>
+<p>给定一个<strong>不含重复数字</strong>的数组 <code>nums</code> ，返回其 <strong>所有可能的全排列</strong> 。你可以 <strong>按任意顺序</strong> 返回答案。</p>
+</blockquote>
+<h5 id="回溯法解题思路">回溯法解题思路</h5>
+<p>把问题套在我们的回溯法上，对全排列来讲假设数组长度为 <code>n</code>，那么数组的每个位置便为 <code>step</code>。即在每一步中，是给数组中的第<code>step</code>个位置安排数字，前面被安排的 <code>step-1</code> 个数字便为<code>trace</code>。</p>
+<p>这里不用显式地记录 <code>step</code> 可以直接用 <code>trace</code> 的长度来表示。同时还需判断当前数字，是否已经在 <code>trace</code> 中了。</p>
+<h5 id="样例代码">样例代码</h5>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">permute</span><span class="params">(self, nums: List[int])</span> -&gt; List[List[int]]:</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">back</span><span class="params">(trace, n, nums)</span>:</span></span><br><span class="line">            <span class="keyword">if</span>(len(traces)==n):</span><br><span class="line">                res.append([i <span class="keyword">for</span> i <span class="keyword">in</span> trace])</span><br><span class="line">            <span class="keyword">for</span> ch <span class="keyword">in</span> nums:</span><br><span class="line">                <span class="keyword">if</span> ch <span class="keyword">not</span> <span class="keyword">in</span> trace:</span><br><span class="line">                    trace.append(trace)</span><br><span class="line">                    back(trace, n, nums)</span><br><span class="line">                    trace.pop()</span><br><span class="line">            n = len(nums)</span><br><span class="line">            back([], n, nums)</span><br><span class="line">            <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<h4 id="例题2-全排列ii">例题2 全排列II</h4>
+<p>链接 <a href="https://leetcode-cn.com/problems/permutations-ii/" target="_blank" rel="noopener">Leetcode-47</a></p>
+<blockquote>
+<p>给定一个可包含重复数字的序列 <code>nums</code> ，<strong>按任意顺序</strong> 返回所有不重复的全排列。</p>
+</blockquote>
+<h5 id="回溯法思路">回溯法思路</h5>
+<p>这道题与上一个题的区别在于，数组中含有重复的数组，而在排列上，相同数字又是不影响排列的。如数组<code>[3,3]</code>， 其只有一个排列 <code>[3,3]</code>，而不把它认为成是两个排列。那么我们下一步要解决的重要问题在于<strong>如何判断重复</strong>以及<strong>如何去重</strong>。</p>
+<p>方法便是，把数组进行排序，这样的话，所有相同的数字便挨在了一起，这样的话只要判断<code>ch</code> 是否与上一个数字相同，以及上一个数字的使用状态。我们用<code>num</code> 表示排序后的数组，用 <code>used</code> 记录每个数字的使用情况。</p>
+<p>如果 <code>num[i]</code> 与 <code>num[i-1]</code> <strong>相等</strong>，且 <code>num[i-1]</code> <strong>未被使用</strong>的话，那么便跳过当前数字 <code>num[i]</code>。这句话便是去重的关键，可能不太好理解。我们来画个树理解一下，以数组 <code>[1,1,2,3]</code> 为例。</p>
+<p>节点里面的数组表示<code>used</code>数组，直线表示前进过程，曲线表示回溯过程。</p>
+<p>看一下第 1 层的黄色节点。表示我们即将选择数组中的第二个 <code>1</code>。而我们怎么判断它是与前面那个数字重复的呢？只有在<strong>前一个节点刚刚完成回溯的时候</strong>，才会出 现 <code>num[i-1]</code> 未被使用的情况，这时候如果我们继续探索 <code>num[i]</code> 便是一个重复的过程。</p>
+<p>也就是说这样就能保证每个重复出现的数字在<strong>每一层</strong>中只会被选择一次，而在不同的层，它们是没有影响的，因为<code>used[i-1]=1</code> 时，<code>num[i-1]</code>一定是在上一层中添加的，而不是在这一层。</p>
+<figure>
+<img src="https://gitee.com/MyTypora/typorapic/raw/master/img/20210825141431.png" alt="image-20210825141431597"><figcaption aria-hidden="true">image-20210825141431597</figcaption>
+</figure>
+<h5 id="样例代码-1">样例代码</h5>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">permuteUnique</span><span class="params">(self, nums: List[int])</span> -&gt; List[List[int]]:</span></span><br><span class="line">        self.res = []</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">back</span><span class="params">(trace, nums, used)</span>:</span></span><br><span class="line">            <span class="keyword">if</span>(len(traces)==len(nums)):</span><br><span class="line">                self.res.append([i <span class="keyword">for</span> i <span class="keyword">in</span> trace])</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">           	<span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">                <span class="keyword">if</span> i&gt;<span class="number">0</span> <span class="keyword">and</span> nums[i]==nums[i<span class="number">-1</span>] <span class="keyword">and</span> <span class="keyword">not</span> used[i<span class="number">-1</span>]:</span><br><span class="line">                    <span class="keyword">continue</span> <span class="comment">## 去重</span></span><br><span class="line">                    </span><br><span class="line">                    <span class="keyword">if</span> <span class="keyword">not</span> used[i]:</span><br><span class="line">                        used[i]= <span class="keyword">True</span></span><br><span class="line">                        trace.append(nums[i])</span><br><span class="line">                        back(trace, nums, used)</span><br><span class="line">                        used[i] = <span class="keyword">False</span></span><br><span class="line">                        trace.pop()</span><br><span class="line">            </span><br><span class="line">        nums.sort()</span><br><span class="line">       	used = [<span class="keyword">False</span>]*len(nums)</span><br><span class="line">        back([], nums, used)</span><br><span class="line">        <span class="keyword">return</span> self.res</span><br></pre></td></tr></table></figure>
+<h4 id="例题3-子集i">例题3 子集I</h4>
+<p>链接 <a href="https://leetcode-cn.com/problems/subsets/" target="_blank" rel="noopener">Leetcode-78</a></p>
+<blockquote>
+<p>给你一个整数数组 <code>nums</code> ，数组中的元素 <strong>互不相同</strong> 。返回该数组所有可能的子集（幂集）。</p>
+<p>解集 <strong>不能</strong> 包含重复的子集。你可以按 <strong>任意顺序</strong> 返回解集。</p>
+</blockquote>
+<p>子集和全排列的区别在于，全排列仅在叶子结点更新要返回的答案集合，而子集要在每个节点都要更新答案集合（每个节点都是一个子集）。</p>
+<p>还有就是，元素添加的顺序是不重要的，因此我们每次的选择，不是从头开始选，而是从当前位置 <code>step</code> 以后开始选，保证子集中的元素是按照其在原数组中的顺序被添加到其中的。如<code>[1,2,3,4,5]</code>。当我们回溯到 <code>3</code> 的时候，后续只考虑 添加 <code>4,5</code>。而不能乱序添加，这样的话，结果中就不会出现重复子集了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">subsets</span><span class="params">(self, nums: List[int])</span> -&gt; List[List[int]]:</span></span><br><span class="line">        self.res = []</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">back</span><span class="params">(step, trace, nums, used)</span>:</span></span><br><span class="line">           	self.res.append(trace)</span><br><span class="line">            <span class="keyword">if</span> len(trace)&gt;=len(nums):</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span> ch <span class="keyword">in</span> range(idx, len(nums)):</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> used[ch]:</span><br><span class="line">                    used[ch] = <span class="keyword">True</span></span><br><span class="line">                    trace.append(nums[ch])</span><br><span class="line">                    back(ch+<span class="number">1</span>, trace, nums, used) <span class="comment"># 下一层只能添加，ch 之后的数字</span></span><br><span class="line">                    used[ch] = <span class="keyword">False</span></span><br><span class="line">                    trace.pop()</span><br><span class="line">		n = len(nums)</span><br><span class="line">        used = [<span class="keyword">False</span>]*n</span><br><span class="line">        back(<span class="number">0</span>, [], nums, used)</span><br><span class="line">        <span class="keyword">return</span> self.res</span><br></pre></td></tr></table></figure>
+<h4 id="例题4-子集ii">例题4 子集II</h4>
+<p>链接 <a href="https://leetcode-cn.com/problems/subsets-ii/" target="_blank" rel="noopener">Leetcode-90</a></p>
+<blockquote>
+<p>给你一个整数数组 nums ，其中可能包含重复元素，请你返回该数组所有可能的子集（幂集）。</p>
+<p>解集 不能 包含重复的子集。返回的解集中，子集可以按 任意顺序 排列。</p>
+</blockquote>
+<p>把例题2 和 例题3 结合一下，就能得这个题目的答案了。同样是<strong>子集</strong> + <strong>去重</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">subsetsWithDup</span><span class="params">(self, nums: List[int])</span> -&gt; List[List[int]]:</span></span><br><span class="line">        self.res = []</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">bp</span><span class="params">(trace, nums, idx)</span>:</span></span><br><span class="line">            self.res.append([i <span class="keyword">for</span> i <span class="keyword">in</span> trace])</span><br><span class="line">            <span class="keyword">if</span> idx&gt;=len(nums):</span><br><span class="line">                <span class="keyword">return</span> </span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(idx, len(nums)):</span><br><span class="line">                <span class="keyword">if</span> i&gt;<span class="number">0</span> <span class="keyword">and</span> nums[i]==nums[i<span class="number">-1</span>] <span class="keyword">and</span> <span class="keyword">not</span> used[i<span class="number">-1</span>]: <span class="comment"># 去重</span></span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                </span><br><span class="line">                used[i] = <span class="keyword">True</span></span><br><span class="line">                trace.append(nums[i])</span><br><span class="line">                bp(trace, nums, i+<span class="number">1</span>)  <span class="comment"># 下一层只添加 i 之后的数字</span></span><br><span class="line">                used[i] = <span class="keyword">False</span></span><br><span class="line">                trace.pop()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        nums.sort()</span><br><span class="line">        used = [<span class="keyword">False</span>]*len(nums)</span><br><span class="line">        bp([], nums, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> self.res</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
+          
+            <a href="/tags/回溯法/" rel="tag"># 回溯法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/select-poll-epoll/" rel="next" title="Select/poll/epoll的区别">
+                <i class="fa fa-chevron-left"></i> Select/poll/epoll的区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/back2/" rel="prev" title="回溯算法（二）">
+                回溯算法（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Maneback">
+            
+              <p class="site-author-name" itemprop="name">Maneback</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">59</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/maneback" title="GitHub &rarr; https://github.com/maneback"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#回溯法介绍"><span class="nav-text">回溯法介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例题1-全排列"><span class="nav-text">例题1 全排列</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#回溯法解题思路"><span class="nav-text">回溯法解题思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#样例代码"><span class="nav-text">样例代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例题2-全排列ii"><span class="nav-text">例题2 全排列II</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#回溯法思路"><span class="nav-text">回溯法思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#样例代码-1"><span class="nav-text">样例代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例题3-子集i"><span class="nav-text">例题3 子集I</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例题4-子集ii"><span class="nav-text">例题4 子集II</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-maneback"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maneback</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'WeS1M7bQHLf8p4i9AQ7BMhuN-gzGzoHsz',
+    appKey: '6BpDUuBiRAFrPKj7a2h51Dbi',
+    placeholder: 'what do you want to say',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
