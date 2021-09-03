@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next pisces" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="最长回文子串 回文字符串的个数 最长回文子序列 分割回文串">
+<meta name="keywords" content="动态规划,回文串">
+<meta property="og:type" content="article">
+<meta property="og:title" content="回文串">
+<meta property="og:url" content="https://github.com/maneback/maneback.github.io/2021/palindrome/index.html">
+<meta property="og:site_name" content="漠·然">
+<meta property="og:description" content="最长回文子串 回文字符串的个数 最长回文子序列 分割回文串">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210902165025.png">
+<meta property="og:updated_time" content="2021-09-03T11:38:43.459Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="回文串">
+<meta name="twitter:description" content="最长回文子串 回文字符串的个数 最长回文子序列 分割回文串">
+<meta name="twitter:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210902165025.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="漠·然" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://github.com/maneback/maneback.github.io/2021/palindrome/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>回文串 | 漠·然</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">漠·然</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Maneback's Blog</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>主页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/maneback/maneback.github.io/2021/palindrome/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Maneback">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="漠·然">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">回文串
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-08-29 19:32:55" itemprop="dateCreated datePublished" datetime="2021-08-29T19:32:55+08:00">2021-08-29</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2021/palindrome/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2021/palindrome/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2021/palindrome/" class="leancloud_visitors" data-flag-title="回文串">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最长回文子串</p>
+<p>回文字符串的个数</p>
+<p>最长回文子序列</p>
+<p>分割回文串</p>
+<a id="more"></a>
+<h4 id="最长回文子串">最长回文子串</h4>
+<p>题目链接： <a href="https://leetcode-cn.com/problems/longest-palindromic-substring/" target="_blank" rel="noopener">LeetCode-5</a></p>
+<h5 id="题目描述">题目描述</h5>
+<blockquote>
+<p>给你一个字符串 <code>s</code>，找到 <code>s</code> 中最长的回文子串。</p>
+</blockquote>
+<h5 id="分析">分析</h5>
+<p>题目描述很简单，也很直白。</p>
+<p>一般来讲，字符串，尤其是回文字符串的问题，都会与动态规划相关，此题也不例外。</p>
+<p>首先，先考虑如何用动态规划，找出最长回文子串的<strong>长度</strong>，即先不要想子串到底是什么。</p>
+<p>使用动态规划的关键则在于，如何找到最优子结构。</p>
+<p>对于一个字符串（长度大于2）来讲，如果它是一个回文串，那么其去掉首尾的两个字母后仍是一个回文串。而边界条件即为长度为<code>1</code> 或者 <code>2</code> 的情况。</p>
+<p>我们用一个布尔类型的二维数组 <code>dp[i, j]</code> 表示 子串 <code>s(i,j)</code> 是否是一个回文串，那么可以得到如下的状态转移方程： <span class="math display">\[
+dp[i,j] = dp[i+1,j-1]\and S_i==S_j
+\]</span> 在边界条件中，对于任何一个长度为1的字符串，都可以认为它是一个回文串；对于任何一个长度为2的字符串，只要两个字母相等，它就是一个回文串，即边界条件为： <span class="math display">\[
+\cases{dp[i,i]=true\\dp[i,i+1]=(S_i==S_{i+1})}
+\]</span></p>
+<p>同时考虑到 <code>i,j</code> 的大小关系一定有 <code>i&lt;=j</code>， 因此我们只需要来填写dp数组的上半部分。</p>
+<p>然后再考虑如何从边界条件开始扩展：可以按照字符串的长度来扩展，即每次不断增加字符串的长度。</p>
+<p>这样的话，每找到一个子串，就可以记录它的长度和起始位置，最终根据起始位置和长度返回子串即可。</p>
+<h5 id="代码">代码</h5>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span>  String <span class="title">longestPalindrome</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = s.length();</span><br><span class="line">    <span class="keyword">if</span>(n&lt;<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> begin = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">boolean</span>[][] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[n][n];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">        dp[i][i] = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">char</span>[] strArray = s.toCharArray();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">2</span>; l&lt;=n; l++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> left=<span class="number">0</span>; left&lt;n; left++)&#123;</span><br><span class="line">            <span class="keyword">int</span> right = left + l -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(right&gt;=n)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(strArray[left]!=strArray[right])&#123;</span><br><span class="line">                dp[left][right] = <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(l==<span class="number">2</span>)&#123;</span><br><span class="line">                    dp[left][right] = <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    dp[left][right] = dp[left+<span class="number">1</span>][right-<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(dp[left][right] &amp;&amp; right-left+<span class="number">1</span>&gt;res)&#123;</span><br><span class="line">                res = right-left+<span class="number">1</span>;</span><br><span class="line">                begin = left;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s.substring(begin, begin+res);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第二种遍历方法：</li>
+</ul>
+<p>仔细观察状态转移方程，发现每一个 <code>dp[i,j]</code> 只会用到在矩阵中其左下方位置的元素，所以，我们还可以倒序遍历 <code>left</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span>  String <span class="title">longestPalindrome</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = s.length();</span><br><span class="line">    <span class="keyword">if</span>(n&lt;<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> begin = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">boolean</span>[][] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[n][n];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">        dp[i][i] = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">char</span>[] strArray = s.toCharArray();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> left=n-<span class="number">1</span>; left&gt;=<span class="number">0</span>; left--)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> right=left+<span class="number">1</span>; right&lt;n; right++)&#123;</span><br><span class="line">            dp[left][right] = dp[left+<span class="number">1</span>][right-<span class="number">1</span>]&amp;&amp;(strArray[left]==strArray[right]);</span><br><span class="line">            <span class="keyword">if</span>(dp[left][right] &amp;&amp; right-left+<span class="number">1</span>&gt;res)&#123;</span><br><span class="line">                res = right-left+<span class="number">1</span>;</span><br><span class="line">                begin = left;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s.substring(begin, begin+res);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>其实这两种原理是一样的，都是字符串长度由短向长的遍历。</p>
+<p>第一种遍历是以<strong>子串长度</strong>优先，先遍历所有短的字符串，再遍历长的；第二种是从以<strong>子串起始位置</strong>优先，从结尾处开始遍历。画个图表示就是：</p>
+<p><img src="https://gitee.com/MyTypora/typorapic/raw/master/img/20210902165025.png"></p>
+<h4 id="回文字符串的个数">回文字符串的个数</h4>
+<p>题目链接：</p>
+<ul>
+<li><a href="https://leetcode-cn.com/problems/palindromic-substrings/" target="_blank" rel="noopener">LeetCode-647</a></li>
+<li><a href="https://leetcode-cn.com/problems/a7VOhD/" target="_blank" rel="noopener">Offer II-020</a></li>
+</ul>
+<h5 id="题目描述-1">题目描述</h5>
+<blockquote>
+<p>给定一个字符串 <code>s</code> ，请计算这个字符串中有多少个回文子字符串。</p>
+<p>具有不同开始位置或结束位置的子串，即使是由相同的字符组成，也会被视作不同的子串。</p>
+</blockquote>
+<h5 id="题目分析">题目分析</h5>
+<p>按照上一个题的思路，使用动态规划找到所有的回文字符串。然后计数。</p>
+<h5 id="代码-1">代码</h5>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countSubstrings</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = s.length();</span><br><span class="line">    <span class="keyword">boolean</span>[][] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[n][n];</span><br><span class="line">    <span class="keyword">int</span> ans = n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">        dp[i][i] = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> left=n-<span class="number">1</span>; left&gt;=<span class="number">0</span>; left--)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> right=left+<span class="number">1</span>; right&lt;n; right++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(right-left==<span class="number">1</span>)&#123;</span><br><span class="line">                dp[left][right] = (s.charAt(left)==s.charAt(right));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                dp[left][right] = dp[left+<span class="number">1</span>][right-<span class="number">1</span>]&amp;&amp;(s.charAt(left)==s.charAt(right))</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(dp[left][right])&#123;</span><br><span class="line">                ans++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="最长回文子序列">最长回文子序列</h4>
+<p>题目链接： <a href="https://leetcode-cn.com/problems/longest-palindromic-subsequence/" target="_blank" rel="noopener">LeetCode-516</a></p>
+<h5 id="题目描述-2">题目描述</h5>
+<blockquote>
+<p>给你一个字符串 s ，找出其中最长的回文子序列，并返回该序列的长度。</p>
+<p>子序列定义为：不改变剩余字符顺序的情况下，删除某些字符或者不删除任何字符形成的一个序列。</p>
+</blockquote>
+<h5 id="分析-1">分析</h5>
+<p>题目描述如上面那个题一样简单。</p>
+<p>仍然利用上面动态规划的思路。上面我们用一个布尔类型的数组来表示一个字符串是否为回文子串。但是子序列与子串的区别在于，子序列可以是不连续的，什么意思呢？</p>
+<p>举个例子：</p>
+<ul>
+<li>在判断回文子串<code>s(i,j)</code> 时，一定是与字符<span class="math inline">\(S_{i+1}\)</span> 和 <span class="math inline">\(S_{j-1}\)</span>完全相关，回文子串中一定会包括这两个字符。</li>
+<li>但是在判断回文子序列<code>s(i,j)</code> 时，子序列中不一定非得要包含<span class="math inline">\(S_{i+1}\)</span> 和 <span class="math inline">\(S_{j-1}\)</span> 这两个字符，可能只包含其中一个，或是一个都没有。</li>
+</ul>
+<p>也就是说，我们无法用一个布尔类型的数组来记录，这无法给我们提供一个完整的信息。</p>
+<p>既然布尔类型的不够用，就直接记录长度呗。注意这里又有一个不同了：</p>
+<ul>
+<li>在构造回文子串时，两个字符<span class="math inline">\(S_{i}\)</span> 和 <span class="math inline">\(S_{j}\)</span> 一定是同时添加的，如果它们两个不相等，则无法构成回文串。</li>
+<li>在构造回文子序列时，如果它们两个不相等，我们还可以尝试添加其中一个。</li>
+</ul>
+<p>状态转移方程如下： <span class="math display">\[
+dp[i,j] = \cases{dp[i+1][j-1]+2, S_i==S_j\\
+                \max(dp[i][j-1], dp[i+1][j]), S_i\neq S_j)}
+\]</span> 以及边界条件仍然是长度为1 的子串 <span class="math display">\[
+dp[i,i]=1
+\]</span> 由于状态转移方程都是从长度较短的子序列向长度较长的子序列转移，因此需要注意动态规划的循环顺序。</p>
+<p>最终得到<code>dp[0][n-1]</code>即为字符串的最长回文子序列的长度。</p>
+<h5 id="代码-2">代码</h5>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestPalindromeSubseq</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = s.length();</span><br><span class="line">    <span class="keyword">if</span>(n&lt;<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">char</span>[] charArray = s.toCharArray();</span><br><span class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">        dp[i][i] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> left=n-<span class="number">2</span>; left&gt;=<span class="number">0</span>; left--)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> right=left+<span class="number">1</span>; right&lt;n; right++)&#123;</span><br><span class="line">            <span class="keyword">if</span>( charArray[left]==charArray[right])&#123;</span><br><span class="line">                dp[left][right] =dp[left+<span class="number">1</span>][right-<span class="number">1</span>]+<span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                dp[left][right] = Math.max(dp[left+<span class="number">1</span>][right], dp[left][right-<span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">0</span>][n-<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="分割回文串">分割回文串</h4>
+<p>题目链接： <a href="https://leetcode-cn.com/problems/palindrome-partitioning/" target="_blank" rel="noopener">LeetCode-131</a></p>
+<h5 id="题目描述-3">题目描述</h5>
+<blockquote>
+<p>给你一个字符串 <code>s</code>，请你将 <code>s</code> 分割成一些子串，使每个子串都是 <strong>回文串</strong> 。返回 <code>s</code> 所有可能的分割方案。</p>
+<p><strong>回文串</strong> 是正着读和反着读都一样的字符串。</p>
+</blockquote>
+<h5 id="题目分析-1">题目分析</h5>
+<p>首先，在第一个题目中，已经知道了如何用动态规划算法，判断并记录字符串中任意一个子串是否为回文串，得到这个之后，只要再用回溯法来尝试每一个可行的分割位置就行了。</p>
+<p>再来回忆一下<a href="">回溯法</a>。每个可能的回文串结尾的位置，都是一个可被选的分割点。</p>
+<h5 id="代码-3">代码</h5>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span>[][] dp;</span><br><span class="line">    List&lt;List&lt;String&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;List&lt;String&gt;&gt;();</span><br><span class="line">    List&lt;String&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;String&gt;&gt; partition(String s) &#123;</span><br><span class="line">        n = s.length();</span><br><span class="line">        dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[n][n];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">            dp[i][i] = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> l=n-<span class="number">1</span>; l&gt;=<span class="number">0</span>; l--)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> r=l+<span class="number">1</span>; r&lt;n; r++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(r-l==<span class="number">1</span>)&#123;</span><br><span class="line">                    dp[l][r] = (s.charAt(l)==s.charAt(r));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">	                dp[l][r] = dp[l+<span class="number">1</span>][r-<span class="number">1</span>]&amp;&amp;(s.charAt(l)==s.charAt(r));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        dfs(s, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(String s, <span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(index==n)&#123;</span><br><span class="line">            res.add(<span class="keyword">new</span> ArrayList&lt;String&gt;(ans));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> ch=index; ch&lt;n; ch++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(dp[index][ch])&#123;</span><br><span class="line">                ans.add(s.substring(index, ch+<span class="number">1</span>));</span><br><span class="line">                dfs(s, ch+<span class="number">1</span>);</span><br><span class="line">                ans.remove(ans.size()-<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="分割回文串-ii">分割回文串 II</h4>
+<p>题目链接：<a href="https://leetcode-cn.com/problems/palindrome-partitioning-ii/" target="_blank" rel="noopener">LeetCode-132</a></p>
+<h5 id="题目描述-4">题目描述</h5>
+<blockquote>
+<p>给你一个字符串 <code>s</code>，请你将 <code>s</code> 分割成一些子串，使每个子串都是回文。</p>
+<p>返回符合要求的 <strong>最少分割次数</strong> 。</p>
+</blockquote>
+<h5 id="题目分析-2">题目分析</h5>
+<p>与第一个分割回文串的问题相同，第一步也是找出并记录字符串的回文子串供第二步使用。</p>
+<p>其实对于第二步，也可以采用上述的方法，找出所有可能的分割方案，然后选择一个分割次数最小的。但是这么做太麻烦了。</p>
+<p>第二步中仍使用动态规划来求解，最少分割次数。</p>
+<p>设<code>dp[i]</code> 表示字符串<span class="math inline">\(S_0...S_i\)</span> 的最少分割次数，假设已经已知了<code>dp[i]</code> 的分割方案，对于任意的<code>j&gt;i</code>，如果<span class="math inline">\(S_{i+1}...S_j\)</span> 是一个回文子串，那么 <span class="math inline">\(S_0...S_j\)</span> 的分割方案，可以在 <span class="math inline">\(S_0...S_i\)</span> 分割的基础上，再在 <span class="math inline">\(S_i, S_{i+1}\)</span> 两个字符间多一次分割，即： <span class="math display">\[
+dp[j] = \min_{i&lt;j}\{dp[i]\}+1, \mbox{ if } S_{i+1}...S_j \mbox{ is Palindrome}
+\]</span></p>
+<h5 id="代码-4">代码</h5>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minCut</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = s.length();</span><br><span class="line">    <span class="keyword">boolean</span>[][] dp =  <span class="keyword">new</span> <span class="keyword">boolean</span>[n][n];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">        dp[i][i] = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">char</span>[] strArray = s.toCharArray();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> left=n-<span class="number">1</span>; left&gt;=<span class="number">0</span>; left--)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> right=left+<span class="number">1</span>; right&lt;n; right++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(right-left==<span class="number">1</span>)&#123;</span><br><span class="line">                dp[left][right] = (strArray[left]==strArray[right]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                dp[left][right] = dp[left+<span class="number">1</span>][right-<span class="number">1</span>]&amp;&amp;(strArray[left]==strArray[right]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span>[] f = <span class="keyword">new</span> <span class="keyword">int</span> [n];</span><br><span class="line">    f[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">        f[i] = n+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(dp[<span class="number">0</span>][i])&#123;</span><br><span class="line">            f[i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;i; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(dp[j+<span class="number">1</span>][i])&#123;</span><br><span class="line">                    f[i] = Math.min(f[j]+<span class="number">1</span>, f[i]);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> f[n-<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="分割回文串-iii">分割回文串 III</h4>
+<p>题目链接：<a href="https://leetcode-cn.com/problems/palindrome-partitioning-iii/" target="_blank" rel="noopener">LeetCode-1278</a></p>
+<h5 id="题目描述-5">题目描述</h5>
+<blockquote>
+<p>给你一个由小写字母组成的字符串 <code>s</code>，和一个整数 <code>k</code>。</p>
+<p>请你按下面的要求分割字符串：</p>
+<ul>
+<li>首先，你可以将 <code>s</code> 中的部分字符修改为其他的小写英文字母。</li>
+<li>接着，你需要把 <code>s</code> 分割成 <code>k</code> 个非空且不相交的子串，并且每个子串都是回文串。</li>
+</ul>
+<p>请返回以这种方式分割字符串所需修改的最少字符数。</p>
+</blockquote>
+<h5 id="题目分析-3">题目分析</h5>
+<p>这道题目同样使用动态规划。</p>
+<p>首先定义动态规划数组，用<code>dp[end][j]</code> 表示前<code>end</code>个字符，分割成<code>j</code>个非空不相交的回文串，需要最小修改的字符数。</p>
+<p>如我们已经已知了如何将前<code>end</code>个字符串分割成<code>j-1</code> 个子串，那么下一步便是考虑如何将它分成<code>j</code>个子串。</p>
+<p>其实只需要枚举第<code>j</code>个子串的起始位置<code>ij</code>，把 <code>S[0,ij-1]</code>分割成<code>j</code>个子串，然后 <code>S[ij, end]</code>作为第<code>j</code>个子串。</p>
+<p>然后再计算子串 <code>S[ij, end]</code>构成回文串需要修改的字符数量–定义为 <code>cost(ij, end)</code>。</p>
+<p>同时，为了得到非空的字符串，还要有以下两个限制：</p>
+<ul>
+<li><code>j&lt;=end</code> 因为前 <code>end</code> 个字符，最多能被分成 <code>end</code> 个子串。</li>
+<li><code>ij&gt;=j-1</code>。 因为要得到<code>j-1</code>个非空子串，前面至少要有这么多个字符。</li>
+</ul>
+<p><span class="math display">\[
+dp[end][j] = \min_{ij}\{dp[ij][j-1] +cost(ij, end)\}
+\]</span></p>
+<p>边界条件为：当<code>j=1</code>时，也就是不需要分割时，则有<code>dp[i][1] = cost[0][i]</code>成立。</p>
+<p>为了避免重复计算，我们可以再用一次动态规划来记录所有的 <code>cost(ij, end)</code>。这个动态规划的边界条件即为：对任意长度为1的字符串，都有<code>cost(i,i)=0</code>。之后类似于寻找最长子串，以字符串长度为优先遍历，得到： <span class="math display">\[
+cost(i,j)=\cases{cost(i+1,j-1)+1,\;\; S_i\neq S_j\\
+cost(i+1, j-1),\;\;\;\; S_i=S_j}
+\]</span></p>
+<h5 id="代码-5">代码</h5>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">palindromePartition</span><span class="params">(String s, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = s.length();</span><br><span class="line">    <span class="keyword">int</span>[][] cost = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> l=<span class="number">2</span>; l&lt;=n; l++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> left=<span class="number">0</span>; left&lt;n; left++)&#123;</span><br><span class="line">            <span class="keyword">int</span> right = left+l-<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(right&gt;=n)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            cost[left][right] = cost[left+<span class="number">1</span>][right-<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(left)!=s.charAt(right))&#123;</span><br><span class="line">                cost[left][right]++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span>[][] f = <span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">1</span>][k+<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=k; i++)&#123;</span><br><span class="line">        Arrays.fill(f[i], <span class="number">10086</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    f[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=Math.min(k, i); j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(j==<span class="number">1</span>)&#123;</span><br><span class="line">                f[i][j] = cost[<span class="number">0</span>][i-<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> i0=j-<span class="number">1</span>; i0&lt;i; i0++)&#123;</span><br><span class="line">                    f[i][j] = Math.min(f[i][j], f[i0][j-<span class="number">1</span>]+cost[i0][i-<span class="number">1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> f[n][k];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="分割回文串-iv">分割回文串 IV</h4>
+<p>题目链接：<a href="https://leetcode-cn.com/problems/palindrome-partitioning-iv/" target="_blank" rel="noopener">LeetCode-1745</a></p>
+<h5 id="题目描述-6">题目描述</h5>
+<blockquote>
+<p>给你一个字符串 <code>s</code> ，如果可以将它分割成三个 <strong>非空</strong> 回文子字符串，那么返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>当一个字符串正着读和反着读是一模一样的，就称其为 <strong>回文字符串</strong> 。</p>
+</blockquote>
+<h5 id="题目分析-4">题目分析</h5>
+<p>第一步仍然相同，先计算并统计所有的回文子串。</p>
+<p>第二步的重点则在于，找到这个字符串能否被分成三个回文串，即 <strong>找到两个分割点</strong>。完成前两个分割回文串的题目后，这个题目的思路就非常地清晰了。</p>
+<p>可以看到，前半部分的代码都是完全重复的。</p>
+<h5 id="代码-6">代码</h5>
+<p><code>p1</code> 和<code>p2</code> 即为分割点，字符串被分成 <code>S[0, p1]</code> , <code>S[p1+1, p2]</code> , <code>S[p2+1, n-1]</code> 三部分。注意由于要求各部分非空，要注意循环范围。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">checkPartitioning</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n = s.length();</span><br><span class="line">    <span class="keyword">boolean</span>[][] dp =  <span class="keyword">new</span> <span class="keyword">boolean</span>[n][n];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">        dp[i][i] = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">char</span>[] strArray = s.toCharArray();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> left=n-<span class="number">1</span>; left&gt;=<span class="number">0</span>; left--)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> right=left+<span class="number">1</span>; right&lt;n; right++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(right-left==<span class="number">1</span>)&#123;</span><br><span class="line">                dp[left][right] = (strArray[left]==strArray[right]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                dp[left][right] = dp[left+<span class="number">1</span>][right-<span class="number">1</span>]&amp;&amp;(strArray[left]==strArray[right]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> p1=<span class="number">0</span>; p1&lt;n-<span class="number">2</span>; p1++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> p2=p1+<span class="number">1</span>; p2&lt;n-<span class="number">1</span>; p2++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(dp[<span class="number">0</span>][p1]&amp;&amp;dp[p1+<span class="number">1</span>][p2]&amp;&amp;dp[p2+<span class="number">1</span>][n-<span class="number">1</span>])&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/动态规划/" rel="tag"># 动态规划</a>
+          
+            <a href="/tags/回文串/" rel="tag"># 回文串</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/back2/" rel="next" title="回溯算法（二）">
+                <i class="fa fa-chevron-left"></i> 回溯算法（二）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/subsequences/" rel="prev" title="子序列问题">
+                子序列问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Maneback">
+            
+              <p class="site-author-name" itemprop="name">Maneback</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/maneback" title="GitHub &rarr; https://github.com/maneback"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#最长回文子串"><span class="nav-text">最长回文子串</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分析"><span class="nav-text">分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回文字符串的个数"><span class="nav-text">回文字符串的个数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述-1"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题目分析"><span class="nav-text">题目分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-1"><span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最长回文子序列"><span class="nav-text">最长回文子序列</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述-2"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分析-1"><span class="nav-text">分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-2"><span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分割回文串"><span class="nav-text">分割回文串</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述-3"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题目分析-1"><span class="nav-text">题目分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-3"><span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分割回文串-ii"><span class="nav-text">分割回文串 II</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述-4"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题目分析-2"><span class="nav-text">题目分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-4"><span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分割回文串-iii"><span class="nav-text">分割回文串 III</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述-5"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题目分析-3"><span class="nav-text">题目分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-5"><span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分割回文串-iv"><span class="nav-text">分割回文串 IV</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述-6"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题目分析-4"><span class="nav-text">题目分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-6"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-maneback"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maneback</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'WeS1M7bQHLf8p4i9AQ7BMhuN-gzGzoHsz',
+    appKey: '6BpDUuBiRAFrPKj7a2h51Dbi',
+    placeholder: 'what do you want to say',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
