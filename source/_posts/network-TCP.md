@@ -21,19 +21,19 @@ TCP 报文头部：
 
 ##### 三次握手
 
-1. 客户端 发送建立连接请求，设置 `SYN=1`， 初始化序列号 `seq=x`，发送请求连接报文给 服务端，然后客户端 进入 `SYN_SEND` 状态，等待服务器确定。
-2. 服务端 接收到 客户端 的 `SYN` 报文，对该报文进行确认，设置 `ACK=x+1`。 同时还要发送自己的 SYN 报文，设置 SYN=1, seq=y， 将确认报文和 SYN 报文合并到同一个报文中，发送给 客户端， 此时 服务端 进入 `SYN_RECV` 状态。
-3. 客户端 收到 服务端 的 `SYN_ACK` 报文后，向 `sever` 发送` ACK `报文，将 ACK=y+1，发送给 服务端， 服务端 接收到报文后，都进入 建立状态，完成三次握手。
+1. 客户端 发送建立连接请求，设置 `SYN=1`， 初始化序列号 `seq=x`，发送请求连接报文给 服务端，然后客户端 进入 `SYN_SENT` 状态，等待服务器确定。
+2. 服务端 接收到 客户端 的 `SYN` 报文，对该报文进行确认，设置 `ACK=1`。 同时还要发送自己的 SYN 报文，设置 `SYN=1`, seq=y， 将确认报文和 SYN 报文合并到同一个报文中，发送给 客户端， 此时 服务端 进入 `SYN_RECV` 状态。
+3. 客户端 收到 服务端 的 `SYN_ACK` 报文后，向 `sever` 发送` ACK `报文，将 `ACK=1`，发送给服务端， 服务端接收到报文后，都进入建立状态，完成三次握手。
 
 ```sequence
 participant  Client as cc
 participant  Server as ss
-note left of cc: SYN_SEND
+note left of cc: SYN_SENT
 cc-->ss: SYN=1 seq=x
 note right of ss:SYN_Rcvd
 ss-->cc: ACK=1 SYN=1  ack=x+1 seq=y
 note left of cc: ESTABLISHED
-cc-->ss: ACK=y+1 seq=x+1 ack=y+1
+cc-->ss: ACK=1 seq=x+1 ack=y+1
 note right of ss: ESTABLISHED
 ```
 

@@ -3,7 +3,7 @@ title: 回溯算法（二）
 date: 2021-08-25 14:50:18
 tags:
   - 回溯算法
-  - LeetCode
+  - Leetcode
 categories: Algorithm
 description: 继续几个回溯法的例题
 ---

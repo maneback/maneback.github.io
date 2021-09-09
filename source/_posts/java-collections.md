@@ -38,7 +38,7 @@ int elem = array.get(1)//(index)
 int n = array.size();
 ```
 
-### map
+### Map
 
 - `HashMap` 的 `key`必须实现`equals()` 和 `hashCode()` 方法。
 - 有序 map 必须实现`Comparable` 接口；或者在声明时传入一个`Comparator` 接口，里面声明`compare` 函数
@@ -63,6 +63,8 @@ Map<Integer, Integer> mapper1 = new HashMap<Integer, Integer>();
             mapper1.put(num, occur.getOrDefault(num, 0) + 1);
         }
 ```
+
+
 
 ### Set 
 
@@ -113,7 +115,7 @@ que.peel();
 
 ```java
 // 实现类与接口分离
-Queue<int> que = new PriorityQueue<int>();
+Queue<Integer> que = new PriorityQueue<Integer>();
 
 //throw exception
 que.add();
@@ -131,7 +133,7 @@ que.peek();
 - deque 是用 `LinkedList `实现的接口，赋予了不同的功能。
 
 ```java
-Deque<int> que = new LinkedList<int>();
+Deque<Integer> que = new LinkedList<Integer>();
 
 //throw exception
 que.addLast(); //addFirst
@@ -156,9 +158,31 @@ stack.push(ch);
 stack.peek()
 ```
 
+### 并发容器
 
+####  ConcurrentHashMap
 
-#### 继承关系
+`ConcurrentHashMap ` 是线程安全的 Map。
+
+`ConcurrentHashMap `采⽤锁分段技术，将整个 `Hash `数组分成几个小的 segment，在每个 `segment `分别上锁。在插⼊元素的时候就需要先找到应该插⼊到哪⼀个⽚`segment`，然后对该 `segment `上锁并操作。这样做明显减小了锁的粒度。
+
+`HashTable` 同样是线程安全的，然而其使用了`synchronized` 关键字对 `get` 和`put` 等操作进行加锁，也就是每一次操作都会锁住整个 `Hash `表，每个线程独占哈希表，效率低下。
+
+#### CopyOnWriteArrayList
+
+线程安全的 List。所有可变操作（`add`，`set `等等）都是通过创建底层数组的新副本来实现的。当需要修改的时并不直接修改原有内容，⽽是对原有数据进⾏⼀次复制，将修改的内容写⼊副本。写完之后，再将修改完的副本替换原来的数据，这样就可以保证写操作不会影响读操作了。读取操作没有任何同步控制和锁操作，因此可以保证数据安全。
+
+此外，写⼊操作在添加集合的时候加了锁，保证了同步，避免了多线程写的时候会复制出多个副本。
+
+#### BlockingQueue
+
+提供了可阻塞的插入和移除方法。当容器队列已满时，插入线程会被阻塞，直到队列有新的空余位置产生；当队列为空时，移除线程会被阻塞，直到队列中有新的元素。
+
+#### ConcurrentLinkedQueue
+
+高效的并发队列，基于链表实现。是一个非阻塞队列
+
+### 继承关系
 
 橙色为类，蓝色为接口。
 

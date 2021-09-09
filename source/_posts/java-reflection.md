@@ -162,7 +162,7 @@ public class MyReflection02 {
 通过反射给属性赋值，是把对象和属性值交给 属性域的 `set`。
 
 ```java
-mport java.lang.reflect.Constructor;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
