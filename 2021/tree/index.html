@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next pisces" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="不同的二叉搜索树 有序链表转二叉树 二叉树展开成链表 填充每个节点的下一个右侧节点指针 具有所有最深节点的最小子树 二叉树的最近公共祖先 不同的二叉搜索树 题目链接： LeetCode-96 LeetCode-95 题目描述  给你一个整数 n ，请你生成并返回所有由 n 个节点组成且节点值从 1 到 n 互不相同的不同 二叉搜索树 。可以按 任意顺序 返回答案。 给你一">
+<meta name="keywords" content="Leetcode,tree">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树">
+<meta property="og:url" content="https://github.com/maneback/maneback.github.io/2021/tree/index.html">
+<meta property="og:site_name" content="漠·然">
+<meta property="og:description" content="不同的二叉搜索树 有序链表转二叉树 二叉树展开成链表 填充每个节点的下一个右侧节点指针 具有所有最深节点的最小子树 二叉树的最近公共祖先 不同的二叉搜索树 题目链接： LeetCode-96 LeetCode-95 题目描述  给你一个整数 n ，请你生成并返回所有由 n 个节点组成且节点值从 1 到 n 互不相同的不同 二叉搜索树 。可以按 任意顺序 返回答案。 给你一">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210905143101.png">
+<meta property="og:updated_time" content="2021-09-09T06:02:36.418Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="树">
+<meta name="twitter:description" content="不同的二叉搜索树 有序链表转二叉树 二叉树展开成链表 填充每个节点的下一个右侧节点指针 具有所有最深节点的最小子树 二叉树的最近公共祖先 不同的二叉搜索树 题目链接： LeetCode-96 LeetCode-95 题目描述  给你一个整数 n ，请你生成并返回所有由 n 个节点组成且节点值从 1 到 n 互不相同的不同 二叉搜索树 。可以按 任意顺序 返回答案。 给你一">
+<meta name="twitter:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210905143101.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="漠·然" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://github.com/maneback/maneback.github.io/2021/tree/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>树 | 漠·然</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">漠·然</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Maneback's Blog</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>主页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/maneback/maneback.github.io/2021/tree/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Maneback">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="漠·然">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">树
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-09-09 13:31:55" itemprop="dateCreated datePublished" datetime="2021-09-09T13:31:55+08:00">2021-09-09</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2021/tree/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2021/tree/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2021/tree/" class="leancloud_visitors" data-flag-title="树">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>不同的二叉搜索树</p>
+<p>有序链表转二叉树</p>
+<p>二叉树展开成链表</p>
+<p>填充每个节点的下一个右侧节点指针</p>
+<p>具有所有最深节点的最小子树</p>
+<p>二叉树的最近公共祖先</p>
+<h4 id="不同的二叉搜索树">不同的二叉搜索树</h4>
+<p>题目链接：</p>
+<p><a href="https://leetcode-cn.com/problems/unique-binary-search-trees/" target="_blank" rel="noopener">LeetCode-96</a></p>
+<p><a href="https://leetcode-cn.com/problems/unique-binary-search-trees-ii/" target="_blank" rel="noopener">LeetCode-95</a></p>
+<h5 id="题目描述">题目描述</h5>
+<blockquote>
+<p>给你一个整数 <code>n</code> ，请你生成并返回所有由 <code>n</code> 个节点组成且节点值从 <code>1</code> 到 <code>n</code> 互不相同的不同 <strong>二叉搜索树</strong> 。可以按 <strong>任意顺序</strong> 返回答案。</p>
+<p>给你一个整数 <code>n</code> ，求恰由 <code>n</code> 个节点组成且节点值从 <code>1</code> 到 <code>n</code> 互不相同的 <strong>二叉搜索树</strong> 有多少种？返回满足题意的二叉搜索树的种数。</p>
+</blockquote>
+<h5 id="分析">分析</h5>
+<p>这两个题基本上雷同，所以就放在一起了。</p>
+<p>树嘛，由树一定要想到递归操作。对于任意一个整数<code>1&lt;=i&lt;=n</code>， 把它作为根节点都能来构造二叉搜索树，并递归地用<code>[1, i-1]</code>和 <code>[i+1, n]</code>来构造左右子树。当数组中只有一个数字或零个数字时，则说明到了叶子结点，停止构造，再返回给父节点。这是一个自底向上的过程，只有拿到了子树，才能构造当前节点，所以是一个后序遍历的过程。</p>
+<p>对于数组<code>[l,r]</code>总结一下递归中每一步的操作：</p>
+<ol type="1">
+<li>如果数组中只含有零个或一个元素，则直接返回一个空节点/叶子节点。</li>
+<li>对于任一一个数字<code>l&lt;=i&lt;=r</code>， 以<code>i</code>为根节点，用<code>[l, i-1]</code>和 <code>[i+1, r]</code>来构造左右子树。</li>
+<li>分别返回左右子树的数量<code>ls</code>和 <code>rs</code>（列表<code>left_childs</code>和<code>right_childs</code>）。</li>
+<li>该节点的子树数量为<code>ls*rs</code>。 （以每一个左右子树对，构造一个二叉树）。</li>
+<li>返回树的数量（返回树的数组）。</li>
+</ol>
+<h5 id="代码">代码</h5>
+<ul>
+<li>构造树</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;TreeNode&gt; <span class="title">generateTrees</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> LinkedList&lt;TreeNode&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> generateTrees(<span class="number">1</span>, n);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;TreeNode&gt; <span class="title">generateTrees</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    List&lt;TreeNode&gt; trees = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span>(l&gt;r)&#123;</span><br><span class="line">        trees.add(<span class="keyword">null</span>);</span><br><span class="line">        <span class="keyword">return</span> trees;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> root=l; root&lt;=r; root++)&#123;</span><br><span class="line">        List&lt;TreeNode&gt; left_child = generateTrees(l, root-<span class="number">1</span>);</span><br><span class="line">        List&lt;TreeNode&gt; right_child = generateTrees(root+<span class="number">1</span>, r);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(TreeNode left: left_child)&#123;</span><br><span class="line">            <span class="keyword">for</span>(TreeNode right: right_child)&#123;</span><br><span class="line">                TreeNode node = <span class="keyword">new</span> TreeNode(root);</span><br><span class="line">                node.left = left;</span><br><span class="line">                node.right = right;</span><br><span class="line">                trees.add(node);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> trees;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>数量</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numTrees</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count(<span class="number">1</span>, n);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">count</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(l&gt;r)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> root=l; root&lt;=r; root++)&#123;</span><br><span class="line">        <span class="keyword">int</span> left = generateTrees(l, root-<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> right = generateTrees(root+<span class="number">1</span>, r);</span><br><span class="line">        </span><br><span class="line">        res += left * right;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="有序链表转二叉树">有序链表转二叉树</h4>
+<p>题目链接 <a href="https://leetcode-cn.com/problems/convert-sorted-list-to-binary-search-tree/" target="_blank" rel="noopener">LeetCode-109</a></p>
+<h5 id="题目描述-1">题目描述</h5>
+<blockquote>
+<p>给定一个单链表，其中的元素按升序排序，将其转换为高度平衡的二叉搜索树。</p>
+<p>本题中，一个<strong>高度平衡二叉树</strong>是指一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1。</p>
+</blockquote>
+<h5 id="分析-1">分析</h5>
+<p>第一种方法，我们可以先遍历一遍链表，然后把链表中的值存在一个数组中，再用数组来构建一个平衡二叉搜索树。这种方法比较简单，而且需要开辟额外的空间，所以不再赘述。</p>
+<p>第二种方法，可以采用递归。对于子链表<code>[left, right]</code>，每次使用快慢指针找到中点来构建。</p>
+<p>第二种方法的时间复杂度主要在于反复地寻找中位数节点。由于二叉树的中序遍历结构就是链表本身，所以我们可以将分治过程与中序遍历结合起来：</p>
+<p>具体做法就是，在构造过程中，不用先找出链表中的中位数节点，只需要找到它的序号，并预先构造一个占位节点。用一个外部指针去遍历链表，每构造一个节点，该指针都向后移动一个位置。当中序遍历构造完左子树之后，再填充节点的正确的值。</p>
+<h5 id="代码-1">代码</h5>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span>&#123;</span><br><span class="line">    ListNode globalHead;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">sortedListToBST</span><span class="params">(ListNode head)</span></span>&#123;</span><br><span class="line">        globalHead = head;</span><br><span class="line">        <span class="keyword">int</span> length = listLength(head);</span><br><span class="line">        <span class="keyword">return</span> buildTree(<span class="number">0</span>, length-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(left&gt;right)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> mid = (left+right+<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">        TreeNode root = <span class="keyword">new</span> TreeNode();</span><br><span class="line">        root.left = buildTree(left, mid-<span class="number">1</span>);</span><br><span class="line">        root.val = globalHead.val;</span><br><span class="line">        globalHead = globalHead.next;</span><br><span class="line">        root.right = buildTree(mid+<span class="number">1</span>, right);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">listLength</span><span class="params">(ListNode head)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(head!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            head = head.next;</span><br><span class="line">            len++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> len;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="二叉树展开成链表">二叉树展开成链表</h4>
+<p>题目链接 <a href="https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list/" target="_blank" rel="noopener">LeetCode-114</a></p>
+<h5 id="题目描述-2">题目描述</h5>
+<blockquote>
+<p>给你二叉树的根结点 <code>root</code>，请你将它展开为一个单链表：</p>
+<p>展开后的单链表应该同样使用 <code>TreeNode</code>，其中 right 子指针指向链表中下一个结点，而左子指针始终为 <code>null</code>。 展开后的单链表应该与二叉树 <strong>先序遍历</strong> 顺序相同。</p>
+</blockquote>
+<h5 id="分析-2">分析</h5>
+<p>第一种简单做法，是先用一次先序遍历，把节点都保存在都保存在一个列表中，再给它们的左右子树赋值。</p>
+<p>第二种做法是，遍历每一个节点。对于一个节点，如果它的左子树为空，则说明当前节点不需要操作，直接去操作它的右节点。</p>
+<p>如果左子树非空，则需要以下三个步骤：</p>
+<p>①找到先序遍历时左子树的最后一个节点 <code>pre</code>。（<code>curr</code><strong>左子树中的最右节点</strong>）</p>
+<p>②然后把 <code>curr</code> 的右子树连接到<code>pre</code> 的右子树。</p>
+<p>③把<code>curr</code>的左子树连接给 <code>curr</code> 的右子树。</p>
+<h5 id="代码-2">代码</h5>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">flatten</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">        TreeNode cur = root;</span><br><span class="line">        <span class="keyword">while</span>(cur!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cur.left==<span class="keyword">null</span>)&#123;</span><br><span class="line">                cur = cur.right;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//找到前驱节点</span></span><br><span class="line">            TreeNode pre = cur.left;</span><br><span class="line">            <span class="keyword">while</span>(pre.right!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                pre = pre.right;</span><br><span class="line">            &#125;</span><br><span class="line">            pre.right = cur.right;</span><br><span class="line">            cur.right = cur.left;</span><br><span class="line">            cur.left = <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="填充每个节点的下一个右侧节点指针-ii">填充每个节点的下一个右侧节点指针 II</h4>
+<p>题目链接 <a href="https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node-ii/" target="_blank" rel="noopener">LeetCode-117</a></p>
+<h5 id="题目描述-3">题目描述</h5>
+<blockquote>
+<p>给定一个二叉树</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; struct <span class="keyword">Node</span> <span class="title">&#123;</span></span><br><span class="line"><span class="title">&gt; int</span> val;</span><br><span class="line">&gt; <span class="keyword">Node</span> <span class="title">*left</span>;</span><br><span class="line">&gt; <span class="keyword">Node</span> <span class="title">*right</span>;</span><br><span class="line">&gt; <span class="keyword">Node</span> <span class="title">*next</span>;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 <code>NULL</code>。</p>
+<p>初始状态下，所有 next 指针都被设置为 <code>NULL</code>。</p>
+<p><strong>你只能使用常量级额外空间。</strong></p>
+</blockquote>
+<figure>
+<img src="https://gitee.com/MyTypora/typorapic/raw/master/img/20210905143101.png" alt="image-20210905143101119"><figcaption aria-hidden="true">image-20210905143101119</figcaption>
+</figure>
+<h5 id="分析-3">分析</h5>
+<p>如果不限制空间的话，那么使用层次遍历就可以解决了。无法使用额外空间的话，其实对于每一层的节点，可以用 <code>next</code> 指针来代替队列的作用。</p>
+<h5 id="代码-3">代码</h5>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span>&#123;</span><br><span class="line">    Node last=<span class="keyword">null</span>;</span><br><span class="line">    Node nextLevelStart = <span class="keyword">null</span>;<span class="comment">// 下一层的起始节点</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">connect</span><span class="params">(Node root)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Node start = root;</span><br><span class="line">        <span class="keyword">while</span>(start!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            last = <span class="keyword">null</span>;</span><br><span class="line">            nextLevelStart = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">for</span>(Node p = start; p.next!=<span class="keyword">null</span>; p=p.next)&#123;</span><br><span class="line">                <span class="keyword">if</span>(p.left!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                    handle(p.left);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(p.right!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                    handle(p.right);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            start = nextLevelStart;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handle</span><span class="params">(Node p)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(last!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            last.next = p;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(nextLevelStart == <span class="keyword">null</span>)&#123;</span><br><span class="line">            nextLevelStart = p;</span><br><span class="line">        &#125;</span><br><span class="line">        last = p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="具有所有最深节点的最小子树">具有所有最深节点的最小子树</h4>
+<p>题目链接：<a href="https://leetcode-cn.com/problems/smallest-subtree-with-all-the-deepest-nodes/" target="_blank" rel="noopener">LeetCode-865</a></p>
+<h5 id="题目描述-4">题目描述：</h5>
+<blockquote>
+<p>给定一个根为 <code>root</code>的二叉树，每个节点的深度是 该节点到根的最短距离 。</p>
+<p>如果一个节点在 <strong>整个树</strong> 的任意节点之间具有最大的深度，则该节点是 <strong>最深的</strong> 。</p>
+<p>一个节点的 <strong>子树</strong> 是该节点加上它的所有后代的集合。</p>
+<p>返回能满足 <strong>以该节点为根的子树中包含所有最深的节点</strong> 这一条件的具有最大深度的节点。</p>
+</blockquote>
+<h5 id="分析-4">分析</h5>
+<p>首先考虑计算每个节点的深度，很容易采用后续遍历的方式，自底向下地来计算。</p>
+<p>那么再进一步考虑：能不能在计算深度的<strong>同时</strong>采用一次遍历也返回具有最大深度的节点呢？</p>
+<p>这时候就要采用<strong>递归</strong>和<strong>局部</strong>的思想：</p>
+<ul>
+<li>如果左右子树深度相同，那么该节点就是最小子树的根节点，返回该节点以及该节点的深度。</li>
+<li>如果左子树更深，那么最小子树的根节点就在左子树中，且就是递归中左子树返回的节点。</li>
+<li>如果右子树更深，那么最小子树的根节点就在右子树中，且就是递归中右子树返回的节点。</li>
+</ul>
+<p>由于递归要返回两部分内容，我们就需要使用另外一个类，或数据结构来表示返回的结果。一个域是节点类型，表示最小子树的根节点，另一个域是整数类型，表示子树的深度。</p>
+<h5 id="代码-4">代码</h5>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> TreeNode <span class="title">subtreeWithAllDeepest</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> subdfs(root).node;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Res <span class="title">subdfs</span><span class="params">(TreeNode node)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(node == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">new</span> Res(<span class="keyword">null</span>, <span class="number">0</span>);</span><br><span class="line">        Res L = subdfs(node.left);</span><br><span class="line">        Res R = subdfs(node.right);</span><br><span class="line">        <span class="keyword">if</span>(L.height&gt;R.height) <span class="keyword">return</span> <span class="keyword">new</span> Res(L.node, L.height+<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(R.height&gt;L.height) <span class="keyword">return</span> <span class="keyword">new</span> Res(R.node, R.height+<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Res(node, L.height+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Res</span></span>&#123;</span><br><span class="line">    TreeNode node;</span><br><span class="line">    <span class="keyword">int</span> height;</span><br><span class="line">    Res(TreeNode n, <span class="keyword">int</span> h)&#123;</span><br><span class="line">        node = n;</span><br><span class="line">        height = h;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="二叉树的最近公共祖先">二叉树的最近公共祖先</h4>
+<p>题目链接 <a href="https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/" target="_blank" rel="noopener">LeetCode-236</a></p>
+<blockquote>
+<p>给定一个二叉树，找到该树中两个指定节点的最近公共祖先。</p>
+<p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”</p>
+</blockquote>
+<h5 id="分析-5">分析</h5>
+<p>对于寻找最近公共祖先，有两种情况：</p>
+<ol type="1">
+<li>p 在 q 的子树中，最近公共祖先即为 q。</li>
+<li>p, q 在分别某一个节点 node 的左右子树中。</li>
+</ol>
+<p>因此，我们可以使用后序遍历：</p>
+<p>首先判断 node 的值是否与 p 或 q 相等，若相等，或者遇到node 为空节点，则直接返回 node。这是递归的边界条件。</p>
+<p>若不相等再递归地查找 p 或者 q 是否在 node 的左子树或右子树中，如果在的话，返回节点p或者q，不在的话返回空。设左右子树递归返回的结果为 left 和 right。</p>
+<ol type="1">
+<li>若 left right 同时为空，则说明不在 node 的子树中。继续返回 空</li>
+<li>若 left 和 right 同时不为空，说明 p 和 q 分别在 node 左右子树中，返回 node 为最近祖先。</li>
+<li>若 left 为空， right 不为空，有以下三种情况：
+<ol type="1">
+<li>right指向 q，还未找到p。</li>
+<li>p，q 均在 node 的右子树中，且 right 指向最近公共祖先。</li>
+<li>right 指向q，且p在q 的子树中。</li>
+</ol></li>
+</ol>
+<p>这里解释一下，为什么不需要两个变量来记录在子树中 <strong>找到p</strong> 和 <strong>找到q</strong> 这两件事情。</p>
+<p>在上面的<strong>首先</strong> 与 <strong>3.1</strong> 中，如果 p 在 q 的子树中，我们是访问不到 节点 p 的。在访问到 q 的时候，递归就返回了。返回节点即为公共节点 q。这样的话对于其之上每个节点的递归，left 和 right 都一定只有一个不为空，即每次返回的都是q。</p>
+<p>若 p 和 q 分别在某一节点的 node 中左右子树中，对于其第一个公共祖先 node。其递归的 left 和 right 一定都不为空，且一定是 left 和 right 一个指向 p， 一个指向 q。这时，我们返回的节点 node，即为最近的公共祖先。而对于 node 的祖先节点，其left 和right 也同上，一定只有一个不为空，每次向上返回的不为空的节点即为公共祖先 node。</p>
+<h5 id="代码-5">代码</h5>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> TreeNode ans;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">dfs</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span> || root==p || root==q)&#123;</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode left = dfs(root.left, p, q);</span><br><span class="line">        TreeNode right = dfs(root.right, p, q);</span><br><span class="line">        <span class="keyword">if</span>(left==<span class="keyword">null</span> &amp;&amp; right==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>; <span class="comment">// 不在当前 root 的子树中</span></span><br><span class="line">        <span class="keyword">if</span>(left==<span class="keyword">null</span> &amp;&amp; right!=<span class="keyword">null</span>) <span class="keyword">return</span> right; <span class="comment">// 至少有一个在右子树中</span></span><br><span class="line">        <span class="keyword">if</span>(left!=<span class="keyword">null</span> &amp;&amp; right==<span class="keyword">null</span>) <span class="keyword">return</span> left;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> dfs(root, p, q);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
+          
+            <a href="/tags/tree/" rel="tag"># tree</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/subsequences/" rel="next" title="子序列问题">
+                <i class="fa fa-chevron-left"></i> 子序列问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Maneback">
+            
+              <p class="site-author-name" itemprop="name">Maneback</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">62</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/maneback" title="GitHub &rarr; https://github.com/maneback"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#不同的二叉搜索树"><span class="nav-text">不同的二叉搜索树</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分析"><span class="nav-text">分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#有序链表转二叉树"><span class="nav-text">有序链表转二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述-1"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分析-1"><span class="nav-text">分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-1"><span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二叉树展开成链表"><span class="nav-text">二叉树展开成链表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述-2"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分析-2"><span class="nav-text">分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-2"><span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#填充每个节点的下一个右侧节点指针-ii"><span class="nav-text">填充每个节点的下一个右侧节点指针 II</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述-3"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分析-3"><span class="nav-text">分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-3"><span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#具有所有最深节点的最小子树"><span class="nav-text">具有所有最深节点的最小子树</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目描述-4"><span class="nav-text">题目描述：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分析-4"><span class="nav-text">分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-4"><span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二叉树的最近公共祖先"><span class="nav-text">二叉树的最近公共祖先</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分析-5"><span class="nav-text">分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-5"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-maneback"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maneback</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'WeS1M7bQHLf8p4i9AQ7BMhuN-gzGzoHsz',
+    appKey: '6BpDUuBiRAFrPKj7a2h51Dbi',
+    placeholder: 'what do you want to say',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

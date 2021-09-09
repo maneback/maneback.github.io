@@ -104,7 +104,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210816090826.png">
 <meta property="og:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210816092140.png">
-<meta property="og:updated_time" content="2021-08-23T00:27:55.615Z">
+<meta property="og:updated_time" content="2021-09-07T01:19:23.740Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库索引">
 <meta name="twitter:description" content="介绍数据库的索引结构">
@@ -494,6 +494,13 @@
 <p>所以单独对<code>a</code>进行检索，可以使用上述索引<code>abc</code>，但是对<code>b,c</code>单独检索，则无法使用。索引的匹配一定是与索引建立时候的顺序是一致的。</p>
 <p>此外，对 <code>a,c</code> 进行检索，则只能对 <code>a</code>使用索引，而<code>c</code>则不能。</p>
 <p>（<strong>这里不考虑无法使用索引的条件，只是说明匹配原则。</strong>）</p>
+<h4 id="b树与b树的对比">④ B树与B+树的对比</h4>
+<ol type="1">
+<li>B 树只适合随机检索， B+ 树同时支持随机检索和顺序检索。</li>
+<li>B+ 树节点的利用效率更高，可减少 IO 次数，磁盘读写代价更低。</li>
+<li>B+ 树的查询效率更加稳定。B 树的查询过程可能在非叶子节点结束；B+ 树的查询全部在叶子节点结束。</li>
+<li>B 树在提高 IO 性能的同时并没有解决元素遍历效率低下的问题。进行范围查询，当元素存储在不同的磁盘页上时，需多次从根节点开始查找；而 B+ 树的叶子节点使用双指针连接在一起，且是有序的，只要遍历叶子结点就能实现整棵树的遍历。</li>
+</ol>
 <h3 id="索引失效的情况">4. 索引失效的情况</h3>
 <p>在一定条件下，索引可能会失效，即无法通过索引来加速查询过程。</p>
 <ul>
@@ -698,7 +705,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-count">62</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -919,7 +926,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#索引的数据结构"><span class="nav-text">1 索引的数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据结构的比较"><span class="nav-text">2 数据结构的比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库存储结构"><span class="nav-text">3 数据库存储结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#b-树"><span class="nav-text">① B-树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-树-1"><span class="nav-text">② B+ 树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#聚簇索引与非聚簇索引"><span class="nav-text">③ 聚簇索引与非聚簇索引</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引失效的情况"><span class="nav-text">4. 索引失效的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#myisam-与-innodb-的索引的区别"><span class="nav-text">5. MyISAM 与 InnoDB 的索引的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#myisam"><span class="nav-text">MyISAM</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#innodb"><span class="nav-text">InnoDB</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库存储引擎的对比"><span class="nav-text">6. 数据库存储引擎的对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引的设计原则"><span class="nav-text">7. 索引的设计原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他小问题"><span class="nav-text">8. 其他小问题</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#索引的数据结构"><span class="nav-text">1 索引的数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据结构的比较"><span class="nav-text">2 数据结构的比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库存储结构"><span class="nav-text">3 数据库存储结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#b-树"><span class="nav-text">① B-树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-树-1"><span class="nav-text">② B+ 树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#聚簇索引与非聚簇索引"><span class="nav-text">③ 聚簇索引与非聚簇索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b树与b树的对比"><span class="nav-text">④ B树与B+树的对比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引失效的情况"><span class="nav-text">4. 索引失效的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#myisam-与-innodb-的索引的区别"><span class="nav-text">5. MyISAM 与 InnoDB 的索引的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#myisam"><span class="nav-text">MyISAM</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#innodb"><span class="nav-text">InnoDB</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库存储引擎的对比"><span class="nav-text">6. 数据库存储引擎的对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引的设计原则"><span class="nav-text">7. 索引的设计原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他小问题"><span class="nav-text">8. 其他小问题</span></a></li></div>
             
 
           </div>
