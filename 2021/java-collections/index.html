@@ -104,7 +104,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210824100823.png">
 <meta property="og:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210816164347.png">
-<meta property="og:updated_time" content="2021-08-29T11:43:33.757Z">
+<meta property="og:updated_time" content="2021-09-14T02:07:41.608Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 集合">
 <meta name="twitter:description" content="Java 集合的使用方式">
@@ -472,7 +472,7 @@
 <ul>
 <li><code>HashMap</code> 的 <code>key</code>必须实现<code>equals()</code> 和 <code>hashCode()</code> 方法。</li>
 <li>有序 map 必须实现<code>Comparable</code> 接口；或者在声明时传入一个<code>Comparator</code> 接口，里面声明<code>compare</code> 函数</li>
-<li>无序的 <code>HashMap</code>基于哈希表实现， 有序的 <code>TreeMap</code>基于红⿊树实现 。</li>
+<li>无序的 <code>HashMap</code>基于哈希表实现， 有序的 <code>TreeMap</code>底层基于红⿊树实现 。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//无序map</span></span><br><span class="line">Map&lt;String, Integer&gt; mapper = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">mapper.put(<span class="string">')'</span>, <span class="string">'('</span>);</span><br><span class="line">mapper.containsKey(ch);</span><br><span class="line">mapper.get(key);</span><br><span class="line"><span class="comment">//遍历</span></span><br><span class="line"><span class="keyword">for</span> (String key : mapper.keySet());</span><br><span class="line"><span class="keyword">for</span> (Map.Entry&lt;String, Integer&gt; entry : mapper.entrySet());</span><br><span class="line"><span class="keyword">for</span>(String value: mapper.valueSet());</span><br><span class="line"><span class="comment">//有序map</span></span><br><span class="line">Map&lt;String, Integer&gt; order_map = <span class="keyword">new</span> TreeMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">//基础的使用map计数出现次数</span></span><br><span class="line">Map&lt;Integer, Integer&gt; mapper1 = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num: arr)&#123;</span><br><span class="line">            mapper1.put(num, occur.getOrDefault(num, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 <h3 id="set">Set</h3>
@@ -480,7 +480,7 @@
 <li>只会存储 <code>key</code> 的值。</li>
 <li>需要正确实现<code>equals()</code>和<code>hashCode()</code>方法。</li>
 <li>有序的Set还要实现<code>Comparable</code> 接口； 或者在声明时传入一个<code>Comparator</code> 接口，里面声明<code>compare</code> 函数</li>
-<li><code>HashSet</code>基于哈希表实现， <code>TreeSet</code>基于红黑树实现。</li>
+<li><code>HashSet</code>基于哈希表实现， <code>TreeSet</code>底层基于红黑树实现。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//无序Set</span></span><br><span class="line">Set&lt;String&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">set.add(<span class="string">"123"</span>);</span><br><span class="line">set.contains(<span class="string">"123"</span>);</span><br><span class="line">set.remove(<span class="string">"123"</span>);</span><br><span class="line"><span class="keyword">int</span> n = set.size();</span><br><span class="line"><span class="comment">//有序</span></span><br><span class="line"></span><br><span class="line">Set&lt;String&gt; set = <span class="keyword">new</span> TreeSet&lt;&gt;();</span><br></pre></td></tr></table></figure>
 <h3 id="queue">Queue</h3>
@@ -652,7 +652,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">62</span>
+                    <span class="site-state-item-count">64</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

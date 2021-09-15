@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="漠·然">
 <meta property="og:description" content="介绍数据库的事务管理，锁以及MVCC">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-08-19T10:19:59.664Z">
+<meta property="og:updated_time" content="2021-09-14T01:48:14.545Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库事务管理与锁">
 <meta name="twitter:description" content="介绍数据库的事务管理，锁以及MVCC">
@@ -556,7 +556,6 @@
 <li>在 RC 中，写过程需要排他锁，禁止读进程读取到未提交的修改。</li>
 <li>在 RR 中，读过程需要加共享锁，这是可以几个进程共享地读，但是禁止被修改，可以保证一个事务中读到的数据是一致的。</li>
 </ul>
-<hr>
 <h3 id="mvcc版本控制">MVCC版本控制</h3>
 <p><strong>多版本并发控制（MVCC）</strong> 是通过保存数据在某个时间点的快照来实现并发控制的。也就是说，不管事务执行多长时间，事务内部看到的数据是不受其它事务影响的，根据事务开始的时间不同，每个事务对同一张表，同一时刻看到的数据可能是不一样的。简单来说，<strong>MVCC</strong> 的思想就是保存数据的历史版本，通过对数据行的多个版本管理来实现数据库的并发控制。 是乐观锁的一种实现方式。</p>
 <p>MVCC 是通过在每行记录后面保存两个隐藏的列来实现的。一个保存了行的创建版本号，一个保存了行的删除版本号。每开启一个新的事务，系统版本号都会自动递增，作为事务的版本号。</p>
@@ -576,6 +575,18 @@
 <li>读写阻塞问题：MVCC 可以让读写互相不阻塞，即读不阻塞写，写不阻塞读，这样就可以提升事务并发处理能力。</li>
 <li>降低了死锁的概率：读取数据时并不需要加锁，对于写操作，也只锁定必要的行。</li>
 </ol>
+<h5 id="readview">ReadView</h5>
+<p>在 RC 级别下，每一次查询都会生成以个 ReadView，在 RR 级别下，只会在事务开启时生成一个 ReadView。View 包含了一个 low_limit_id， up_limit_id 和一个数组。数组中包含了事务开启时，所有未提交的活跃事务的 ID，低水位是当前活跃事务 ID 集合中最小的一个。高水位是下一次即将分配的事务 ID。</p>
+<p>在读取时，比如事务 T 要访问数据 A ，则先获取记录 A 的事务 ID，然后与 readView 对比：</p>
+<ul>
+<li>如果在 readView 左侧，比它都小，这说明 A 在事务 T 开始前已经提交，记录是可见的。</li>
+<li>如果在 readView 右侧，比它都大，这说明 A 在事务 T 之后的事务修改的，记录是不可见的。</li>
+<li>如果在 readView 之中，则与数组中的事务 ID 对比，如果是已提交的，则可见；如果未提交的则不可见。</li>
+<li>对于不可见的事务，通过回滚指针，获取上一版本的记录，再进行对比。</li>
+</ul>
+<h5 id="mvcc-能解决幻读问题吗">MVCC 能解决幻读问题吗？</h5>
+<p>MVCC 只会工作在 读已提交 和 可重复读 两种隔离级别下。在 RR 时，还有另外一种机制可以避免幻读，即间隙锁。 间隙锁和 MVCC 一同工作实现事务。</p>
+<p>间隙锁锁定索引记录间隙，确保索引记录的间隙不变。作用就是防止其他事务的插入操作，以防止幻读的发生。</p>
 <h5 id="快照读与当前度">快照读与当前度</h5>
 <p>MVCC 版本控制引入了一个新的概念：即快照读与当前读的区别。</p>
 <p><strong>快照读</strong>（SnapShot Read） 是一种一致性不加锁的读，是InnoDB并发如此之高的核心原因之一。</p>
@@ -708,7 +719,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">62</span>
+                    <span class="site-state-item-count">64</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -929,7 +940,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库的事务与锁"><span class="nav-text">数据库的事务与锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务及其性质"><span class="nav-text">事务及其性质</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事务隔离级别"><span class="nav-text">事务隔离级别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#锁"><span class="nav-text">锁</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#悲观锁与乐观锁"><span class="nav-text">悲观锁与乐观锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#排它锁与共享锁"><span class="nav-text">排它锁与共享锁</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#行级锁与表级锁"><span class="nav-text">行级锁与表级锁</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#二阶段锁"><span class="nav-text">二阶段锁</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁与隔离级别"><span class="nav-text">锁与隔离级别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mvcc版本控制"><span class="nav-text">MVCC版本控制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#mvcc-解决了哪些问题"><span class="nav-text">MVCC 解决了哪些问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#快照读与当前度"><span class="nav-text">快照读与当前度</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库的事务与锁"><span class="nav-text">数据库的事务与锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务及其性质"><span class="nav-text">事务及其性质</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事务隔离级别"><span class="nav-text">事务隔离级别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#锁"><span class="nav-text">锁</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#悲观锁与乐观锁"><span class="nav-text">悲观锁与乐观锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#排它锁与共享锁"><span class="nav-text">排它锁与共享锁</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#行级锁与表级锁"><span class="nav-text">行级锁与表级锁</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#二阶段锁"><span class="nav-text">二阶段锁</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁与隔离级别"><span class="nav-text">锁与隔离级别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mvcc版本控制"><span class="nav-text">MVCC版本控制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#mvcc-解决了哪些问题"><span class="nav-text">MVCC 解决了哪些问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#readview"><span class="nav-text">ReadView</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mvcc-能解决幻读问题吗"><span class="nav-text">MVCC 能解决幻读问题吗？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#快照读与当前度"><span class="nav-text">快照读与当前度</span></a></li></ol></li></ol></div>
             
 
           </div>

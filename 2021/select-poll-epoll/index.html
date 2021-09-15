@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="漠·然">
 <meta property="og:description" content="select/poll/epoll的区别">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-08-25T07:36:07.308Z">
+<meta property="og:updated_time" content="2021-09-12T07:55:06.813Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Select&#x2F;poll&#x2F;epoll的区别">
 <meta name="twitter:description" content="select/poll/epoll的区别">
@@ -495,6 +495,13 @@
 <li>epoll：通过内核和用户空间共享内存来实现。</li>
 </ul></li>
 </ol>
+<h2 id="同步异步阻塞非阻塞">5. 同步、异步、阻塞、非阻塞</h2>
+<p>同步：进程执行 IO 操作后，进程等待或者轮询地查看 IO 操作是否完成，等待结果，才能执行后续的操作。</p>
+<p>异步：进程执行 IO 操作后直接返回去做自己的事情， IO 交给内核处理，处理完成后再通知进程。</p>
+<p>阻塞：进程执行 IO 操作后要一直等待操作完成才能执行后续的操作。</p>
+<p>非阻塞：进程执行 IO 操作后，继续处理后续操作，不会被阻塞执行。过后再来询问操作是否完成。</p>
+<p>同步有阻塞和非阻塞之分，而异步一定是非阻塞的。</p>
+<p>同步和异步是针对应用程序来说的，关注的是程序之间的协作关系；阻塞和非阻塞关注的是单个进程的执行状态。</p>
 <p><strong>参考链接</strong></p>
 <ul>
 <li><a href="https://zhuanlan.zhihu.com/p/272891398" target="_blank" rel="noopener">一文搞懂select、poll和epoll区别</a></li>
@@ -624,7 +631,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">62</span>
+                    <span class="site-state-item-count">64</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -845,7 +852,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#select"><span class="nav-text">1. select</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#poll"><span class="nav-text">2.poll</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#epoll"><span class="nav-text">3.epoll</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-text">4.总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#select"><span class="nav-text">1. select</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#poll"><span class="nav-text">2.poll</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#epoll"><span class="nav-text">3.epoll</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-text">4.总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步异步阻塞非阻塞"><span class="nav-text">5. 同步、异步、阻塞、非阻塞</span></a></li></ol></div>
             
 
           </div>

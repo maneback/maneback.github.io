@@ -94,18 +94,21 @@
 
 
 
-  <meta name="description" content="记录常用的 VScode 快捷键">
-<meta name="keywords" content="VScode">
+  <meta name="description" content="数据库日志系统 undo-log  redo-log  binlog">
+<meta name="keywords" content="database">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VScode 快捷键">
-<meta property="og:url" content="https://github.com/maneback/maneback.github.io/2021/vscodeshortcut/index.html">
+<meta property="og:title" content="数据库日志">
+<meta property="og:url" content="https://github.com/maneback/maneback.github.io/2021/db-log/index.html">
 <meta property="og:site_name" content="漠·然">
-<meta property="og:description" content="记录常用的 VScode 快捷键">
+<meta property="og:description" content="数据库日志系统 undo-log  redo-log  binlog">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-01-17T13:18:53.583Z">
+<meta property="og:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210908100850.png">
+<meta property="og:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/202109121631116.png">
+<meta property="og:updated_time" content="2021-09-14T01:59:46.985Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="VScode 快捷键">
-<meta name="twitter:description" content="记录常用的 VScode 快捷键">
+<meta name="twitter:title" content="数据库日志">
+<meta name="twitter:description" content="数据库日志系统 undo-log  redo-log  binlog">
+<meta name="twitter:image" content="https://gitee.com/MyTypora/typorapic/raw/master/img/20210908100850.png">
 
 
 
@@ -114,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="https://github.com/maneback/maneback.github.io/2021/vscodeshortcut/">
+  <link rel="canonical" href="https://github.com/maneback/maneback.github.io/2021/db-log/">
 
 
 
@@ -124,7 +127,7 @@
   };
 </script>
 
-  <title>VScode 快捷键 | 漠·然</title>
+  <title>数据库日志 | 漠·然</title>
   
 
 
@@ -329,7 +332,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/maneback/maneback.github.io/2021/vscodeshortcut/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/maneback/maneback.github.io/2021/db-log/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Maneback">
@@ -346,7 +349,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">VScode 快捷键
+          <h1 class="post-title" itemprop="name headline">数据库日志
 
               
             
@@ -372,7 +375,7 @@
                 
               
 
-              <time title="创建时间：2021-01-17 21:15:35" itemprop="dateCreated datePublished" datetime="2021-01-17T21:15:35+08:00">2021-01-17</time>
+              <time title="创建时间：2021-09-12 16:18:36" itemprop="dateCreated datePublished" datetime="2021-09-12T16:18:36+08:00">2021-09-12</time>
             
 
             
@@ -390,7 +393,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/基础知识/" itemprop="url" rel="index"><span itemprop="name">基础知识</span></a></span>
 
                 
                 
@@ -409,8 +412,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2021/vscodeshortcut/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2021/vscodeshortcut/" itemprop="commentCount"></span>
+                <a href="/2021/db-log/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2021/db-log/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -418,7 +421,7 @@
 
           
           
-            <span id="/2021/vscodeshortcut/" class="leancloud_visitors" data-flag-title="VScode 快捷键">
+            <span id="/2021/db-log/" class="leancloud_visitors" data-flag-title="数据库日志">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -435,7 +438,7 @@
           
 
           
-            <div class="post-description">记录常用的 VScode 快捷键</div>
+            <div class="post-description">数据库日志系统 undo-log  redo-log  binlog</div>
           
 
         </div>
@@ -451,13 +454,131 @@
       
 
       
-        <ol type="1">
-<li>多行编辑
-<ul>
-<li>鼠标+ <code>Alt+Shift</code> 按键选择，此方式只能选择连续竖列的对应位置不可随意插入光标位置，且不可间隔列</li>
-<li><code>Shift+Ctrl</code> 数列选择, 可以在多个地方插入光标。</li>
-</ul></li>
+        <p>数据库通常借助日志来实现事务，如常见的 redo log 和 undo log，都能用来保证事务的原子性和持久性特点。</p>
+<h4 id="undo-log">undo log</h4>
+<p>undo 日志的作用是把还没有 commit 的事务回滚到事务开始前的状态。如系统崩溃时，可能有些事务还未完成并进行 commit ，这时就可能造成原子性缺失，即事务部分完成。在进行系统恢复时，就要把这些未 commit 的事务借助 undo 日志来回滚。</p>
+<p>使用 undo 日志时，要求：</p>
+<blockquote>
+<ol type="1">
+<li>记录日志时，对每一步修改操作，记录 <code>(T,x,v)</code> 表示事务 T 修改了 x，且<strong>修改前</strong>的值为 v。我们要借助这条日志来回滚。</li>
+<li>事务提交后，必须在事务的修改持久化完成后，才能写入 <code>COMMIT</code> 日志。这样才能保证，<code>COMMIT</code> 的日志已经持久化，不需要进行回滚。</li>
 </ol>
+</blockquote>
+<p>事务执行顺序</p>
+<blockquote>
+<ol type="1">
+<li>记录 <code>START T</code></li>
+<li>记录修改 <code>(T, x, v)</code></li>
+<li>根据事务更新数据库</li>
+<li>记录 <code>COMMIT T</code></li>
+</ol>
+</blockquote>
+<p>回滚操作</p>
+<blockquote>
+<ol type="1">
+<li>扫描日志，找出所有已经 START， 但是未 COMMIT 的事务。</li>
+<li>根据 undo 日志，将未 COMMIT 的事务进行回滚。</li>
+</ol>
+</blockquote>
+<h4 id="redo-log">redo log</h4>
+<p>redo 是指在进行恢复时，把已经 commit 的事务按照日志重做一遍；对于未完成 commit 的事务，不进行任何操作，直接按 abort 处理。</p>
+<p>使用 redo 日志时，要求：</p>
+<blockquote>
+<ol type="1">
+<li>记录日志时，对每一步修改操作，记录 <code>(T, x, w)</code> 表示事务 <code>T</code> 修改了 <code>x</code>，且<strong>修改后</strong>的值为 <code>w</code>。我们要借助这条日志来重做提交的事务。</li>
+<li>必须在记录<code>COMMI</code> 之后再进行数据持久化。这样可以保证未 COMMIT 的事务，不会对数据库造成任何影响。</li>
+</ol>
+</blockquote>
+<p>事务执行顺序</p>
+<blockquote>
+<ol type="1">
+<li>记录 <code>START T</code></li>
+<li>记录修改 <code>(T, x, w)</code></li>
+<li>记录 <code>COMMIT T</code></li>
+<li>根据事务更新数据库</li>
+</ol>
+</blockquote>
+<p>重做操作</p>
+<blockquote>
+<ol type="1">
+<li>扫描日志，找出所有已经 COMMIT 的事务。</li>
+<li>根据 redo 日志，将已 COMMIT 的事务重新执行一遍。</li>
+</ol>
+</blockquote>
+<h4 id="比较">比较</h4>
+<p>undo 日志与 redo 日志在事务执行顺序，即到底是先记录 commit 还是先更新数据库上有本质的区别，这主要由于是二者的作用以及对于 已经 commit 和未 commit 的事务的操作上的区别。</p>
+<p>undo 是把未 commit 的事务进行回滚，某个未完成的事务可能已经部分地修改了数据库的内容，需要回滚；而已完成的事务已经完成了其对数据内容的修改，不需要回滚。因此， COMMIT T 的作用更主要的是表示这个事务不需要进行操作。</p>
+<p>redo 是把已经完成 commit 的事务重做一遍（持久化），而直接忽略未完成的事务。如果我们先进行了修改，而事务还未 commit 发生了宕机，即对数据库进行了部分修改，使用 redo 日志重做时，这部分修改会被直接忽略，破解了未提交事务的原子性。而如果先记录日志，事务若能正常记录 commit，在恢复时还可以利用 redo 日志重新完成对数据库的完全修改。</p>
+<h4 id="checkpoint">checkpoint</h4>
+<p>使用日志进行回滚或恢复时，如果从头到尾地完全扫描一遍日志记录，则耗时太久，回滚或重做的工作量太大，可以利用 检查点 的机制来加速回滚。</p>
+<p>checkpoint在日志中按照如下的规则记录：</p>
+<blockquote>
+<ol type="1">
+<li>日志中记录<code>checkpoint_start(T1, T2, TN)</code>，即记录检查点开启时还未提交的事务。</li>
+<li>等待<code>(T1,T2,TN)</code> 这些所有事务都 COMMIT</li>
+<li>在日志中记录 <code>checkpoint_end</code>。</li>
+</ol>
+</blockquote>
+<p>借助 checkpoint 进行<strong>回滚</strong>。</p>
+<blockquote>
+<ol type="1">
+<li>从后往前扫描日志</li>
+<li>若先遇到 <code>checkpoint_start</code>， 则将 checkpoint_start 之后未提交的事务进行回滚。</li>
+<li>若先遇到 <code>checkpoint_end</code>， 则将之前一个 checkpoint_start 之后未提交的事务进行回滚。</li>
+</ol>
+</blockquote>
+<figure>
+<img src="https://gitee.com/MyTypora/typorapic/raw/master/img/20210908100850.png" alt="image-20210908100850153"><figcaption aria-hidden="true">image-20210908100850153</figcaption>
+</figure>
+<p>这里我做了一张图加深理解，纵向表示时间，每一个纵向的条表示一个事务，从左至右从1开始编号。checkpoint end 并不能保证<strong>所有事务</strong> 都完成提交，只能保证在其对应的 checkpoint start 之前开始的事务完成提交（如1~5）；而在那之后开启的事务（6~8) 则由下一次的 checkpoint start 监控。</p>
+<p>因此，如果先遇到了 start，则其语句中就包括了当前所有未完成commit 的事务。因此undo只需要从中找到系统崩溃时未完成的事务。</p>
+<p>而如果先遇到了 end， 那么在 start 与end 之间可能会有新的事务到来且未提交，但是在 start 之前为完成的事务，在 end 之后，其实都已经完成了。</p>
+<p>使用 checkpoint 加速<strong>恢复</strong></p>
+<p>若要在 redo 日志中使用 checkpoint，<strong>要求，在已提交的事务的修改已经进行持久化之后，再在日志中记录 <code>checkpoint_end</code></strong></p>
+<blockquote>
+<ol type="1">
+<li>从后往前，扫描redo log</li>
+<li>如果先遇到<code>checkpoint_start</code>， 则把T1~Tn以及checkpoint_start之后的所有已经COMMIT的事务进行重做；</li>
+<li>如果先遇到<code>checkpoint_end</code>, 则T1~Tn以及前一个checkpoint_start之后所有已经COMMIT的事务进行重做；</li>
+</ol>
+</blockquote>
+<p>对于undo 来讲，先提交记录修改数据库，再记录 checkpoint end；对于redo来讲，先进行数据库持久化，再记录checkpoint end。这样才能保证，之前的checkpoint 的工作已经全部完成，不需要再进行操作。</p>
+<h4 id="bin-log">bin log</h4>
+<p>binlog 的使用场景主要是主从复制和数据恢复</p>
+<ol type="1">
+<li><strong>主从复制</strong> ：在 <code>Master</code>端开启 <code>binlog</code>，然后将 <code>binlog</code>发送到各个 <code>Slave</code>端， <code>Slave</code>端重放 <code>binlog</code>从而达到主从数据一致。</li>
+<li><strong>数据恢复</strong> ：通过使用 <code>mysqlbinlog</code>工具来恢复数据。</li>
+</ol>
+<h4 id="主从复制">主从复制</h4>
+<p>主从复制主要用途包括：读写分离、主从备份、高可用、架构扩展等方面。</p>
+<p>在主从复制中，主服务器负责写，从服务器负责读，采用读写分离的架构，可以提高数据库的服务性能。即使从库的读操作耗时较长，也不会影响主库的更改。</p>
+<h5 id="线程">线程</h5>
+<p>主从复制主要涉及三个线程。其中一个线程运行在 master 节点，另外两个线程运行在 slave 节点。</p>
+<ul>
+<li>master 节点 binlog dump 线程，用于记录binlog。</li>
+<li>slave 节点 IO 线程，用于连接到 master 节点，并从 master 节点读取 binlog 的更新，保存到本地的 relay-log 中。</li>
+<li>slave 节点 SQL 线程，用于读取 relay-log 中的内容，并完成本地数据库的更新。</li>
+</ul>
+<h5 id="主从复制过程">主从复制过程</h5>
+<figure>
+<img src="https://gitee.com/MyTypora/typorapic/raw/master/img/202109121631116.png" alt="image-20210912163136068"><figcaption aria-hidden="true">image-20210912163136068</figcaption>
+</figure>
+<ol type="1">
+<li>主数据库更新数据库内容，并将更新写入 binlog。</li>
+<li>slave 的 IO 进程连接到 master，并请求日志文件中从指定位置之后的内容。</li>
+<li>master 收到 IO 请求后，把日志文件的内容返回给 slave 的 IO 进程。</li>
+<li>Slave 收到信息后，将接收到的日志内容一次添加到 slave 的 relay-log 文件的最末端。 同时还要记录此次读取到哪里，以便知道下次从哪里继续读取。</li>
+<li>Slave 的 Sql 进程检测到 relay-log 中新增加了内容后，会马上解析 relay-log 的内容成为在 Master 端真实执行时候的那些可执行的内容，并在自身执行，更新数据库内容。</li>
+</ol>
+<h5 id="更新方式">更新方式</h5>
+<ul>
+<li><p>同步复制</p>
+<p>master的变化，必须等待所有slave-1,slave-2,…,slave-n完成后才能返回。</p></li>
+<li><p>异步复制</p>
+<p>master只需要完成自己的数据库操作即可。至于slaves是否收到二进制日志，是否完成操作，不用关心, <strong>MySQL的默认设置</strong>。</p></li>
+<li><p>半同步复制</p>
+<p>master只保证slaves中的一个操作成功，就返回，其他slave不管。</p></li>
+</ul>
 
       
     </div>
@@ -481,7 +602,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/VScode/" rel="tag"># VScode</a>
+            <a href="/tags/database/" rel="tag"># database</a>
           
         </div>
       
@@ -494,8 +615,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/installed-plugin/" rel="next" title="Hexo 必要的插件">
-                <i class="fa fa-chevron-left"></i> Hexo 必要的插件
+              <a href="/2021/tree/" rel="next" title="树">
+                <i class="fa fa-chevron-left"></i> 树
               </a>
             
           </div>
@@ -504,8 +625,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/longest-turbulent-subarray/" rel="prev" title="Leetcode -- 最长湍流子数组">
-                Leetcode -- 最长湍流子数组 <i class="fa fa-chevron-right"></i>
+              <a href="/2021/numorder/" rel="prev" title="剑指 Offer-44 数字序列中某一位的数字">
+                剑指 Offer-44 数字序列中某一位的数字 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -555,8 +676,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -783,6 +913,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#undo-log"><span class="nav-text">undo log</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#redo-log"><span class="nav-text">redo log</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#比较"><span class="nav-text">比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#checkpoint"><span class="nav-text">checkpoint</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bin-log"><span class="nav-text">bin log</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主从复制"><span class="nav-text">主从复制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#线程"><span class="nav-text">线程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#主从复制过程"><span class="nav-text">主从复制过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#更新方式"><span class="nav-text">更新方式</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
